@@ -22,13 +22,13 @@
 
 <select id="selectOne" parameterType="int" resultType="Worker">
 	SELECT *
-	FORM WORKER
+	FROM WORKER
 	WHERE worker_num = #{worker_num}
 </select>
 
 <select id="selectAll" resultType="Worker">
 	SELECT *
-	FORM WORKER
+	FROM WORKER
 </select>
 
 </mapper>

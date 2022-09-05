@@ -8,28 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.maru.domain.NeedMaterial;
 import net.softsociety.maru.domain.Worker;
 
 @Slf4j
 @SpringBootTest
-public class WorkerDAOTest {
+public class NeedMaterialDAOTest {
 
 	@Autowired
-	WorkerDAO dao;
+	NeedMaterialDAO dao;
 	
-	@Disabled
 	@Test
 	public void insert() {
-		Worker w = new Worker();
-		w.setDivision_num(1);
-		w.setPosition_num(1);
-		w.setName("name");
-		w.setId("id1");
-		w.setPassword("password1");
-		w.setPhone("phone");
-		w.setSalary(100);
-		log.debug(w+"");
-		dao.insert(w);
+		NeedMaterial nm = new NeedMaterial();
+		nm.setMaterial_num(1);
+		nm.setProject_num(1);
+		nm.setCount(11);
+		
+		dao.insert(nm);
 	}
 	
 	@Disabled
@@ -42,30 +38,20 @@ public class WorkerDAOTest {
 	@Disabled
 	@Test
 	public void update() {
-		Worker w = new Worker();
-		w.setWorker_num(2);
-		w.setDivision_num(1);
-		w.setPosition_num(1);
-		w.setName("바꿈");
-		w.setId("id1");
-		w.setPassword("password1");
-		w.setPhone("phone");
-		w.setSalary(100);
-
-		int result = dao.update(w);
+		NeedMaterial nm = new NeedMaterial();
 	}
 	
 	@Disabled
 	@Test
 	public void selectOne() {
-		Worker w = dao.selectOne(2);
+		NeedMaterial w = dao.selectOne(2);
 		log.debug(""+w);
 	}
 	
 	@Disabled
 	@Test
 	public void selectAll() {
-		ArrayList<Worker> w = dao.selectAll();
+		ArrayList<NeedMaterial> w = dao.selectAll();
 		log.debug(""+w);
 	}
 	
