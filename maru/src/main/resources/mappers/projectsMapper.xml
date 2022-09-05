@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.ProjectsDAO">
+	<insert id="insert" parameterType="Projects">
+		insert into projects 
+		values 
+				(projects_seq.nextval, #{post_num}, #{title}, #{start_date} ,#{end_date} , #{status}, #{need_worker}, #{amount}, #{blueprint_path}, #{airview_path})
+	</insert>
+
+	<delete id="delete" parameterType="integer">
+		delete from projects
+		where projects_num = #{projects_num}
+	</delete>
+
+	<update id="update" parameterType="integer">
+		update projects
+		set post_num = #{post_num}, title = #{title}, start_date = #{start_date} ,end_date = #{end_date} ,status = #{status}, need_worker = #{need_worker}, amount = #{amount}, blueprint_path = #{blueprint_path}, airview_path = #{airview_path}
+		where projects_num = #{projects_num}
+	</update>
+	
+	<select id="selectOne" parameterType="integer">
+		select*from projects
+		where projects_num = #{projects_num}
+	</select>
+	
+	<select id="selectAll" resultType="Projects">
+		select*from projects
+	</select>
+</mapper>

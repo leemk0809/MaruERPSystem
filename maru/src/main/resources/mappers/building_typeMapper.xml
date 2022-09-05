@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.Building_typeDAO">
+	<insert id="insert" parameterType="Building_type">
+		insert into building_type 
+		values 
+				(building_type_seq.nextval, #{building_type_name})
+	</insert>
+
+	<delete id="delete" parameterType="integer">
+		delete from building_type
+		where building_type_num = #{building_type_num}
+	</delete>
+
+	<update id="update" parameterType="integer">
+		update building_type
+		set building_type_name= #{building_type_name}
+		where building_type_num = #{building_type_num}
+	</update>
+	
+	<select id="selectOne" parameterType="integer">
+		select*from building_type
+		where building_type_num = #{building_type_num}
+	</select>
+	
+	<select id="selectAll" resultType="Building_type">
+		select*from building_type
+	</select>
+</mapper>
