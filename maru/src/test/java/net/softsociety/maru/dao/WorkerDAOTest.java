@@ -49,7 +49,9 @@ public class WorkerDAOTest {
 		w.setPhone("phone");
 		w.setSalary(100);
 
-		Worker result = dao.update(w);
+		int result = dao.update(w);
+		
+		
 	}
 	
 }
