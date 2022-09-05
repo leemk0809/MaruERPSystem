@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.CommitWorkerDAO">
+	<insert id="insert" parameterType="CommitWorker">
+		insert into commit_worker 
+		values(
+			commit_worker_seq.nextval
+			, #{projects_num}
+			, #{worker_num}
+			, #{worker_detail}
+			, #{commit_date}
+			, #{end_date})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete commit_worker
+		where commit_worker_num = #{commit_worker_num}
+	</delete>
+	<update id="update" parameterType="CommitWorker">
+		update commit_worker
+		set
+			projects_num = #{projects_num}
+			, worker_num = #{worker_num}
+			, worker_detail = #{worker_detail}
+			, commit_date = #{commit_date}
+			, end_date = #{end_date}
+		where
+			commit_worker_num = #{commit_worker_num}
+	</update>
+	<select id="selectAll" resultType="CommitWorker">
+		select * from commit_worker
+	</select>
+	<select id="selectOne" resultType="CommitWorker">
+		select * from commit_worker
+		where commit_worker_num = #{commit_worker_num}
+	</select>
+</mapper>
