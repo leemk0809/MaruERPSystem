@@ -50,8 +50,6 @@ public class WorkerDAOTest {
 		w.setSalary(100);
 
 		int result = dao.update(w);
-		
-		
 	}
 	
 }
