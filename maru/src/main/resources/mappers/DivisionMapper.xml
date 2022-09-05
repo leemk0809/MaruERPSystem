@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.DivisionDAO">
+	<insert id="insert" parameterType="Division">
+		insert into division 
+		values(#{division_num}, #{division_name})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete division
+		where division_num = #{division_num}
+	</delete>
+	<update id="update" parameterType="Division">
+		update division
+		set
+			division_name = #{division_name}
+	</update>
+	<select id="selectAll" resultType="Division"></select>
+	<select id="selectOne" resultType="Division"></select>
+</mapper>
