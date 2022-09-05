@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import net.softsociety.maru.domain.Worker;
 
 @Mapper
-public interface WorkerDao {
+public interface WorkerDAO {
 	
 	public int insert(Worker worker);
 	

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import net.softsociety.maru.domain.ProjectTag;
 
 @Mapper
-public interface ProjectTagDao {
+public interface ProjectTagDAO {
 
 	public int insert(ProjectTag projectTag);
 	

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import net.softsociety.maru.domain.NeedMaterial;
 
 @Mapper
-public interface NeedMaterialDao {
+public interface NeedMaterialDAO {
 
 	public int insert(NeedMaterial needMaterial);
 	
