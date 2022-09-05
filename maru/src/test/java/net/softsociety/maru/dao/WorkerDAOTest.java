@@ -37,6 +37,7 @@ public class WorkerDAOTest {
 		log.debug(result+"");
 	}
 	
+	@Disabled
 	@Test
 	public void update() {
 		Worker w = new Worker();
@@ -50,6 +51,14 @@ public class WorkerDAOTest {
 		w.setSalary(100);
 
 		int result = dao.update(w);
+	}
+	
+	@Test
+	public void selectOne() {
+		
+		Worker w = dao.selectOne(1);
+		
+		log.debug(""+w);
 	}
 	
 }
