@@ -15,7 +15,7 @@ public interface Building_typeDAO {
 	
 	int update(int building_type_num);
 	
-	int selectOne(int building_type_num);
+	Building_type selectOne(int building_type_num);
 	
 	ArrayList<Building_type> selectAll();
 }

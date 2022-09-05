@@ -15,7 +15,7 @@ public interface MaterialDAO {
 	
 	int update(int material_num);
 	
-	int selectOne(int material_num);
+	Material selectOne(int material_num);
 	
 	ArrayList<Material> selectAll();
 }

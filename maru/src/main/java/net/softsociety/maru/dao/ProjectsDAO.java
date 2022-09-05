@@ -15,7 +15,7 @@ public interface ProjectsDAO {
 	
 	int update(int projects_num);
 	
-	int selectOne(int projects_num);
+	Projects selectOne(int projects_num);
 	
 	ArrayList<Projects> selectAll();
 }

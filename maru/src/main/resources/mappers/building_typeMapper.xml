@@ -21,7 +21,7 @@
 		where building_type_num = #{building_type_num}
 	</update>
 	
-	<select id="selectOne" parameterType="integer">
+	<select id="selectOne" parameterType="integer" resultType="building_type">
 		select*from building_type
 		where building_type_num = #{building_type_num}
 	</select>

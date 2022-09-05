@@ -21,7 +21,7 @@
 		where projects_num = #{projects_num}
 	</update>
 	
-	<select id="selectOne" parameterType="integer">
+	<select id="selectOne" parameterType="integer" resultType="Projects">
 		select*from projects
 		where projects_num = #{projects_num}
 	</select>

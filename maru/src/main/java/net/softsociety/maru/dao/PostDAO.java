@@ -15,7 +15,7 @@ public interface PostDAO {
 	
 	int update(int post_num);
 	
-	int selectOne(int post_num);
+	Post selectOne(int post_num);
 	
 	ArrayList<Post> selectAll();
 }

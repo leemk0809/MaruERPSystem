@@ -21,7 +21,7 @@
 		where post_num = #{post_num}
 	</update>
 	
-	<select id="selectOne" parameterType="integer">
+	<select id="selectOne" parameterType="integer" resultType="Post">
 		select*from post
 		where post_num = #{post_num}
 	</select>
