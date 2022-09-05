@@ -15,7 +15,7 @@
 		where material_num = #{material_num}
 	</delete>
 
-	<update id="update" parameterType="integer">
+	<update id="update" parameterType="Material">
 		update material
 		set material_name= #{material_name}, count = #{count}, price= #{price}
 		where material_num = #{material_num}

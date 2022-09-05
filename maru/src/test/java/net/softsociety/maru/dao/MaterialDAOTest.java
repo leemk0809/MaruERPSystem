@@ -28,7 +28,8 @@ public class MaterialDAOTest {
 	
 	@Test
 	void update() {
-		dao.update(1);
+		Material material = new Material(11, "bbb", 12,12);
+		dao.update(material);
 	}
 	
 	@Test

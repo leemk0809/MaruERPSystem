@@ -17,7 +17,7 @@ public class ProjectsDAOTest {
 	@Test
 	void insert() {
 			
-		Projects projects = new Projects(2,11,"aaa","aaa","aaa","aaa",11,11,"aaa","aaa");
+		Projects projects = new Projects(3,11,"aaa","aaa","2022-12-12","2023-01-01",11,11,"aaa","aaa");
 		dao.insert(projects);
 	}
 	
@@ -28,7 +28,8 @@ public class ProjectsDAOTest {
 //	
 //	@Test
 //	void update() {
-//		dao.update(2);
+//		Projects projects = new Projects(2,11,"aaa","aaa","2022-12-12","2023-01-01",11,11,"aaa","aaa");
+//		dao.update(projects);
 //	}
 //	
 //	@Test

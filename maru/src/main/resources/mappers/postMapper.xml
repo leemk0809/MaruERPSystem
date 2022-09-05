@@ -15,7 +15,7 @@
 		where post_num = #{post_num}
 	</delete>
 
-	<update id="update" parameterType="integer">
+	<update id="update" parameterType="Post">
 		update post
 		set title= #{title}, building_type_num = #{building_type_num}, price= #{price}, area = #{area}, building_size= #{building_size}
 		where post_num = #{post_num}

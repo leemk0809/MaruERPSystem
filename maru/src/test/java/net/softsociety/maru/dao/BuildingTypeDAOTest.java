@@ -26,10 +26,10 @@ public class BuildingTypeDAOTest {
 		dao.delete(2);
 	}
 	
-	@Test
-	void update() {
-		dao.update(1);
-	}
+//	@Test
+//	void update() {
+//		dao.update(1);
+//	}
 	
 	@Test
 	void selectOne() {

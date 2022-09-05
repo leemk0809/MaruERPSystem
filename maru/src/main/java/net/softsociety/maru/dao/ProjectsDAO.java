@@ -13,7 +13,7 @@ public interface ProjectsDAO {
 	
 	int delete(int projects_num);
 	
-	int update(int projects_num);
+	int update(Projects projects);
 	
 	Projects selectOne(int projects_num);
 	

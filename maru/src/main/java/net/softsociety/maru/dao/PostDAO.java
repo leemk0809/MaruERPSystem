@@ -13,7 +13,7 @@ public interface PostDAO {
 	
 	int delete(int post_num);
 	
-	int update(int post_num);
+	int update(Post post);
 	
 	Post selectOne(int post_num);
 	

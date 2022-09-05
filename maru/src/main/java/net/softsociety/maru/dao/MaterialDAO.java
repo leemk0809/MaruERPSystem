@@ -13,7 +13,7 @@ public interface MaterialDAO {
 	
 	int delete(int material_num);
 	
-	int update(int material_num);
+	int update(Material material);
 	
 	Material selectOne(int material_num);
 	

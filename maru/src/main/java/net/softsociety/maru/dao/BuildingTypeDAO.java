@@ -9,11 +9,11 @@ import net.softsociety.maru.domain.BuildingType;
 @Mapper
 public interface BuildingTypeDAO {
 	
-	int insert(BuildingType building_type);
+	int insert(BuildingType buildingtype);
 	
 	int delete(int building_type_num);
 	
-	int update(int building_type_num);
+	int update(BuildingType buildingtype);
 	
 	BuildingType selectOne(int building_type_num);
 	
