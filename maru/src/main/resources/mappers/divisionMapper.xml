@@ -15,7 +15,14 @@
 		update division
 		set
 			division_name = #{division_name}
+		where
+			division_num = #{division_num}
 	</update>
-	<select id="selectAll" resultType="Division"></select>
-	<select id="selectOne" resultType="Division"></select>
+	<select id="selectAll" resultType="Division">
+		select * from division
+	</select>
+	<select id="selectOne" resultType="Division">
+		select * from division
+		where division_num = #{division_num}
+	</select>
 </mapper>
