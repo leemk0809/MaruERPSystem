@@ -8,56 +8,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.maru.domain.NeedMaterial;
+import net.softsociety.maru.domain.ProjectTag;
+import net.softsociety.maru.domain.Worker;
 
 @Slf4j
 @SpringBootTest
-public class NeedMaterialDAOTest {
+public class ProjectTagDAOTest {
 
 	@Autowired
-	NeedMaterialDAO dao;
+	ProjectTagDAO dao;
 	
-	@Disabled
 	@Test
 	public void insert() {
-		NeedMaterial nm = new NeedMaterial();
-		nm.setMaterial_num(1);
-		nm.setProject_num(1);
-		nm.setCount(11);
+		ProjectTag pt = new ProjectTag();
+		pt.setProject_num(1);
+		pt.setPosition_num(1);
+		pt.setTag_sign("NO");
 		
-		dao.insert(nm);
+		dao.insert(pt);
 	}
 	
-	@Disabled
 	@Test
 	public void delete() {
-		int result = dao.delete(44);
+		int result = dao.delete(1);
 		log.debug(result+"");
 	}
 	
-/*작업중*/
 	@Test
 	public void update() {
-		NeedMaterial nm = new NeedMaterial();
-		nm.setNeed_material_num(45);
-		nm.setMaterial_num(1);
-		nm.setProject_num(1);
-		nm.setCount(1121);
-		
-		dao.update(nm);
+		ProjectTag pt = dao.selectOne(1);
+		pt.setTag_sign("YES");
 	}
 	
-	@Disabled
 	@Test
 	public void selectOne() {
-		NeedMaterial w = dao.selectOne(45);
+		ProjectTag w = dao.selectOne(2);
 		log.debug(""+w);
 	}
 	
-	@Disabled
 	@Test
 	public void selectAll() {
-		ArrayList<NeedMaterial> w = dao.selectAll();
+		ArrayList<ProjectTag> w = dao.selectAll();
 		log.debug(""+w);
 	}
 	
