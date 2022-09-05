@@ -8,6 +8,7 @@ import net.softsociety.maru.domain.Projects;
 
 @Mapper
 public interface ProjectsDAO {
+	
 	int insert(Projects projects);
 	
 	int delete(int projects_num);

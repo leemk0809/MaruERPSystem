@@ -8,6 +8,7 @@ import net.softsociety.maru.domain.Building_type;
 
 @Mapper
 public interface Building_typeDAO {
+	
 	int insert(Building_type building_type);
 	
 	int delete(int building_type_num);

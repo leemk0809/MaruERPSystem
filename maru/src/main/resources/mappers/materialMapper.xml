@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.softsociety.maru.dao.MaterialDAO">
+
 	<insert id="insert" parameterType="Material">
 		insert into material 
 		values 

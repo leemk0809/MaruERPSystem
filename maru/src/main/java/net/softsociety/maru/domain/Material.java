@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter @Getter
 public class Material {
+	
 	private int material_num;
 	private String material_name;
 	private int count;

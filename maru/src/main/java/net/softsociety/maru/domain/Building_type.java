@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter @Getter
 public class Building_type {
+	
 	private int building_type_num;
 	private String building_type_name;
 

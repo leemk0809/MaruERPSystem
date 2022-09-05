@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter @Getter
 public class Post {
+	
 	private int post_num;
 	private String title;
 	private int building_type_num;

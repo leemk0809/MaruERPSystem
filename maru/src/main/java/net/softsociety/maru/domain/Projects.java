@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter @Getter
 public class Projects {
+	
 	private int projects_num;
 	private int post_num;
 	private String title;

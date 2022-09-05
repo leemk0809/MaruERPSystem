@@ -8,6 +8,7 @@ import net.softsociety.maru.domain.Post;
 
 @Mapper
 public interface PostDAO {
+	
 	int insert(Post post);
 	
 	int delete(int post_num);

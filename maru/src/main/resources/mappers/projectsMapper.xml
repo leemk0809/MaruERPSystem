@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.softsociety.maru.dao.ProjectsDAO">
+
 	<insert id="insert" parameterType="Projects">
 		insert into projects 
 		values 

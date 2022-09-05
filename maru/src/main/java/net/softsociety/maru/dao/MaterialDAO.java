@@ -8,6 +8,7 @@ import net.softsociety.maru.domain.Material;
 
 @Mapper
 public interface MaterialDAO {
+	
 	int insert(Material material);
 	
 	int delete(int material_num);
