@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.FundsTypeDAO">
+	<insert id="insert" parameterType="FundsType">
+		insert into funds_type
+		values(
+			#{funds_type_num}
+			, #{funds_type_name}
+		)
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete funds_type
+		where funds_type_num = #{funds_type_num}
+	</delete>
+	<update id="update" parameterType="FundsType">
+		update funds_type
+		set
+			funds_type_name = #{funds_type_name}
+		where
+			funds_type_num = #{funds_type_num}
+	</update>
+	<select id="selectAll" resultType="FundsType">
+		select * from funds_type
+	</select>
+	<select id="selectOne" resultType="FundsType">
+		select * from funds_type
+		where funds_type_num = #{funds_type_num}
+	</select>
+</mapper>

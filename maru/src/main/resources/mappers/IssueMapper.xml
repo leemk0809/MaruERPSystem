@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.IssueDAO">
+	<insert id="insert" parameterType="Issue">
+		insert into issue 
+		values(
+			issue_seq.nextval
+			,#{projects_num}
+			,#{position_num}
+			,#{rank}
+			,#{title}
+			,#{contents}
+			,sysdate
+		)
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete issue
+		where issue_num = #{issue_num}
+	</delete>
+	<update id="update" parameterType="Issue">
+		update issue
+		set
+			projects_num = #{projects_num}
+			, position_num = #{position_num}
+			, rank = #{rank}
+			, title = #{title}
+			, contents = #{contents}
+		where
+			issue_num = #{issue_num}
+	</update>
+	<select id="selectAll" resultType="Issue">
+		select * from issue
+	</select>
+	<select id="selectOne" resultType="Issue">
+		select * from issue
+		where issue_num = #{issue_num}
+	</select>
+</mapper>
+
