@@ -5,9 +5,10 @@
 <mapper namespace="net.softsociety.maru.dao.ProjectsDAO">
 
 	<insert id="insert" parameterType="Projects">
-		insert into projects 
+		insert into 
+			projects 
 		values 
-				(projects_seq.nextval, #{post_num}, #{title}, #{start_date} ,#{end_date} , #{status}, #{need_worker}, #{amount}, #{blueprint_path}, #{airview_path})
+			(projects_seq.nextval, #{post_num}, #{title}, #{start_date} ,#{end_date} , #{status}, #{need_worker}, #{amount}, #{blueprint_path}, #{airview_path})
 	</insert>
 
 	<delete id="delete" parameterType="integer">

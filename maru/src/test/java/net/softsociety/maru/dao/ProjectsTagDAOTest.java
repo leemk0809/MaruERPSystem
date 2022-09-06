@@ -8,47 +8,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.maru.domain.ProjectTag;
+import net.softsociety.maru.domain.ProjectsTag;
 import net.softsociety.maru.domain.Worker;
 
 @Slf4j
 @SpringBootTest
-public class ProjectTagDAOTest {
+public class ProjectsTagDAOTest {
 
 	@Autowired
-	ProjectTagDAO dao;
+	ProjectsTagDAO dao;
 	
+	@Disabled
 	@Test
 	public void insert() {
-		ProjectTag pt = new ProjectTag();
-		pt.setProject_num(1);
+		ProjectsTag pt = new ProjectsTag();
+		pt.setProjects_num(1);
 		pt.setPosition_num(1);
 		pt.setTag_sign("NO");
 		
 		dao.insert(pt);
 	}
 	
+	@Disabled
+	@Test
+	public void update() {
+		ProjectsTag pt = dao.selectOne(1);
+		log.debug(pt+"");
+		pt.setTag_sign("YES");
+		dao.update(pt);
+	}
+	
+	@Disabled
 	@Test
 	public void delete() {
 		int result = dao.delete(1);
 		log.debug(result+"");
 	}
 	
-	@Test
-	public void update() {
-		ProjectTag pt = dao.selectOne(1);
-		pt.setTag_sign("YES");
-	}
-	
+	@Disabled
 	@Test
 	public void selectOne() {
-		ProjectTag w = dao.selectOne(2);
+		ProjectsTag w = dao.selectOne(2);
 		log.debug(""+w);
 	}
 	
+	@Disabled
 	@Test
 	public void selectAll() {
-		ArrayList<ProjectTag> w = dao.selectAll();
+		ArrayList<ProjectsTag> w = dao.selectAll();
 		log.debug(""+w);
 	}
 	

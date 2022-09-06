@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class BuildingType {
-	private int building_type_num;
-	private String building_type_name;
-
+@AllArgsConstructor
+public class Position {
+	private int position_num;
+	private String position_name;
 }

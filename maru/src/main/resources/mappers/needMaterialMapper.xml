@@ -4,32 +4,34 @@
 
 <mapper namespace="net.softsociety.maru.dao.NeedMaterialDAO">
 
-<insert id="insert" parameterType="NeedMaterial">
-	INSERT INTO NEED_MATERIAL
-	VALUES (need_material_seq.nextval,#{project_num},#{material_num},#{count})	
-</insert>
+	<insert id="insert" parameterType="NeedMaterial">
+		INSERT INTO NEED_MATERIAL
+		VALUES (need_material_seq.nextval,#{project_num},#{material_num},#{count})
+	</insert>
 
-<delete id="delete" parameterType="int">
-	DELETE NEED_MATERIAL
-	WHERE need_material_num=${need_material_num}
-</delete>
+	<delete id="delete" parameterType="int">
+		DELETE NEED_MATERIAL
+		WHERE need_material_num=${need_material_num}
+	</delete>
 
-<update id="update" parameterType="NeedMaterial" >
-	UPDATE NEED_MATERIAL
-	SET project_num=#{project_num},material_num=#{material_num},count=#{count}
-	WHERE need_material_num = #{need_material_num}
-</update>
+	<update id="update" parameterType="NeedMaterial">
+		UPDATE NEED_MATERIAL
+		SET
+		projects_num=#{projects_num},material_num=#{material_num},count=#{count}
+		WHERE need_material_num = #{need_material_num}
+	</update>
 
-<select id="selectOne" parameterType="int" resultType="NeedMaterial">
-	SELECT *
-	FROM NEED_MATERIAL
-	WHERE need_material_num = #{need_material_num}
-</select>
+	<select id="selectOne" parameterType="int"
+		resultType="NeedMaterial">
+		SELECT *
+		FROM NEED_MATERIAL
+		WHERE need_material_num = #{need_material_num}
+	</select>
 
-<select id="selectAll" resultType="NeedMaterial">
-	SELECT *
-	FROM NEED_MATERIAL
-</select>
+	<select id="selectAll" resultType="NeedMaterial">
+		SELECT *
+		FROM NEED_MATERIAL
+	</select>
 
 </mapper>
 	

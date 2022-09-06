@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class NeedMaterial {
 
 	private int need_material_num;
-	private int project_num;
+	private int projects_num;
 	private int material_num;
 	private int count;
 	

@@ -2,17 +2,16 @@ package net.softsociety.maru.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Material {
-	
+@AllArgsConstructor
+public class CommitMaterial {
+
+	private int commit_material_num;
+	private int projects_num;
 	private int material_num;
-	private String material_name;
 	private int count;
-	private int price;
+	private String commit_date;
 }

@@ -1,5 +1,8 @@
 package net.softsociety.maru.dao;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +17,7 @@ public class BuildingTypeDAOTest {
 	@Autowired
 	BuildingTypeDAO dao;
 	
+	@Disabled
 	@Test
 	void insert() {
 			
@@ -21,15 +25,18 @@ public class BuildingTypeDAOTest {
 		dao.insert(build);
 	}
 	
+	@Disabled
 	@Test
 	void delete() {
 		dao.delete(2);
 	}
 	
-//	@Test
-//	void update() {
-//		dao.update(1);
-//	}
+	@Disabled
+	@Test
+	void update() {
+		BuildingType buildingtype = new BuildingType(1, "aaa");
+		dao.update(buildingtype);
+	}
 	
 	@Test
 	void selectOne() {
@@ -38,6 +45,7 @@ public class BuildingTypeDAOTest {
 	
 	@Test
 	void selectAll() {
-		dao.selectAll();
+		List<BuildingType> list = dao.selectAll();
+		log.debug("list : {}", list);
 	}
 }
