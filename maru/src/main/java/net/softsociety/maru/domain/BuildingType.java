@@ -1,13 +1,12 @@
 package net.softsociety.maru.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter @Getter
 public class BuildingType {
 	private int building_type_num;
 	private String building_type_name;

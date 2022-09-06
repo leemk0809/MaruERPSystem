@@ -1,5 +1,6 @@
 package net.softsociety.maru.dao;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ public class MaterialDAOTest {
 	@Autowired
 	MaterialDAO dao;
 	
+	@Disabled
 	@Test
 	void insert() {
 			
@@ -32,11 +34,13 @@ public class MaterialDAOTest {
 		dao.update(material);
 	}
 	
+	@Disabled
 	@Test
 	void selectOne() {
 		dao.selectOne(2);
 	}
 	
+	@Disabled
 	@Test
 	void selectAll() {
 		dao.selectAll();
