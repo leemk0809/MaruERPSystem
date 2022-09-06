@@ -1,5 +1,5 @@
 package net.softsociety.maru.service;
 
-public class service {
+public class LoginA {
 
 }
