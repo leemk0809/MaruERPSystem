@@ -38,14 +38,15 @@ public class BuildingTypeDAOTest {
 		dao.update(buildingtype);
 	}
 	
-	@Test
-	void selectOne() {
-		dao.selectOne(2);
-	}
 	
 	@Test
 	void selectAll() {
 		List<BuildingType> list = dao.selectAll();
 		log.debug("list : {}", list);
+	}
+	
+	@Test
+	void selectOne() {
+		dao.selectOne(2);
 	}
 }
