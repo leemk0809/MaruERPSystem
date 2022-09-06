@@ -34,7 +34,7 @@
 		from projects_funds
 	</select>
 	
-	<select id="selectOne" resultType="ProjectsFunds">
+	<select id="selectOne" parameterType="integer" resultType="ProjectsFunds">
 		select 
 			*
 		from 

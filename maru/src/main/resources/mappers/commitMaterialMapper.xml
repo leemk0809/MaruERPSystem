@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.softsociety.maru.dao.CommitMaterialDAO">
+
+	<insert id="insert" parameterType="ProjectsFunds">
+		insert into 
+			commit_material 
+		values 
+			(commit_material_seq.nextval, #{projects_num}, #{material_num}, #{count}, #{commit_date})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from 
+			commit_material 
+		where 
+			commit_material_num=#{commit_material_num}
+	</delete>
+	
+	<update id="update" parameterType="CommitMaterial">
+		update 
+			commit_material
+		set
+			projects_num=#{projects_num}
+			, material_num=#{material_num}
+			, count=#{count}
+			, commit_date = TO_Date(#{commit_date}, 'YYYY-MM-DD hh24:mi:ss')			
+		where
+			commit_material_num=#{commit_material_num}
+	</update>
+	
+	<select id="selectAll" resultType="CommitMaterial">
+		select *
+		from commit_material
+	</select>
+	
+	<select id="selectOne" parameterType="integer" resultType="CommitMaterial">
+		select 
+			*
+		from 
+			commit_material
+		where
+			commit_material_num=#{commit_material_num}
+	</select>	
+
+</mapper>
