@@ -22,7 +22,7 @@ public class NeedMaterialDAOTest {
 	public void insert() {
 		NeedMaterial nm = new NeedMaterial();
 		nm.setMaterial_num(1);
-		nm.setProject_num(1);
+		nm.setProjects_num(1);
 		nm.setCount(11);
 		
 		dao.insert(nm);
@@ -35,18 +35,18 @@ public class NeedMaterialDAOTest {
 		log.debug(result+"");
 	}
 	
-/*작업중*/
+	@Disabled
 	@Test
 	public void update() {
 		NeedMaterial nm = new NeedMaterial();
 		nm.setNeed_material_num(45);
 		nm.setMaterial_num(1);
-		nm.setProject_num(1);
+		nm.setProjects_num(1);
 		nm.setCount(1121);
 		
 		dao.update(nm);
 	}
-	
+
 	@Disabled
 	@Test
 	public void selectOne() {

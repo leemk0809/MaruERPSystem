@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.maru.dao.ProjectsTagDAO">
+
+	<insert id="insert" parameterType="ProjectsTag">
+		INSERT INTO PROJECTS_TAG
+		VALUES (projects_tag_seq.nextval,#{position_num},#{projects_num},#{tag_sign})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE PROJECTS_TAG
+		WHERE projects_tag_num=${projects_tag_num}
+	</delete>
+
+	<update id="update" parameterType="ProjectsTag">
+		UPDATE PROJECTS_TAG
+		SET position_num=#{position_num},projects_num=#{projects_num},tag_sign=#{tag_sign}
+		WHERE projects_tag_num = #{projects_tag_num}
+	</update>
+
+	<select id="selectOne" parameterType="int" resultType="ProjectsTag">
+		SELECT *
+		FROM PROJECTS_TAG
+		WHERE projects_tag_num = #{projects_tag_num}
+	</select>
+
+	<select id="selectAll" resultType="ProjectsTag">
+		SELECT *
+		FROM PROJECTS_TAG
+	</select>
+
+</mapper>
