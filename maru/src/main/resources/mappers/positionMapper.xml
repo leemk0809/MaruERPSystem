@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.softsociety.maru.dao.PositionDAO">
+
+	<insert id="insert" parameterType="Position">
+		insert into 
+			position 
+		values 
+			(#{position_num}, #{position_name})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from 
+			position 
+		where 
+			position_num=#{position_num}
+	</delete>
+	
+	<update id="update" parameterType="Position">
+		update 
+			position
+		set
+			position_name=#{position_name}		
+		where
+			position_num=#{position_num}
+	</update>
+	
+	<select id="selectAll" resultType="Position">
+		select *
+		from position
+	</select>
+	
+	<select id="selectOne" parameterType="integer" resultType="Position">
+		select 
+			*
+		from 
+			position
+		where
+			position_num=#{position_num}
+	</select>	
+
+</mapper>
