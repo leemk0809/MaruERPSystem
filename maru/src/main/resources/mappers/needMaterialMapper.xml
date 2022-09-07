@@ -6,7 +6,7 @@
 
 	<insert id="insert" parameterType="NeedMaterial">
 		INSERT INTO NEED_MATERIAL
-		VALUES (need_material_seq.nextval,#{project_num},#{material_num},#{count})
+		VALUES (need_material_seq.nextval,#{projects_num},#{material_num},#{count})
 	</insert>
 
 	<delete id="delete" parameterType="int">
