@@ -32,10 +32,10 @@ public class WorkerDAOTest {
 		dao.insert(w);
 	}
 	
-	@Disabled
+
 	@Test
 	public void delete() {
-		int result = dao.delete(1);
+		int result = dao.delete(22);
 		log.debug(result+"");
 	}
 	

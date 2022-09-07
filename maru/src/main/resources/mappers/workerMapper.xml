@@ -11,7 +11,7 @@
 
 <delete id="delete" parameterType="int">
 	DELETE WORKER
-	WHERE worker_num=${worker_num}
+	WHERE worker_num = #{worker_num}
 </delete>
 
 <update id="update" parameterType="Worker" >
