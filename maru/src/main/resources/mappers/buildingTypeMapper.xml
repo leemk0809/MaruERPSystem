@@ -27,6 +27,6 @@
 	</select>
 	
 	<select id="selectAll" resultType="BuildingType">
-		select*from building_type
+		select * from building_type
 	</select>
 </mapper>
