@@ -30,25 +30,19 @@ public class DashboardSerivceImpl implements DashboardService {
 
 	@Override
 	public ArrayList<Projects> selectAllProjects() {
-
 		ArrayList<Projects> projectsList = pdao.selectAll();
-
 		return projectsList;
 	}
 
 	@Override
 	public ArrayList<CommitWorker> selectAllCommitWorker() {
-
 		ArrayList<CommitWorker> commitWorkerList = (ArrayList<CommitWorker>) cdao.selectAll();
-
 		return commitWorkerList;
 	}
 
 	@Override
 	public ArrayList<Issue> selectAllIssue() {
-
 		ArrayList<Issue> issueList = (ArrayList<Issue>) idao.selectAll();
-
 		return issueList;
 	}
 
