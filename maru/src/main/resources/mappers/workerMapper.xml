@@ -4,26 +4,32 @@
 
 <mapper namespace="net.softsociety.maru.dao.WorkerDAO">
 
-<insert id="insert" parameterType="Worker">
+<insert id="insertWorker" parameterType="Worker">
 	INSERT INTO WORKER
 	VALUES (worker_seq.nextval,#{division_num},#{position_num},#{id},#{password},#{name},#{phone},#{salary})	
 </insert>
 
-<delete id="delete" parameterType="int">
+<delete id="deleteWorker" parameterType="int">
 	DELETE WORKER
 	WHERE worker_num = #{worker_num}
 </delete>
 
-<update id="update" parameterType="Worker" >
+<update id="updateWorker" parameterType="Worker" >
 	UPDATE WORKER
 	SET division_num=#{division_num},position_num=#{position_num},id=#{id},password=#{password},name=#{name},phone=#{phone},salary=#{salary}
 	WHERE worker_num = #{worker_num}
 </update>
 
-<select id="selectOne" parameterType="int" resultType="Worker">
+<select id="selectOneWorker" parameterType="int" resultType="Worker">
 	SELECT *
 	FROM WORKER
 	WHERE worker_num = #{worker_num}
+</select>
+
+<select id="selectAllWorker" parameterType="int" resultType="Worker">
+	SELECT *
+	FROM WORKER
+	WHERE division_num=#{division_num}
 </select>
 
 <select id="selectAll" resultType="Worker">

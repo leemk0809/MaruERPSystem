@@ -1,6 +1,7 @@
 package net.softsociety.maru.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -29,13 +30,13 @@ public class WorkerDAOTest {
 		w.setPhone("phone");
 		w.setSalary(100);
 		log.debug(w+"");
-		dao.insert(w);
+		dao.insertWorker(w);
 	}
 	
 
 	@Test
 	public void delete() {
-		int result = dao.delete(22);
+		int result = dao.deleteWorker(22);
 		log.debug(result+"");
 	}
 	
@@ -52,20 +53,20 @@ public class WorkerDAOTest {
 		w.setPhone("phone");
 		w.setSalary(100);
 
-		int result = dao.update(w);
+		int result = dao.updateWorker(w);
 	}
 	
 	@Disabled
 	@Test
 	public void selectOne() {
-		Worker w = dao.selectOne(2);
+		Worker w = dao.selectOneWorker(2);
 		log.debug(""+w);
 	}
 	
 	@Disabled
 	@Test
 	public void selectAll() {
-		ArrayList<Worker> w = dao.selectAll();
+		List<Worker> w = dao.selectAll();
 		log.debug(""+w);
 	}
 	

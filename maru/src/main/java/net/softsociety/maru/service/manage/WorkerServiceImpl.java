@@ -1,5 +1,6 @@
 package net.softsociety.maru.service.manage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,39 +15,38 @@ import net.softsociety.maru.domain.Worker;
 @Service
 @Transactional
 public class WorkerServiceImpl implements WorkerService{
-	
-	
+		
 	@Autowired
 	WorkerDAO dao;
 	
 	@Override
-	public int insertWorker(Worker worker) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void insertWorker(Worker worker) {
+		dao.insertWorker(worker);
 	}
 
 	@Override
 	public Worker selectOneWorker(int worker_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOneWorker(worker_num);
 	}
 
 	@Override
-	public List<Worker> selectAllWorker(int division_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Worker> selectAllWorker(int division_num) {
+		return dao.selectAllWorker(division_num);
 	}
 
 	@Override
-	public int updateWorker(Worker worker) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateWorker(Worker worker) {
+		dao.updateWorker(worker);
 	}
 
 	@Override
 	public int deleteWorker(int worker_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.deleteWorker(worker_num);
+	}
+
+	@Override
+	public List<Worker> selectAll() {
+		return dao.selectAll();
 	}
 	
 }
