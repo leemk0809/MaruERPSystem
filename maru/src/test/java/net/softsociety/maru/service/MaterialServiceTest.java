@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.maru.service.project.MaterialService;
+import net.softsociety.maru.service.manage.MaterialService;
 
 @SpringBootTest
 @Slf4j

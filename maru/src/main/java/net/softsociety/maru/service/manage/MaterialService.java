@@ -1,4 +1,4 @@
-package net.softsociety.maru.service.project;
+package net.softsociety.maru.service.manage;
 
 import java.util.List;
 import java.util.Map;

@@ -2,6 +2,7 @@ package net.softsociety.maru.service;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ public class InsertProjectServiceTest {
 		log.debug("list.size() : {}", list.size());
 	}
 	
-	@Test
+	@Test @Disabled
 	void updateProject() {
 		List<Material> materialList = service.selectAllMaterial();
 		log.debug("materialList : {}", materialList);
@@ -56,5 +57,10 @@ public class InsertProjectServiceTest {
 		
 		project.setStatus("진행중");
 		//service.updateProject(project);
+	}
+	
+	@Test
+	void insertNeedMaterial() {
+		service.insertNeedMaterial(26, 1, 10000);
 	}
 }
