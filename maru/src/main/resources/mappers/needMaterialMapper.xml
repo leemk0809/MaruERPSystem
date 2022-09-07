@@ -11,7 +11,7 @@
 
 	<delete id="delete" parameterType="int">
 		DELETE NEED_MATERIAL
-		WHERE need_material_num=${need_material_num}
+		WHERE need_material_num=#{need_material_num}
 	</delete>
 
 	<update id="update" parameterType="NeedMaterial">

@@ -11,7 +11,7 @@
 
 	<delete id="delete" parameterType="int">
 		DELETE PROJECTS_TAG
-		WHERE projects_tag_num=${projects_tag_num}
+		WHERE projects_tag_num=#{projects_tag_num}
 	</delete>
 
 	<update id="update" parameterType="ProjectsTag">
