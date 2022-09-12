@@ -210,22 +210,41 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 		
 		List<CommitWorker> thisCWList = new ArrayList<>();
 		List<CommitMaterial> thisCMList = new ArrayList<>();
-		
+		//현재 프로젝트에 투입되야하는 워커 전체
 		for(CommitWorker cw : commitWorkerList) {
 			if(cw.getProjects_num()==projects_num) {
 				thisCWList.add(cw);
 			}
 		}
-		
+		//현재 프로젝트에 투입되야하는 자재 전체
 		for(CommitMaterial cm : commitMaterialList) {
 			if(cm.getProjects_num()==projects_num) {
 				thisCMList.add(cm);
 			}
 		}
 		
+		int workerProgress = 0;
+		int materialProgress = 0;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date currentTime = new Date();
+		String date = format.format(currentTime);
 		
-		return 0;
+		//투입된 워커 엔드데이트랑 현재날짜 비교 후 진행도 +
+		for(CommitWorker cw : thisCWList) {
+			if(date.compareTo(cw.getEnd_date()) > 0) {
+				workerProgress++;
+			}
+		}
+		// 투입자재 날짜와 현재 날짜 비교후 진행도 +
+		for(CommitMaterial cm : thisCMList) {
+			if(date.compareTo(cm.getCommit_date()) > 0) {
+				materialProgress++;
+			}
+		}
+		//두가지 진행도를 각각 50이라고 가정하고 프로젝트 진행도 계산
+		int projectsProgress = Math.round((workerProgress/thisCWList.size()) * 50 + (materialProgress/thisCMList.size()) * 50);
+		
+		return projectsProgress;
 	}
-	
 	
 }
