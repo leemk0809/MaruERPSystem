@@ -40,7 +40,7 @@ public class CommitWorkerServiceImpl implements CommitWorkerService {
 	@Override
 	public int delete(int commit_worker_num) {
 		int result = cdao.delete(commit_worker_num);
-		return result;
+		return result; 
 	}
 
 }

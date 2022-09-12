@@ -16,6 +16,6 @@ public interface CommitWorkerService {
 	//참여인력을 추가하기위한 메소드
 	public int insert(CommitWorker cw);
 	
-	//참여인력을 제거?하기위한 메소드
+	//참여인력을 제거?하기위한 메소드 
 	public int delete(int commit_worker_num);
 }

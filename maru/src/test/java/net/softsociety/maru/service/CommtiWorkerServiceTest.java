@@ -58,6 +58,6 @@ public class CommtiWorkerServiceTest {
 		
 		int result = service.delete(3);
 		
-		//log.debug("result : " + result);
+		//log.debug("result : " + result); 
 	}
 }
