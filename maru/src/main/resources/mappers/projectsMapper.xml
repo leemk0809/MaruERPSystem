@@ -18,7 +18,15 @@
 
 	<update id="update" parameterType="Projects">
 		update projects
-		set post_num = #{post_num}, title = #{title}, start_date = #{start_date} ,end_date = #{end_date} ,status = #{status}, need_worker = #{need_worker}, amount = #{amount}, blueprint_path = #{blueprint_path}, airview_path = #{airview_path}
+		set post_num = #{post_num}
+			, title = #{title}
+			, start_date = TO_Date(#{start_date}, 'YYYY-MM-DD hh24:mi:ss')	
+			, end_date = TO_Date(#{end_date}, 'YYYY-MM-DD hh24:mi:ss')	
+			, status = #{status}
+			, need_worker = #{need_worker}
+			, amount = #{amount}
+			, blueprint_path = #{blueprint_path}
+			, airview_path = #{airview_path}
 		where projects_num = #{projects_num}
 	</update>
 	
