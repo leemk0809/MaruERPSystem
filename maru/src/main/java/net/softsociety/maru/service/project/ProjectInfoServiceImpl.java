@@ -14,6 +14,7 @@ import net.softsociety.maru.dao.CommitMaterialDAO;
 import net.softsociety.maru.dao.CommitWorkerDAO;
 import net.softsociety.maru.dao.ProjectsDAO;
 import net.softsociety.maru.dao.WorkerDAO;
+import net.softsociety.maru.domain.CommitMaterial;
 import net.softsociety.maru.domain.CommitWorker;
 import net.softsociety.maru.domain.Projects;
 import net.softsociety.maru.domain.Worker;
@@ -203,7 +204,26 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
 	@Override
 	public int projectsProgress(int projects_num) {
-		// TODO Auto-generated method stub
+
+		List<CommitWorker> commitWorkerList = commitWorkerDAO.selectAll();
+		List<CommitMaterial> commitMaterialList = commitMaterialDAO.selectAll();
+		
+		List<CommitWorker> thisCWList = new ArrayList<>();
+		List<CommitMaterial> thisCMList = new ArrayList<>();
+		
+		for(CommitWorker cw : commitWorkerList) {
+			if(cw.getProjects_num()==projects_num) {
+				thisCWList.add(cw);
+			}
+		}
+		
+		for(CommitMaterial cm : commitMaterialList) {
+			if(cm.getProjects_num()==projects_num) {
+				thisCMList.add(cm);
+			}
+		}
+		
+		
 		return 0;
 	}
 	
