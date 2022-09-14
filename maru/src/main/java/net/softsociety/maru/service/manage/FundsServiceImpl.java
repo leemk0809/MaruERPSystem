@@ -179,11 +179,11 @@ public class FundsServiceImpl implements FundsService{
 		//프로젝트 끝나는 날짜랑 오늘이랑 비교
 		int result = date.compareTo(pdao.selectOne(projects_num).getEnd_date());
 		//아직 안끝났을 경우  50%
-		if(result > 0) {
+		if(result < 0) {
 			Amount = (int) ((pdao.selectOne(projects_num).getAmount())*0.5);
 		}
 		//끝났을 경우 100%
-		if(result<0) {
+		if(result >=0) {
 			Amount = pdao.selectOne(projects_num).getAmount();
 		}		
 				
