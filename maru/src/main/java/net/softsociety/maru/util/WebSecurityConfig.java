@@ -27,6 +27,7 @@ public class WebSecurityConfig {
         .antMatchers(
         		"/",
         		"/manage/**",
+        		"/dashboard/**",
         		"/assets/**",
                 "/images/**",
                 "/css/**",
