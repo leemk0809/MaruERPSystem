@@ -1,5 +1,7 @@
 package net.softsociety.maru.dao;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +25,46 @@ public class MaterialDAOTest {
 		dao.insert(material);
 	}
 	
+	@Disabled
 	@Test
 	void delete() {
 		dao.delete(2);
 	}
 	
+	@Disabled
 	@Test
 	void update() {
 		Material material = new Material(11, "bbb", 12,12);
 		dao.update(material);
 	}
 	
-	@Disabled
 	@Test
 	void selectOne() {
 		dao.selectOne(2);
 	}
 	
-	@Disabled
 	@Test
 	void selectAll() {
 		dao.selectAll();
+	}
+	
+	@Test
+	void selectAllByNum() {
+		dao.selectAllByNum();
+	}
+	
+	@Test
+	void selectAllByName() {
+		dao.selectAllByName();
+	}
+	
+	@Test
+	void selectAllByPrice() {
+		dao.selectAllByPrice();
+	}
+
+	@Test
+	void selectAllByCount() {
+		dao.selectAllByCount();
 	}
 }
