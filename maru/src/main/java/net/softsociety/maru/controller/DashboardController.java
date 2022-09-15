@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DashboardController {
 
-	@GetMapping({"","/","dashboard"})
+	@GetMapping({"calendar"})
+	public String calender() {
+		return "/static/calendar/calender.html";
+	}
+
+	@GetMapping({ "", "/", "dashboard" })
 	public String index() {
-		
 		return "dashboard/dashboard.html";
 	}
 	
