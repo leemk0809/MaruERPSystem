@@ -30,6 +30,7 @@ public class WebSecurityConfig {
         		"/static/calendar/**",
         		"/dashboard/**",
         		"/assets/**",
+        		"calendar/**",
                 "/images/**",
                 "/css/**",
                 "/js/**").permitAll()

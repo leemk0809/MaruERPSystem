@@ -18,4 +18,8 @@ public interface MaterialDAO {
 	Material selectOne(int material_num);
 	
 	ArrayList<Material> selectAll();
+	ArrayList<Material> selectAllByNum();
+	ArrayList<Material> selectAllByName();
+	ArrayList<Material> selectAllByPrice();
+	ArrayList<Material> selectAllByCount();
 }

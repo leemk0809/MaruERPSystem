@@ -1,5 +1,6 @@
 package net.softsociety.maru.service.manage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +17,9 @@ public interface MaterialService {
 	 */
 	public void addMaterial(Map<Integer, Integer> request);
 	public void subtractMaterial(Map<Integer, Integer> request);
+	
+	public ArrayList<Material> selectAllByNum();
+	public ArrayList<Material> selectAllByName();
+	public ArrayList<Material> selectAllByPrice();
+	public ArrayList<Material> selectAllByCount();
 }

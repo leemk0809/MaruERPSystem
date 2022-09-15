@@ -29,4 +29,21 @@
 	<select id="selectAll" resultType="Material">
 		select*from material
 	</select>
+	
+	<select id="selectAllByNum" resultType="Material">
+		select * from material
+		order by material_num
+	</select>
+	<select id="selectAllByName" resultType="Material">
+		select * from material
+		order by material_name
+	</select>
+	<select id="selectAllByPrice" resultType="Material">
+		select * from material
+		order by price
+	</select>
+	<select id="selectAllByCount" resultType="Material">
+		select * from material
+		order by count
+	</select>
 </mapper>

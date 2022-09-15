@@ -1,5 +1,6 @@
 package net.softsociety.maru.service.manage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,6 +67,26 @@ public class MaterialServiceImpl implements MaterialService {
 				}
 			}
 		}
+	}
+
+	@Override
+	public ArrayList<Material> selectAllByNum() {
+		return mdao.selectAllByNum();
+	}
+
+	@Override
+	public ArrayList<Material> selectAllByName() {
+		return mdao.selectAllByName();
+	}
+
+	@Override
+	public ArrayList<Material> selectAllByPrice() {
+		return mdao.selectAllByPrice();
+	}
+
+	@Override
+	public ArrayList<Material> selectAllByCount() {
+		return mdao.selectAllByCount();
 	}
 
 }

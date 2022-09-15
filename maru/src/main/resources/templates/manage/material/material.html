@@ -34,6 +34,7 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+  
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core_m.css" class="template-customizer-core-css" />
@@ -47,11 +48,162 @@
     <!-- Page CSS -->
 
     <!-- Helpers -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+    <script>
+	    $(document).ready(function(){
+	    	//$('#searchword').on('keyup', printItems);
+	    	print();
+	    });
+	    
+	    function print(){
+	    	printmaterial();
+	    	printByName();
+	    	printByPrice();
+	    	printByCount();
+	    }
+
+	    function printmaterial(){
+	    	$.ajax({
+	    		url:'printmaterial',
+	    		type:'post',
+	    		data: '',
+	    		success:function(item){
+	    			$('#printByMaterialnum').html(printList(item));
+	    		},
+	    		error:function(){
+	    			alert('printItems 실패');
+	    		}
+	    	});
+	    }
+
+	    function printList(item){
+	    	let result = '<div class="table-responsive text-nowrap">';
+	    	result += '<table class="table table-hover">';
+	    	result += '<tbody class="table-border-bottom-0">';
+	    	
+	    	for(let i = 0 ; i < item.length; i++){
+	    		result += '<tr>';
+	    		result += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>' + item[i].material_num +'</strong></td>';
+	    		result += '<td>' + item[i].material_name +'</td>';
+	    		result += '<td>' + item[i].count +'</td>';
+	    		result += '<td>' + item[i].price +'</td>';
+	    		result += '<td>'
+	                   		+ '<div class="dropdown">'
+	                		+	'<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">'
+	                  		+		'<i class="bx bx-dots-vertical-rounded"></i>'
+	                		+	'</button>' 	
+	                		+ 	'<div class="dropdown-menu">'
+	                	//+ 		'<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>수정</a>'
+	                  		+ 		'<a class="dropdown-item" num="'+ item[i].material_num +'"><i class="bx bx-trash me-1"></i>삭제</a>'
+	                  		+ 	'</div>'
+	                		+ '</div>'
+	             			+'</td>'; 
+	    		result += '</tr>';
+	    	}
+	    	result += '</tbody>'
+                + '</table>'
+            + '</div>';
+            
+            $('.dropdown-item').on('click', deleteMaterial);
+            
+            return result;
+	    }
+
+	    function insert(){
+	    	let material_name = $('#material_name_m').val();
+	    	let count = $('#count_m').val();
+	    	let price = $('#price_m').val();
+	    	
+	    	if(material_name == '' || count == '' || price == ''){
+	    		alert("항목을 반드시 다 입력해 주세요.");
+	    		return;
+	    	}
+	    	
+	    	if(isNaN(count) || isNaN(price)){
+	    		alert("수량과 가격은 반드시 숫자로 입력해 주세요.");
+	    		return;
+	    	}
+	    	
+	    	$.ajax({
+	    		url:'insertMaterial',
+	    		type:'post',
+	    		data: {
+	    			material_name: $('#material_name_m').val()
+	    			, count: $('#count_m').val()
+		    		, price: $('#price_m').val()
+	    		},
+	    		success: function(item){
+	    			$('#insertModal').modal('hide');
+	    	    	print();
+	    		},
+	    		error:function(){
+	    			console.log('insertMaterial 실패');
+	    		}
+	    	});
+	    	
+	    }
+	    
+	    function deleteMaterial(){
+	    	console.log(($(this).attr('num')));
+	    	
+	    	$.ajax({
+	    		url:'deleteMaterial',
+	    		type:'post',
+	    		data:{ num : $(this).attr('num')},
+	    		success: print,
+	    		erorr:function(){
+	    			alert('deleteMaterial 실패');
+	    		}
+	    	});
+	    } 
+	    
+	    function printByName(){
+	    	$.ajax({
+	    		url:'printByName',
+	    		type:'post',
+	    		data: '',
+	    		success:function(item){
+	    			$('#printByName').html(printList(item));
+	    		},
+	    		error:function(){
+	    			alert('printByName 실패');
+	    		}
+	    	});
+	    };
+	    
+	    function printByPrice(){
+	    	$.ajax({
+	    		url:'printByPrice',
+	    		type:'post',
+	    		data: '',
+	    		success:function(item){
+	    			$('#printByPrice').html(printList(item));
+	    		},
+	    		error:function(){
+	    			alert('printByPrice 실패');
+	    		}
+	    	});
+	    };
+	    
+	    function printByCount(){
+	    	$.ajax({
+	    		url:'printByCount',
+	    		type:'post',
+	    		data: '',
+	    		success:function(item){
+	    			$('#printByCount').html(printList(item));
+	    		},
+	    		error:function(){
+	    			alert('printByCount 실패');
+	    		}
+	    	});
+	    };
+    </script>
   </head>
 
   <body>
@@ -229,233 +381,102 @@
                           
                         </div>
                         <div class="col-md-6">
-                          <button class="btn btn-outline-primary mt-2 btn-float-right">자재 추가</button>
+                          <button class="btn btn-outline-primary mt-2 btn-float-right"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#insertModal">자재 추가</button>
+                          <!-- Modal -->
+                          <div class="modal fade" id="insertModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-h	eader">
+                                  <h5 class="modal-title" id="modalCenterTitle">자재추가</h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col mb-3">
+                                      <label for="material_name_m" class="form-label">자재명</label>
+                                      <input
+                                        type="text"
+                                        id="material_name_m"
+                                        class="form-control"
+                                        placeholder="자재명을 입력해주세요."
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="row g-2">
+                                    <div class="col mb-0">
+                                      <label for="price_m" class="form-label">가격</label>
+                                      <input
+                                        type="text"
+                                        id="price_m"
+                                        class="form-control"
+                                        placeholder="가격을 입력해주세요."
+                                      />
+                                    </div>
+                                    <div class="col mb-0">
+                                      <label for="count_m" class="form-label">수량</label>
+                                      <input
+                                        type="text"
+                                        id="count_m"
+                                        class="form-control"
+                                        placeholder="수량을 입력해주세요."
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                  <button type="button" class="btn btn-primary" onclick="insert()">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <div class="demo-inline-spacing mt-3">
                           <div class="list-group list-group-horizontal-md text-md-center">
                             <a
-                              class="list-group-item list-group-item-action active"
-                              id="home-list-item"
+                              class="list-group-item list-group-width-1 active "
+                              id="num-list-item"
                               data-bs-toggle="list"
-                              href="#horizontal-home"
+                              href="#horizontal-num"
                               >번호</a
                             >
                             <a
-                              class="list-group-item list-group-item-action"
-                              id="profile-list-item"
+                              class="list-group-item list-group-width-2"
+                              id="name-list-item"
                               data-bs-toggle="list"
-                              href="#horizontal-profile"
+                              href="#horizontal-name"
                               >자재명</a
                             >
                             <a
-                              class="list-group-item list-group-item-action"
-                              id="messages-list-item"
+                              class="list-group-item list-group-width-3"
+                              id="price-list-item"
                               data-bs-toggle="list"
-                              href="#horizontal-messages"
+                              href="#horizontal-price"
                               >가격</a
                             >
                             <a
-                              class="list-group-item list-group-item-action"
-                              id="settings-list-item"
+                              class="list-group-item list-group-width-4"
+                              id="count-list-item"
                               data-bs-toggle="list"
-                              href="#horizontal-settings"
+                              href="#horizontal-count"
                               >수량</a
                             >
                           </div>
                           <div class="tab-content px-0 mt-0">
-                            <div class="tab-pane fade show active" id="horizontal-home">
-                              자재 번호 별 리스트
-                              [[${materialList}]]
-                              <div class="table-responsive text-nowrap">
-                                <table class="table table-hover">
-                                  <tbody class="table-border-bottom-0">
-                                    <tr>
-                                      <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                                      <td>Albert Cook</td>
-                                      <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                      <td>
-                                        <div class="dropdown">
-                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                          <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                            >
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-trash me-1"></i> Delete</a
-                                            >
-                                          </div>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-                                      <td>Barry Hunter</td>
-                                      <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Lilian Fuller"
-                                          >
-                                            <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Sophia Wilkerson"
-                                          >
-                                            <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Christina Parker"
-                                          >
-                                            <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                        </ul>
-                                      </td>
-                                      <td><span class="badge bg-label-success me-1">Completed</span></td>
-                                      <td>
-                                        <div class="dropdown">
-                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                          <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                            >
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-trash me-1"></i> Delete</a
-                                            >
-                                          </div>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
-                                      <td>Trevor Baker</td>
-                                      <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Lilian Fuller"
-                                          >
-                                            <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Sophia Wilkerson"
-                                          >
-                                            <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Christina Parker"
-                                          >
-                                            <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                        </ul>
-                                      </td>
-                                      <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                                      <td>
-                                        <div class="dropdown">
-                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                          <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                            >
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-trash me-1"></i> Delete</a
-                                            >
-                                          </div>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>
-                                        <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
-                                      </td>
-                                      <td>Jerry Milton</td>
-                                      <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Lilian Fuller"
-                                          >
-                                            <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Sophia Wilkerson"
-                                          >
-                                            <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                          <li
-                                            data-bs-toggle="tooltip"
-                                            data-popup="tooltip-custom"
-                                            data-bs-placement="top"
-                                            class="avatar avatar-xs pull-up"
-                                            title="Christina Parker"
-                                          >
-                                            <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                                          </li>
-                                        </ul>
-                                      </td>
-                                      <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                                      <td>
-                                        <div class="dropdown">
-                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                          <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                            >
-                                            <a class="dropdown-item" href="javascript:void(0);"
-                                              ><i class="bx bx-trash me-1"></i> Delete</a
-                                            >
-                                          </div>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
+                            <div class="tab-pane fade show active" id="horizontal-num">
+                            	<div id="printByMaterialnum"></div>
                             </div>
-                            <div class="tab-pane fade" id="horizontal-profile">
-                              자재명 별 리스트
+                            <div class="tab-pane fade" id="horizontal-name">
+                              <div id="printByName"></div>
                             </div>
-                            <div class="tab-pane fade" id="horizontal-messages">
-                              가격 별 리스트
+                            <div class="tab-pane fade" id="horizontal-price">
+                              <div id="printByPrice"></div>
                             </div>
-                            <div class="tab-pane fade" id="horizontal-settings">
-                              수량 별 리스트
+                            <div class="tab-pane fade" id="horizontal-count">
+                              <div id="printByCount"></div>
                             </div>
                           </div>
                         </div>
@@ -532,6 +553,7 @@
 
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>
+    
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
