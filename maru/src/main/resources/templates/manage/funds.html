@@ -376,7 +376,15 @@
                               </div>
                             </div>
                           </div>
-                          <div id="incomeChart"></div>                          
+                          
+                          <!-- 여기에 프로젝트별 차트 들어가야해 (Chart.js) 916x355사이즈 -->
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                          <canvas id="bar-chart-horizontal" style="height:350px; width:917px; padding:10px"></canvas>
+                          
+                          
+                          
+                          
+                          
                         </div>
                       </div>
                     </div>
@@ -560,6 +568,8 @@
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
+    
+   
     <!-- build:js assets/vendor/js/core.js -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>

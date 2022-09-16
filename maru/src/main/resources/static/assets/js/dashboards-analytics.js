@@ -11,19 +11,47 @@
   headingColor = config.colors.headingColor;
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
+  
+  
+  //수평바차트
+	new Chart(document.getElementById("bar-chart-horizontal"), {
+	    type: 'horizontalBar',
+	    data: {
+	      labels: ["1번 프로젝트", "2번 프로젝트", "3번 프로젝트", "4번 프로젝트"],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#3e95cd","#3cba9f","#c45850", "#e8c3b9"],
+	          data: [459,159,621,13]
+	        }
+	      ]
+	    },
+	    options: {
+	      legend: { display: false },
+	      title: {
+	        display: true,
+	        text: '프로젝트별 수입'
+	      }
+	    }
+	});
+	  
+  
+  
+  
+  
 
   // Total Revenue Report Chart - Bar Chart
   // --------------------------------------------------------------------
-  const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
+    const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
     totalRevenueChartOptions = {
       series: [
         {
-          name: '2021',
-          data: [18, 7, 15, 29, 18, 12, 9]
+          name: '수입',
+          data: [18, 7, 15, 29]
         },
         {
-          name: '2020',
-          data: [-13, -18, -9, -14, -5, -17, -15]
+          name: '지출',
+          data: [-13, -18, -9, -14]
         }
       ],
       chart: {
@@ -78,7 +106,7 @@
         }
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['1st', '2nd', '3rd', '4th'],
         labels: {
           style: {
             fontSize: '13px',
