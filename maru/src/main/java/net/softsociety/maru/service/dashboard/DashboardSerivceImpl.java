@@ -40,10 +40,19 @@ public class DashboardSerivceImpl implements DashboardService {
 		return commitWorkerList;
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public ArrayList<Issue> selectAllIssue() {
 		ArrayList<Issue> issueList = (ArrayList<Issue>) idao.selectAll();
-		return issueList;
+		
+		ArrayList<Issue> returnissueList = new ArrayList<Issue>();
+		
+		returnissueList.add(issueList.get(0));
+		returnissueList.add(issueList.get(1));
+		returnissueList.add(issueList.get(2));
+		returnissueList.add(issueList.get(3));
+		
+		return returnissueList;
 	}
 
 	@Override

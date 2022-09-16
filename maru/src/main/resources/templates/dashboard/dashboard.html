@@ -154,12 +154,12 @@
 						<div class="row row-bordered">
 							<div class="col-md-4">
 								<div style="text-align: center;">
-									<p>
-										<img src="images/maru_logo.png" class="maru_logo">
+									<p class="mt-5">
+										<img src="images/projecticon.png" class="maru_logo">
 										총프로젝트
 									</p>
-									<p>13건</p>
-									<p>*완료 0건 *진행중 0건 *보류 0건 *지연 0건 *실패 0건</p>
+									<p th:text="${totProject}"></p>
+									<p th:text="${projectStr}"></p>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -170,14 +170,11 @@
 								</p>
 							</div>
 							<div class="col-md-4">
-								<p>실시간 이슈</p>
-								<p>
-									! 제품기획 요구정의서<span style="padding-left: 100px">동승전기 |
-										2019.08.19 03:01</span><br> ! 제품기획 요구정의서<span style="padding-left: 100px">동승전기 |
-										2019.08.19 03:01</span><br>
-									! 제품기획 요구정의서<span style="padding-left: 100px">동승전기 |
-										2019.08.19 03:01</span><br> ! 제품기획 요구정의서<span style="padding-left: 100px">동승전기 |
-										2019.08.19 03:01</span><br>
+								<p class="mt-2">실시간 이슈</p>
+								<p th:each="issueList : ${issueList}">
+									<span th:text="${issueList.title}"></span>
+									<span style="padding-left: 50px"></span>
+									<span th:text="${issueList.input_date}"></span>
 								</p>
 							</div>
 						</div>

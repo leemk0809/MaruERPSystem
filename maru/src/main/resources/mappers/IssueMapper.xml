@@ -31,7 +31,7 @@
 			issue_num = #{issue_num}
 	</update>
 	<select id="selectAll" resultType="Issue">
-		select * from issue
+		select * from issue order by input_date desc
 	</select>
 	<select id="selectOne" resultType="Issue">
 		select * from issue

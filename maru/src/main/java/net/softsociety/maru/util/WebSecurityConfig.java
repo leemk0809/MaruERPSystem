@@ -27,10 +27,9 @@ public class WebSecurityConfig {
         .antMatchers(
         		"/",
         		"/manage/**",
-        		"/static/calendar/**",
         		"/dashboard/**",
         		"/assets/**",
-        		"calendar/**",
+        		"/calendar/**",
                 "/images/**",
                 "/css/**",
                 "/js/**").permitAll()
@@ -47,6 +46,7 @@ public class WebSecurityConfig {
         .and()
         .cors()
         .and()
+        .headers().frameOptions().disable().and()
         .httpBasic();
 
         return http.build();
