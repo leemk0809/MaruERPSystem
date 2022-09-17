@@ -52,6 +52,11 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+   
+   <script>
+  
+
+   </script>
   </head>
 
   <body>
@@ -364,39 +369,38 @@
                       		type="button" 
                       		class="btn btn-secondary"
                       		data-bs-toggle="modal"
-                        	data-bs-target="#fullscreenModal"
+                        	data-bs-target="#exLargeModal"
                       		>
                          <span class="tf-icons bx bx-bell"></span>&nbsp; 완공 조감도
               		  </button>
               		  <!-- Modal -->
-                        <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
-                          <div class="modal-dialog modal-fullscreen" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="modalFullTitle">Modal title</h5>
-                                <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
-                              </div>
-                              <div class="modal-body">
-                             	<img 
+                        <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel4">완공조감도</h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                             <img 
                     				class="img-fluid" 
                     				th:src="|../assets/img/elements/a${projects.projects_num}.jpg|" 
-                    				alt="Card image cap" />
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                  Close
-                                </button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
+                    				alt="Card image cap" />    
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Close
+                              </button>                            
                             </div>
                           </div>
                         </div>
-              		  
+                       </div>
+                       
+              		  </div>
                     </div>
                     <img 
                     	class="img-fluid" 
@@ -446,11 +450,20 @@
                 </div>                 
                 <!-- /조감도, 설계도 -->               
               </div>
-              <!-- Examples -->
-             
-
-             
-
+              <!-- Examples -->            
+               <div class="row mb-5">
+              <div class="col-md-8">
+              <!-- 공사개요 -->
+              <div class="card">
+ 				<div class='second circle'>
+  						<strong></strong>
+				</div>
+              </div>
+              </div>
+              </div>
+              </div>
+                      
+			
               
             </div>
             <!-- / Content -->

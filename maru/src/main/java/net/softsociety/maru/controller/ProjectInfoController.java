@@ -35,6 +35,16 @@ public class ProjectInfoController {
 		
 		model.addAttribute("projects",projects);
 		
+		int buildingProgress = projectInfoService.buildingProgress(projects_num);
+		int civilEngineeringProgress = projectInfoService.civilEngineeringProgress(projects_num);
+		int electricityProgress = projectInfoService.electricityProgress(projects_num);
+		int machineProgress = projectInfoService.machineProgress(projects_num);
+		
+		model.addAttribute("build",buildingProgress);
+		model.addAttribute("civil",civilEngineeringProgress);
+		model.addAttribute("electricity",electricityProgress);
+		model.addAttribute("machine",machineProgress);
+		
 		return "project/projectInfo";
 	}
 	
