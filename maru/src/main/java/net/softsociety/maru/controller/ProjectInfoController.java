@@ -39,11 +39,25 @@ public class ProjectInfoController {
 		int civilEngineeringProgress = projectInfoService.civilEngineeringProgress(projects_num);
 		int electricityProgress = projectInfoService.electricityProgress(projects_num);
 		int machineProgress = projectInfoService.machineProgress(projects_num);
+		log.debug("건축팀:{}",buildingProgress);
+		log.debug("토목팀:{}",civilEngineeringProgress);
+		log.debug("전기팀:{}",electricityProgress);
+		log.debug("기계팀:{}",machineProgress);
 		
 		model.addAttribute("build",buildingProgress);
 		model.addAttribute("civil",civilEngineeringProgress);
 		model.addAttribute("electricity",electricityProgress);
 		model.addAttribute("machine",machineProgress);
+		
+		int projectProgress = projectInfoService.projectsProgress(projects_num);
+		log.debug("프로젝트 진척도:{}",projectProgress);
+		
+		model.addAttribute("projectProgress",projectProgress);
+		
+		int materialProgress = projectProgress - Math.round((buildingProgress+civilEngineeringProgress + electricityProgress + machineProgress)/4);
+		log.debug("자재 진척도:{}",materialProgress);
+		
+		model.addAttribute("materialProgress",materialProgress);
 		
 		return "project/projectInfo";
 	}
