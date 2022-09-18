@@ -2,6 +2,7 @@
 
 <!-- beautify ignore:start -->
 <html
+  xmlns:th="http://thymeleaf.org"
   lang="en"
   class="light-style layout-menu-fixed"
   dir="ltr"
@@ -182,13 +183,13 @@
                 <li class="nav-item lh-1 me-3">
                   대시보드
                 </li>
-                <li class="nav-item lh-1 me-3" style="background-color: var(--bs-body-bg);">
+                <li class="nav-item lh-1 me-3">
                   프로젝트 관리
                 </li>
                 <li class="nav-item lh-1 me-3">
                   자원관리
                 </li>
-                <li class="nav-item lh-1 me-3">
+                <li class="nav-item lh-1 me-3" style="background-color: var(--bs-body-bg);">
                   관리자 페이지
                 </li>
               </ul>
@@ -338,7 +339,7 @@
                             <div class="me-3">
                               <small class="text-muted d-block">1번 프로젝트</small>
                               <div class="d-flex align-items-center">
-                                <h6 class="mb-0 me-1">₩459.10k</h6>
+                                <h6 class="mb-0 me-1" th:text="${proSales1}"></h6>
                                 <small class="text-success fw-semibold">
                                   <i class="bx bx-chevron-right"></i>
                                   42.9%
@@ -348,7 +349,7 @@
                             <div class="me-3">
                               <small class="text-muted d-block">2번 프로젝트</small>
                               <div class="d-flex align-items-center">
-                                <h6 class="mb-0 me-1">₩159.10k</h6>
+                                <h6 class="mb-0 me-1" th:text="${proSales2}"></h6>
                                 <small class="text-success fw-semibold">
                                   <i class="bx bx-chevron-right"></i>
                                   31.3%
@@ -358,7 +359,7 @@
                             <div class="me-3">
                               <small class="text-muted d-block">3번 프로젝트</small>
                               <div class="d-flex align-items-center">
-                                <h6 class="mb-0 me-1">₩621.30k</h6>
+                                <h6 class="mb-0 me-1" th:text="${proSales3}"></h6>
                                 <small class="text-success fw-semibold">
                                   <i class="bx bx-chevron-right"></i>
                                   58.0%
@@ -368,7 +369,7 @@
                             <div class="me-3">
                               <small class="text-muted d-block">4번 프로젝트</small>
                               <div class="d-flex align-items-center">
-                                <h6 class="mb-0 me-1">₩13.80k</h6>
+                                <h6 class="mb-0 me-1"  th:text="${proSales4}"></h6>
                                 <small class="text-success fw-semibold">
                                   <i class="bx bx-chevron-right"></i>
                                   10.9%
@@ -378,7 +379,7 @@
                           </div>
                           
                           <!-- 여기에 프로젝트별 차트 들어가야해 (Chart.js) 916x355사이즈 -->
-                          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                          <script th:inline="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                           <canvas id="bar-chart-horizontal" style="height:350px; width:917px; padding:10px"></canvas>
                           
                           
