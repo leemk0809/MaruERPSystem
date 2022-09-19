@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.maru.domain.CurrEndProjects;
+import net.softsociety.maru.domain.ProjectsTot;
 import net.softsociety.maru.domain.Issue;
 import net.softsociety.maru.domain.Projects;
 import net.softsociety.maru.service.dashboard.DashboardService;
@@ -28,7 +28,6 @@ public class DashboardController {
 
 	@GetMapping({ "", "/", "dashboard" })
 	public String index(Model model) {
-
 		// 프로젝트 상황
 		int totProject = dashboardService.countAllProjects();
 
@@ -50,13 +49,17 @@ public class DashboardController {
 
 		ArrayList<Projects> currEndProjects = dashboardService.currEndProject();
 
-		ArrayList<CurrEndProjects> returnCurrEndProjects = new ArrayList<CurrEndProjects>();
+		ArrayList<ProjectsTot> returnCurrEndProjects = new ArrayList<ProjectsTot>();
 
 		for (Projects p : currEndProjects) {
-			int d_day = dashboardService.calcCommitDate(p.getPost_num());
-			int pr = dashboardService.calcProgress(p.getProjects_num());
 
-			CurrEndProjects cepj = new CurrEndProjects(p.getTitle(), d_day, pr);
+			String title = p.getTitle();
+			String d_day = dashboardService.calcD_day(p.getProjects_num());
+			int pr = dashboardService.calcProgress(p.getProjects_num());
+			String state = p.getStatus();
+			int issueCnt = dashboardService.calcCommitDate(p.getProjects_num());
+
+			ProjectsTot cepj = new ProjectsTot(title, d_day, pr, state, issueCnt);
 			returnCurrEndProjects.add(cepj);
 		}
 
@@ -65,9 +68,31 @@ public class DashboardController {
 		// 이슈리스트
 		ArrayList<Issue> issueList = dashboardService.selectAllIssue();
 
-		log.debug(issueList + "컨트롤러");
+		// log.debug(issueList + "컨트롤러");
 
 		model.addAttribute("issueList", issueList);
+
+		// 진행상황
+		ArrayList<Projects> plist = dashboardService.selectAllProjects();
+		
+		ArrayList<ProjectsTot> totList = new ArrayList<ProjectsTot>();
+		
+		for(Projects p : plist) {
+			String title = p.getTitle();
+			String d_day = dashboardService.calcD_day(p.getProjects_num());
+			int pr = dashboardService.calcProgress(p.getProjects_num());
+			String state = p.getStatus();
+			int issueCnt = dashboardService.calcIssue(p.getProjects_num());
+
+			ProjectsTot totp = new ProjectsTot(title, d_day, pr, state, issueCnt);
+			totList.add(totp);
+		}
+		
+		model.addAttribute("totList", totList);
+		
+		// 이슈현황
+		
+		
 
 		return "dashboard/dashboard.html";
 	}

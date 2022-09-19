@@ -166,13 +166,12 @@
 								<p class="mt-3">이번달 종료되는 프로젝트</p>
 								<p>
 									<p th:each="returnCurrEndProjects : ${returnCurrEndProjects}">
-									<span>D-</span>
-									<span th:text="${returnCurrEndProjects.d_day}"></span>
+									<span class="badge bg-label-warning me-1" th:text="|D${returnCurrEndProjects.d_day}|"></span>
 									<span style="padding-left: 5%"></span>
-									<span class="set-width" th:text="${returnCurrEndProjects.Projects_name}"></span>
-									<span style="padding-left: 35%"></span>
-									<span th:text="${returnCurrEndProjects.progress}"></span>
-									<span>%</span>
+									<strong><span class="set-width" th:text="${returnCurrEndProjects.Projects_name}"></span></strong>
+									<span class="set-float-right">
+										<span class="badge bg-label-success me-1" th:text="|${returnCurrEndProjects.progress}%|"></span>
+									</span>
 								</p>
 							</div>
 							<div class="col-md-4">
@@ -214,40 +213,20 @@
 										<table class="table table-hover">
 											<thead>
 												<tr>
-													<th>Project</th>
-													<th>Client</th>
-													<th>Users</th>
-													<th>Status</th>
-													<th>Actions</th>
+													<th>프로젝트</th>
+													<th>D-day</th>
+													<th>진행률</th>
+													<th>이슈</th>
+													<th>설정</th>
 												</tr>
 											</thead>
-											<tbody class="table-border-bottom-0">
+											<tbody class="table-border-bottom-0" th:each="totList : ${totList}">
+											
 												<tr>
-													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<strong>Angular Project</strong>
-													</td>
-													<td>Albert Cook</td>
-													<td>
-														<ul
-															class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Lilian Fuller"><img
-																	src="assets/img/avatars/5.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Sophia Wilkerson"><img
-																	src="assets/img/avatars/6.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Christina Parker"><img
-																	src="assets/img/avatars/7.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-														</ul>
-													</td>
-													<td><span class="badge bg-label-primary me-1">Active</span></td>
+													<td><strong th:text="${totList.Projects_name}"></strong></td>
+													<td><span class="badge bg-label-warning me-1" th:text="|D${totList.d_day}|"></span></td>
+													<td><span class="badge bg-label-success me-1" th:text="|${totList.progress}%|"></span></td>
+													<td><span class="badge bg-label-primary me-1" th:text="|${totList.issueCnt}개|"></span></td>
 													<td>
 														<div class="dropdown">
 															<button type="button"
@@ -264,133 +243,7 @@
 														</div>
 													</td>
 												</tr>
-												<tr>
-													<td><i class="fab fa-react fa-lg text-info me-3"></i>
-														<strong>React Project</strong>
-													</td>
-													<td>Barry Hunter</td>
-													<td>
-														<ul
-															class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Lilian Fuller"><img
-																	src="assets/img/avatars/5.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Sophia Wilkerson"><img
-																	src="assets/img/avatars/6.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Christina Parker"><img
-																	src="assets/img/avatars/7.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-														</ul>
-													</td>
-													<td><span class="badge bg-label-success me-1">Completed</span></td>
-													<td>
-														<div class="dropdown">
-															<button type="button"
-																class="btn p-0 dropdown-toggle hide-arrow"
-																data-bs-toggle="dropdown">
-																<i class="bx bx-dots-vertical-rounded"></i>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-edit-alt me-1"></i> Edit</a> <a
-																	class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-trash me-1"></i> Delete</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
-														<strong>VueJs Project</strong>
-													</td>
-													<td>Trevor Baker</td>
-													<td>
-														<ul
-															class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Lilian Fuller"><img
-																	src="assets/img/avatars/5.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Sophia Wilkerson"><img
-																	src="assets/img/avatars/6.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Christina Parker"><img
-																	src="assets/img/avatars/7.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-														</ul>
-													</td>
-													<td><span class="badge bg-label-info me-1">Scheduled</span></td>
-													<td>
-														<div class="dropdown">
-															<button type="button"
-																class="btn p-0 dropdown-toggle hide-arrow"
-																data-bs-toggle="dropdown">
-																<i class="bx bx-dots-vertical-rounded"></i>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-edit-alt me-1"></i> Edit</a> <a
-																	class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-trash me-1"></i> Delete</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><i class="fab fa-bootstrap fa-lg text-primary me-3"></i>
-														<strong>Bootstrap
-															Project</strong>
-													</td>
-													<td>Jerry Milton</td>
-													<td>
-														<ul
-															class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Lilian Fuller"><img
-																	src="assets/img/avatars/5.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Sophia Wilkerson"><img
-																	src="assets/img/avatars/6.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-															<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-																data-bs-placement="top" class="avatar avatar-xs pull-up"
-																title="Christina Parker"><img
-																	src="assets/img/avatars/7.png" alt="Avatar"
-																	class="rounded-circle" /></li>
-														</ul>
-													</td>
-													<td><span class="badge bg-label-warning me-1">Pending</span></td>
-													<td>
-														<div class="dropdown">
-															<button type="button"
-																class="btn p-0 dropdown-toggle hide-arrow"
-																data-bs-toggle="dropdown">
-																<i class="bx bx-dots-vertical-rounded"></i>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-edit-alt me-1"></i> Edit</a> <a
-																	class="dropdown-item" href="javascript:void(0);"><i
-																		class="bx bx-trash me-1"></i> Delete</a>
-															</div>
-														</div>
-													</td>
-												</tr>
+										
 											</tbody>
 										</table>
 									</div>
@@ -404,8 +257,44 @@
 
 							</div>
 							<div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
-								<p>이슈현황 리스트 들어갈곳</p>
-								<p class="mb-0">ㅇㅇ</p>
+								<div class="table-responsive text-nowrap">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>이슈</th>
+													<th>프로젝트</th>
+													<th>작성자</th>
+													<th>작성날짜</th>
+													<th>설정</th>
+												</tr>
+											</thead>
+											<tbody class="table-border-bottom-0" th:each="totList : ${totList}">
+											
+												<tr>
+													<td><strong th:text="${totList.Projects_name}"></strong></td>
+													<td><span class="badge bg-label-warning me-1" th:text="|D${totList.d_day}|"></span></td>
+													<td><span class="badge bg-label-success me-1" th:text="|${totList.progress}%|"></span></td>
+													<td><span class="badge bg-label-primary me-1" th:text="|${totList.issueCnt}개|"></span></td>
+													<td>
+														<div class="dropdown">
+															<button type="button"
+																class="btn p-0 dropdown-toggle hide-arrow"
+																data-bs-toggle="dropdown">
+																<i class="bx bx-dots-vertical-rounded"></i>
+															</button>
+															<div class="dropdown-menu">
+																<a class="dropdown-item" href="javascript:void(0);"><i
+																		class="bx bx-edit-alt me-1"></i> Edit</a> <a
+																	class="dropdown-item" href="javascript:void(0);"><i
+																		class="bx bx-trash me-1"></i> Delete</a>
+															</div>
+														</div>
+													</td>
+												</tr>
+										
+											</tbody>
+										</table>
+									</div>
 							</div>
 						</div>
 					</div>

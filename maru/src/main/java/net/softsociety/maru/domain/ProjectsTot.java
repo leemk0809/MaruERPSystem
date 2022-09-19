@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CurrEndProjects {
+public class ProjectsTot {
 	private String Projects_name;
+	private String d_day;
 	private int progress;
-	private int d_day;
+	private String State;
+	private int issueCnt;
 }

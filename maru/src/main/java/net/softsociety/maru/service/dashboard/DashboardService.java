@@ -35,8 +35,14 @@ public interface DashboardService {
 	//프로젝트별 투입 기간 계산을 위한 함수
 	public int calcCommitDate(int projects_num); 
 	
+	//D-day계산
+	public String calcD_day(int projects_num);
+	
 	//이슈
 	public ArrayList<Issue> selectAllIssue();
+	
+	//프로젝트별 이슈개수 계산
+	public int calcIssue(int projects_num);
 	
 	//이번단 종료되는 프로젝트
 	public ArrayList<Projects> currEndProject();
