@@ -102,6 +102,9 @@ a.bg-white:focus {
   height: 530px;
 }
 
+.set-float-right{
+  float:right;
+}
 
 
 /* 커스텀 css 끝 */

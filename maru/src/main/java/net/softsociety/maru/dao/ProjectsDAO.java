@@ -18,4 +18,6 @@ public interface ProjectsDAO {
 	Projects selectOne(int projects_num);
 	
 	ArrayList<Projects> selectAll();
+
+	ArrayList<Projects> selectcurrEndProject(String currMonth);
 }

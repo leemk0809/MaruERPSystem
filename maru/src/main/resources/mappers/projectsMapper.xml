@@ -38,4 +38,8 @@
 	<select id="selectAll" resultType="Projects">
 		select*from projects
 	</select>
+	
+	<select id="selectcurrEndProject" parameterType="String" resultType="Projects">
+		select * from PROJECTS where end_date like  '%' || #{searchWord} || '%'
+	</select>
 </mapper>

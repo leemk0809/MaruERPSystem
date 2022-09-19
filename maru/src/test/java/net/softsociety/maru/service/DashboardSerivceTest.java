@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.domain.Issue;
+import net.softsociety.maru.domain.Projects;
 import net.softsociety.maru.service.dashboard.DashboardSerivceImpl;
 
 @Slf4j
@@ -47,5 +48,12 @@ public class DashboardSerivceTest {
 	public void allissue() {
 		 ArrayList<Issue> list = service.selectAllIssue();
 		 log.debug(list + " ");
+	}
+	
+	@Disabled
+	@Test
+	public void currEndProjectc() {
+		ArrayList<Projects> list = service.currEndProject();
+		log.debug(list+"");
 	}
 }

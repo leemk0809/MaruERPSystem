@@ -1,7 +1,9 @@
 package net.softsociety.maru.service.dashboard;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,6 @@ public class DashboardSerivceImpl implements DashboardService {
 		return commitWorkerList;
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public ArrayList<Issue> selectAllIssue() {
 		ArrayList<Issue> issueList = (ArrayList<Issue>) idao.selectAll();
@@ -132,7 +133,7 @@ public class DashboardSerivceImpl implements DashboardService {
 		int count = 0;
 		
 		for(Projects p : projectsList) {
-			if(p.getStatus().equals("결재전")) {
+			if(p.getStatus().equals("진행전")) {
 				count++;
 			}
 		}		
@@ -176,5 +177,22 @@ public class DashboardSerivceImpl implements DashboardService {
 			}
 		}		
 		return count;
+	}
+
+	@Override
+	public ArrayList<Projects> currEndProject() {
+		
+		LocalDate now = LocalDate.now();
+
+		String currMonth = "";
+		
+		currMonth += now.toString().substring(2, 4) + "/";
+		currMonth += now.toString().substring(5, 7);
+
+		log.debug(currMonth+"");
+		
+		ArrayList<Projects> list = pdao.selectcurrEndProject(currMonth);
+		
+		return list;
 	}
 }

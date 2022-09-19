@@ -33,8 +33,11 @@ public interface DashboardService {
 	public int calcProgress(int projects_num);
 	
 	//프로젝트별 투입 기간 계산을 위한 함수
-	public int calcCommitDate(int projects_num);
+	public int calcCommitDate(int projects_num); 
 	
 	//이슈
 	public ArrayList<Issue> selectAllIssue();
+	
+	//이번단 종료되는 프로젝트
+	public ArrayList<Projects> currEndProject();
 }
