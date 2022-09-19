@@ -12,7 +12,8 @@
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
   
-  let proSales1 ="${proSales1}";
+  let proSales1 ='[[${proSales1}]]';
+  alert(proSales1);
   let proSales2= 670;
   
   
@@ -305,10 +306,13 @@
     totalRevenueChart.render();
   }
 
+
+
+  // 분기별 수익률
   // Growth Chart - Radial Bar Chart
   // --------------------------------------------------------------------
-  const growthChartEl = document.querySelector('#growthChart'),
-    growthChartOptions = {
+  const growthChartEl = document.querySelector('#growthChartE1'),
+    growthChartOptions1 = {
       series: [78],
       labels: ['Growth'],
       chart: {
@@ -382,9 +386,94 @@
       }
     };
   if (typeof growthChartEl !== undefined && growthChartEl !== null) {
-    const growthChart = new ApexCharts(growthChartEl, growthChartOptions);
+    const growthChart = new ApexCharts(growthChartEl, growthChartOptions1);
     growthChart.render();
   }
+  //--------------------------------------------------------------------
+  //2,3,4 분기별 수익률
+  //--------------------------------------------------------------------
+    const growthChartE2 = document.querySelector('#growthChartE2'),
+    growthChartOptions2 = {
+      series: [32],
+      labels: ['Growth'],
+      chart: {
+        height: 240,
+        type: 'radialBar'
+      },
+      plotOptions: {
+        radialBar: {
+          size: 150,
+          offsetY: 10,
+          startAngle: -150,
+          endAngle: 150,
+          hollow: {
+            size: '55%'
+          },
+          track: {
+            background: cardColor,
+            strokeWidth: '100%'
+          },
+          dataLabels: {
+            name: {
+              offsetY: 15,
+              color: headingColor,
+              fontSize: '15px',
+              fontWeight: '600',
+              fontFamily: 'Public Sans'
+            },
+            value: {
+              offsetY: -68,
+              color: headingColor,
+              fontSize: '22px',
+              fontWeight: '500',
+              fontFamily: 'Public Sans'
+            }
+          }
+        }
+      },
+      colors: [config.colors.primary],
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'dark',
+          shadeIntensity: 0.5,
+          gradientToColors: [config.colors.primary],
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 0.6,
+          stops: [30, 70, 100]
+        }
+      },
+      stroke: {
+        dashArray: 5
+      },
+      grid: {
+        padding: {
+          top: -35,
+          bottom: -10
+        }
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'none'
+          }
+        },
+        active: {
+          filter: {
+            type: 'none'
+          }
+        }
+      }
+    };
+  if (typeof growthChartE2 !== undefined && growthChartE2 !== null) {
+    const growthChart = new ApexCharts(growthChartE2, growthChartOptions2);
+    growthChart.render();
+  }
+  
+  
+  
+  
 
   // Profit Report Line Chart
   // --------------------------------------------------------------------
