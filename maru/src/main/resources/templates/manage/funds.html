@@ -69,6 +69,7 @@
     	  
     	  
     	  //수평바차트
+    	  //프로젝트별 수입 그래프
     		new Chart(document.getElementById("bar-chart-horizontal"), {
     		    type: 'horizontalBar',
     		    data: {
@@ -91,21 +92,27 @@
     		  
     	  
     	  
-    	  
-    	  
+    	  let qs221 = '[[${qs221}]]';
+    	  let qs222 = '[[${qs222}]]';
+    	  let qs223 = '[[${qs223}]]';
+    	  let qs224 = '[[${qs224}]]';
+    	  let qe221 = '[[${qe221}]]';
+    	  let qe222 = '[[${qe222}]]';
+    	  let qe223 = '[[${qe223}]]';
+    	  let qe224 = '[[${qe224}]]';    	  
 
     	  // Total Revenue Report Chart - Bar Chart
-    	  // --------------------------------------------------------------------
+    	  // 분기별 수입/지출 지표
     	    const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
     	    totalRevenueChartOptions = {
     	      series: [
     	        {
     	          name: '수입',
-    	          data: [18, 7, 15, 29]
+    	          data: [qs221, qs222, qs223, qs224]
     	        },
     	        {
     	          name: '지출',
-    	          data: [-13, -18, -9, -14]
+    	          data: [-qe221, -qe222, -qe223, -qe224]
     	        }
     	      ],
     	      chart: {
@@ -992,7 +999,7 @@
                     <div class="row row-bordered g-0">
                       <div class="col-md-8">
                         <h5 class="card-header m-0 me-2 pb-3">분기별 수입/지출 지표</h5>
-                        <!-- dashboards-analytics.js안에 totalRevenueChart로 만들어져있음 -->
+                        <!-- totalRevenueChart로 만들어져있음 -->
                         <div id="totalRevenueChart" class="px-2"></div>
                       </div>
                       <div class="col-md-4">
