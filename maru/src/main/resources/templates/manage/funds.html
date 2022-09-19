@@ -86,7 +86,14 @@
     		      title: {
     		        display: true,
     		        text: '단위 : 억 (원)'
-    		      }
+    		      },
+    		      scales: {
+    					xAxes: [{
+    						ticks: {
+    							min: 0
+    						}
+    					}]
+    				}
     		    }
     		});
     		  
@@ -595,8 +602,17 @@
     	    profileReportChart.render();
     	  }
 
-    	  // Order Statistics Chart
-    	  // --------------------------------------------------------------------
+    	  
+    	  
+    	  
+
+    	  let exRate1 = '[[${exRate1}]]';
+    	  let exRate2 = '[[${exRate2}]]';
+    	  let exRate3 = '[[${exRate3}]]';
+    	  let exRate4 = '[[${exRate4}]]';
+    	  
+    	  // Order Statistics Chart 
+    	  //프로젝트 내 지출 비율
     	  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     	    orderChartConfig = {
     	      chart: {
@@ -604,9 +620,9 @@
     	        width: 130,
     	        type: 'donut'
     	      },
-    	      labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
-    	      series: [85, 15, 50, 50],
-    	      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+    	      labels: ['식비', '인건비', '자재비','기타비'],
+    	      series: [{ data: [exRate1, exRate2, exRate3, exRate4]}],
+    	      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.warning],
     	      stroke: {
     	        width: 5,
     	        colors: cardColor
@@ -1235,38 +1251,11 @@
                               <small class="text-muted">중식비, 석식비, 간식비</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">82.5k</small>
+                              <small class="fw-semibold" th:text="${exRate1}"></small>
                             </div>
                           </div>
                         </li>
-                        <li class="d-flex pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <h6 class="mb-0">교통비</h6>
-                              <small class="text-muted">기본지원금, 출장비</small>
-                            </div>
-                            <div class="user-progress">
-                              <small class="fw-semibold">23.8k</small>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="d-flex pb-1">
-                          <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
-                          </div>
-                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                            <div class="me-2">
-                              <h6 class="mb-0">회식비</h6>
-                              <small class="text-muted">정기회식, 비정기회식</small>
-                            </div>
-                            <div class="user-progress">
-                              <small class="fw-semibold">849k</small>
-                            </div>
-                          </div>
-                        </li>
+                        
                         <li class="d-flex pb-1">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
@@ -1277,7 +1266,7 @@
                               <small class="text-muted">월급, 추가수당</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">849k</small>
+                              <small class="fw-semibold" th:text="${exRate2}"></small>
                             </div>
                           </div>
                         </li>
@@ -1288,10 +1277,10 @@
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                               <h6 class="mb-0">자재비</h6>
-                              <small class="text-muted">자재비, 보관비</small>
+                              <small class="text-muted">자재비, 보관료</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">849k</small>
+                              <small class="fw-semibold" th:text="${exRate3}"></small>
                             </div>
                           </div>
                         </li>
@@ -1303,11 +1292,11 @@
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
-                              <h6 class="mb-0">기타</h6>
+                              <h6 class="mb-0">기타비</h6>
                               <small class="text-muted">기타비용</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold">99</small>
+                              <small class="fw-semibold" th:text="${exRate4}"></small>
                             </div>
                           </div>
                         </li>

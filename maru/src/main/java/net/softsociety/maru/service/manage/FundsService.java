@@ -24,5 +24,8 @@ public interface FundsService {
 	int projectExpense(int projects_num);
 	
 	//프로젝트별 순이익 (수입 - 지출)  은 컨트롤러로 하겠습니다^^
+	
+	//프로젝트 내 지출 비율
+	ArrayList<Integer> projectExpenseRate(int projects_num);
 
 }

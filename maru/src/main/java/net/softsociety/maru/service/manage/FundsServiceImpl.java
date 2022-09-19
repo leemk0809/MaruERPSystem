@@ -213,6 +213,49 @@ public class FundsServiceImpl implements FundsService{
 	}
 
 
+	@Override
+	public ArrayList<Integer> projectExpenseRate(int projects_num) {
+
+		int exRate1 = 0;	//식비  funds_num : 1,3
+		int exRate2 = 0;	//인건비 funds_num : 2,4
+		int exRate3 = 0;	//자재비 funds_num : 5
+		int exRate4 = 0;	//기타비 funds_num : 6
+		
+		List<ProjectsFunds> PF = pfdao.selectAll();					//전체 지출내역
+		List<ProjectsFunds> thispf= new ArrayList<ProjectsFunds>();	//새로 만들 지출리스트(지출분야별로 나눌 리스트)
+		
+		for(ProjectsFunds pjfunds: PF) {					
+			if(pjfunds.getProjects_num()==projects_num) {			//지출내역에서 프로젝트 넘버 같은것만.
+				thispf.add(pjfunds);								//같은 넘버들의 지출내역을 새 지출리스트에 더하기
+			}
+		}
+		
+		for(ProjectsFunds pjf:thispf) {
+			if(pjf.getFunds_type_num()==1||pjf.getFunds_type_num()==3) {			//funds_type_num이 1이면 exRate1에 값들을 더한다.
+				exRate1+=pjf.getPrice();
+			}
+			else if(pjf.getFunds_type_num()==2||pjf.getFunds_type_num()==4) {
+				exRate2+=pjf.getPrice();
+			}
+			else if(pjf.getFunds_type_num()==5) {
+				exRate3+=pjf.getPrice();
+			}
+			else if(pjf.getFunds_type_num()==6) {
+				exRate4+=pjf.getPrice();
+			}
+		}
+		
+		ArrayList<Integer> rateList = new ArrayList<Integer>();
+
+		rateList.add(exRate1);
+		rateList.add(exRate2);
+		rateList.add(exRate3);
+		rateList.add(exRate4);
+				
+		return rateList;
+	}
+
+
 	
 }	
 
