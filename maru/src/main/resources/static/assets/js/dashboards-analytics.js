@@ -12,6 +12,9 @@
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
   
+  let proSales1 ="${proSales1}";
+  let proSales2= 670;
+  
   
   //수평바차트
 	new Chart(document.getElementById("bar-chart-horizontal"), {
@@ -22,7 +25,7 @@
 	        {
 	          label: "Population (millions)",
 	          backgroundColor: ["#3e95cd","#3cba9f","#c45850", "#e8c3b9"],
-	          data: [459,159,621,13]
+	          data: [proSales1,proSales2,300,374]
 	        }
 	      ]
 	    },
@@ -30,7 +33,7 @@
 	      legend: { display: false },
 	      title: {
 	        display: true,
-	        text: '프로젝트별 수입'
+	        text: '단위 : 억 (원)'
 	      }
 	    }
 	});

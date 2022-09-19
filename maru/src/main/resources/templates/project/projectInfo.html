@@ -878,6 +878,7 @@ chart.appear(1000, 100);
                             </div>
                           </div>
                         </div>
+                        <!-- /modal -->
                       </div>
                       <img
                         class="img-fluid d-flex mx-auto my-4"
@@ -894,7 +895,129 @@ chart.appear(1000, 100);
               <div class="col-md">
               
               <div class="card">
-              	<button type="button" class="btn rounded-pill btn-warning">팀별 진척도	</button>
+              	<button type="button" class="btn rounded-pill btn-warning"
+              	data-bs-toggle="modal" data-bs-target="#modalCenter2">팀별 진척도	</button>
+ 				  <!-- Modal -->
+                        <div class="modal fade" id="modalCenter2" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">팀별 진척도</h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                               
+                <div class="col-xl">
+                  <h6 class="text-muted">Basic</h6>
+                  <div class="nav-align-top mb-4">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link active"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-home"
+                          aria-controls="navs-top-home"
+                          aria-selected="true"
+                        >
+                          건축팀
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-profile"
+                          aria-controls="navs-top-profile"
+                          aria-selected="false"
+                        >
+                          토목팀
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-messages"
+                          aria-controls="navs-top-messages"
+                          aria-selected="false"
+                        >
+                         전기팀
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-profile"
+                          aria-controls="navs-top-profile"
+                          aria-selected="false"
+                        >
+                          기계팀
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
+                        <p>
+                          Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps
+                          powder. Bear claw candy topping.
+                        </p>
+                        <p class="mb-0">
+                          Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
+                          jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
+                          jujubes sweet.
+                        </p>
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+                        <p>
+                          Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
+                          cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
+                          cheesecake fruitcake.
+                        </p>
+                        <p class="mb-0">
+                          Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
+                          cotton candy liquorice caramels.
+                        </p>
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
+                        <p>
+                          Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
+                          cupcake gummi bears cake chocolate.
+                        </p>
+                        <p class="mb-0">
+                          Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
+                          roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
+                          jelly-o tart brownie jelly.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /modal -->
+ 				
+ 				
  				<div id="chartdiv">
  				</div>
               </div>
