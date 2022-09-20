@@ -17,7 +17,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>현황판</title>
+    <title>자재 투입</title>
 
     <meta name="description" content="" />
 
@@ -43,6 +43,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
+	
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -52,9 +53,9 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
-  </head>
-
-  <body>
+    
+</head>
+ <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -119,7 +120,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">공사현황판</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -143,23 +144,24 @@
                 <span class="menu-header-text">All Projects</span>
               </li>
               <li class="menu-item">
-               <img src="../images/maru_logo.png" width="30px" height="30px">
-                <button type="button" class="btn rounded-pill btn-success" 
+                <a href="javascript:void(0);" class="menu-link menu-toggle">   
+                 <img src="../images/maru_logo.png" width="30px" height="30px"> &nbsp;&nbsp;&nbsp;             
+                  <button type="button" class="btn rounded-pill btn-success" 
                   th:onclick="|location.href='@{allProjectsInfo}'|">모든 프로젝트</button>
+                </a>            
               </li>
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Projects</span>
             </li>
-             <div th:each="list : ${projectsList}">
-             
+            <div th:each="list : ${projectsList}">
             <li>
             <p>
             <img src="../images/maru_logo.png" width="30px" height="30px">
             <button type="button" class="btn rounded-pill btn-info" 
-            		th:text="${list.title}"  th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|"></button>   
+            		th:text="${list.title}"  th:onclick="|location.href='@{commitMaterial(projects_num=${list.projects_num})}'|"></button>              		 
           	</p>
-          	</li>          	
-          	</div>        
+          	</li>
+          	</div>          
           </ul>
         </aside>
         <!-- / Menu -->
@@ -194,7 +196,8 @@
                     data-icon="octicon-star"
                     data-size="large"
                     data-show-count="true"
-                    >Star</a>
+                    >Star</a
+                  >
                 </li>
 
                 <!-- 프사 있는 부분 -->
@@ -308,24 +311,56 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-	
-              <!-- Grid Card -->
-              <h4>&nbsp;&nbsp;&nbsp; 모든 프로젝트 목록</h4>
-              <div class="row mb-5">
-               <div class="col-md-6 col-lg-4 mb-3" th:each="list : ${projectsList}">
-               <div class="card h-100">
-                    <img class="card-img-top" 
-                    th:src="|../assets/img/elements/a${list.projects_num}.jpg|" alt="Card image cap" />
-                    <div class="card-body">
-                      <h5 class="card-title" th:text="${list.title}"></h5>
-                      <button type="button" class="btn btn-info" th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|">공사 현황 보기</button>
+			  
+                <div class="col-md">
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img class="card-img card-img-left" src="../assets/img/elements/12.jpg" alt="Card image" />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">
+                            This is a wider card with supporting text below as a natural lead-in to additional content.
+                            This content is a little bit longer.
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div> 
-              </div>
-            </div>
+                </div>
+                <div class="col-md">
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">
+                            This is a wider card with supporting text below as a natural lead-in to additional content.
+                            This content is a little bit longer.
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <img class="card-img card-img-right" src="../assets/img/elements/17.jpg" alt="Card image" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            
+           
+              
+              
+           
+                      
+			
+              
+           
             <!-- / Content -->
-	
+
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
