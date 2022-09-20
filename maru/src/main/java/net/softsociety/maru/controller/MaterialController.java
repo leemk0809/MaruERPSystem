@@ -72,4 +72,6 @@ public class MaterialController {
 		log.debug("num : {}", num);
 		service.deleteMaterial(num);
 	}
+	
+	
 }

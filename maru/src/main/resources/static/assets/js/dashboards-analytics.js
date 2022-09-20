@@ -13,7 +13,6 @@
   borderColor = config.colors.borderColor;
   
   let proSales1 ='[[${proSales1}]]';
-  alert(proSales1);
   let proSales2= 670;
   
   

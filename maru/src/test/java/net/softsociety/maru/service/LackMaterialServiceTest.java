@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.maru.domain.LackMaterial;
 import net.softsociety.maru.domain.Material;
 import net.softsociety.maru.domain.NeedMaterial;
 import net.softsociety.maru.service.manage.LackMaterialService;
@@ -21,15 +22,7 @@ public class LackMaterialServiceTest {
 
 	@Test
 	void selectAllLackMaterial(){
-		List<NeedMaterial> list = service.selectAllLackMaterial();
+		List<LackMaterial> list = service.selectAllLackMaterial();
 		log.debug("list : {}", list);
 	}
-	
-	@Test
-	void selectAllCommitDate() {
-		List<String> list = service.selectAllCommitDate();
-		log.debug("list: {}", list);
-	}
-	
-	
 }

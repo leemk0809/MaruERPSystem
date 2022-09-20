@@ -3,11 +3,11 @@ package net.softsociety.maru.service.manage;
 import java.util.List;
 import java.util.Map;
 
-import net.softsociety.maru.domain.NeedMaterial;
+import net.softsociety.maru.domain.LackMaterial;
 
 public interface LackMaterialService {
-	public List<NeedMaterial> selectAllLackMaterial();
-	public List<String> selectAllCommitDate();
+	public List<LackMaterial> selectAllLackMaterial();
+	public void initCommitDate();
 	public int deleteLackMaterial();
 	public void addMaterial(Map<Integer, Integer> request);
 }

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.dao.MaterialDAO;
 import net.softsociety.maru.dao.NeedMaterialDAO;
 import net.softsociety.maru.dao.ProjectsDAO;
+import net.softsociety.maru.domain.LackMaterial;
 import net.softsociety.maru.domain.Material;
 import net.softsociety.maru.domain.NeedMaterial;
 import net.softsociety.maru.domain.Projects;
@@ -26,10 +27,11 @@ public class LackMaterialServiceImpl implements LackMaterialService {
 	@Autowired
 	ProjectsDAO pDAO;
 	
-	List<NeedMaterial> lackMaterialList = new ArrayList<>();
+	List<LackMaterial> lackMaterialList = new ArrayList<>();
 	
 	@Override
-	public List<NeedMaterial> selectAllLackMaterial() {
+	public List<LackMaterial> selectAllLackMaterial() {
+		lackMaterialList = new ArrayList<>();
 		List<Material> materialList = mDAO.selectAll(); 
 		List<NeedMaterial> needMaterialList = nDAO.selectAll();
 		
@@ -41,30 +43,41 @@ public class LackMaterialServiceImpl implements LackMaterialService {
 						NeedMaterial newNM = nm;
 						// 부족한 수 입력
 						newNM.setCount(nm.getCount() - m.getCount());
-						lackMaterialList.add(newNM);
+						
+						LackMaterial lackMaterial = new LackMaterial();
+						lackMaterial.setMaterial_num(newNM.getMaterial_num());
+						lackMaterial.setNeed_material_num(newNM.getNeed_material_num());
+						lackMaterial.setCount(newNM.getCount());
+						lackMaterial.setProject_num(newNM.getProjects_num());
+						lackMaterial.setProject_name(pDAO.selectOne(newNM.getProjects_num()).getTitle());
+						lackMaterial.setPrice(m.getPrice());
+						lackMaterial.setMaterial_name(m.getMaterial_name());
+						
+						lackMaterial.setCommit_date(null);
+						
+						lackMaterialList.add(lackMaterial);
 					}
 				}
 			}
 		}
+		initCommitDate();
+		
 		return lackMaterialList;
 	}
 
 	@Override
-	public List<String> selectAllCommitDate() {
+	public void initCommitDate() {
 		List<Projects> pList = pDAO.selectAll();
-		List<String> commitDate = new ArrayList<>();
-		selectAllLackMaterial();
 		
 		for(int i = 0 ; i < lackMaterialList.size(); i++) {
 			for(Projects p : pList) {
-				if(lackMaterialList.get(i).getProjects_num() == p.getProjects_num()) {
+				if(lackMaterialList.get(i).getProject_num() == p.getProjects_num()) {
 					log.debug("p : {}", p);
-					commitDate.add(p.getStart_date());
+					lackMaterialList.get(i).setCommit_date(p.getStart_date());
 					continue;
 				}
 			}
 		}
-		return commitDate;
 	}
 
 	@Override

@@ -61,22 +61,19 @@
 	    });
 	    
 	    function print(){
-	    	printmaterial();
-	    	printByName();
-	    	printByPrice();
-	    	printByCount();
+	    	printByMaterialnum();
 	    }
 
-	    function printmaterial(){
+	    function printByMaterialnum(){
 	    	$.ajax({
-	    		url:'printmaterial',
+	    		url:'printByMaterialnum',
 	    		type:'post',
 	    		data: '',
 	    		success:function(item){
 	    			$('#printByMaterialnum').html(printList(item));
 	    		},
 	    		error:function(){
-	    			alert('printItems 실패');
+	    			alert('printByMaterialnum 실패');
 	    		}
 	    	});
 	    }
@@ -88,125 +85,24 @@
 	    	
 	    	for(let i = 0 ; i < item.length; i++){
 	    		result += '<tr>';
-	    		result += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>' + item[i].material_num +'</strong></td>';
+	    		result += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>' + item[i].need_material_num +'</strong></td>';
+	    		result += '<td>' + item[i].project_name +'</td>';
 	    		result += '<td>' + item[i].material_name +'</td>';
 	    		result += '<td>' + item[i].count +'</td>';
 	    		result += '<td>' + item[i].price +'</td>';
-	    		result += '<td>'
-	                   		+ '<div class="dropdown">'
-	                		+	'<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">'
-	                  		+		'<i class="bx bx-dots-vertical-rounded"></i>'
-	                		+	'</button>' 	
-	                		+ 	'<div class="dropdown-menu">'
-	                	//+ 		'<a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>수정</a>'
-	                  		+ 		'<a class="dropdown-item" num="'+ item[i].material_num +'"><i class="bx bx-trash me-1"></i>삭제</a>'
-	                  		+ 	'</div>'
-	                		+ '</div>'
-	             			+'</td>'; 
+	    		result += '<td>' + item[i].commit_date +'</td>';
 	    		result += '</tr>';
 	    	}
 	    	result += '</tbody>'
                 + '</table>'
             + '</div>';
             
-            $('.dropdown-item').on('click', deleteMaterial);
-            
             return result;
 	    }
 
-	    function insert(){
-	    	let material_name = $('#material_name_m').val();
-	    	let count = $('#count_m').val();
-	    	let price = $('#price_m').val();
-	    	
-	    	if(material_name == '' || count == '' || price == ''){
-	    		alert("항목을 반드시 다 입력해 주세요.");
-	    		return;
-	    	}
-	    	
-	    	if(isNaN(count) || isNaN(price)){
-	    		alert("수량과 가격은 반드시 숫자로 입력해 주세요.");
-	    		return;
-	    	}
-	    	
-	    	$.ajax({
-	    		url:'insertMaterial',
-	    		type:'post',
-	    		data: {
-	    			material_name: $('#material_name_m').val()
-	    			, count: $('#count_m').val()
-		    		, price: $('#price_m').val()
-	    		},
-	    		success: function(item){
-	    			$('#insertModal').modal('hide');
-	    	    	print();
-	    		},
-	    		error:function(){
-	    			console.log('insertMaterial 실패');
-	    		}
-	    	});
-	    	
-	    }
-	    
-	    function deleteMaterial(){
-	    	console.log(($(this).attr('num')));
-	    	
-	    	$.ajax({
-	    		url:'deleteMaterial',
-	    		type:'post',
-	    		data:{ num : $(this).attr('num')},
-	    		success: print,
-	    		erorr:function(){
-	    			alert('deleteMaterial 실패');
-	    		}
-	    	});
-	    } 
-	    
-	    function printByName(){
-	    	$.ajax({
-	    		url:'printByName',
-	    		type:'post',
-	    		data: '',
-	    		success:function(item){
-	    			$('#printByName').html(printList(item));
-	    		},
-	    		error:function(){
-	    			alert('printByName 실패');
-	    		}
-	    	});
-	    };
-	    
-	    function printByPrice(){
-	    	$.ajax({
-	    		url:'printByPrice',
-	    		type:'post',
-	    		data: '',
-	    		success:function(item){
-	    			$('#printByPrice').html(printList(item));
-	    		},
-	    		error:function(){
-	    			alert('printByPrice 실패');
-	    		}
-	    	});
-	    };
-	    
-	    function printByCount(){
-	    	$.ajax({
-	    		url:'printByCount',
-	    		type:'post',
-	    		data: '',
-	    		success:function(item){
-	    			$('#printByCount').html(printList(item));
-	    		},
-	    		error:function(){
-	    			alert('printByCount 실패');
-	    		}
-	    	});
-	    };
-	    
-	    function lackMaterial(){
-	    	location.href = "lackMaterial";
-	    }
+      function material(){
+        location.href="material";
+      }
     </script>
   </head>
 
@@ -364,122 +260,85 @@
                 <div class="card mb-4">
                   <div class="row row-bordered">
                     <div class="col-md-3">
-                      <h5 class="card-header">마루건설 자재 현황</h5>
+                      <h5 class="card-header">요청 자재</h5>
                       
                       <div class="card-body">
                         <div class="row mt-2  d-grid gap-3">
-                          <input type="text">
-                          <button class="btn btn-primary btn-xl">전체 자재 목록</button>
-                          <button class="btn btn-primary">철근/철골</button> 
-                          <button class="btn btn-primary">석재</button>
-                          <button class="btn btn-primary">단열재</button>
+                          <button class="btn btn-primary btn-xl">전체 요청 자재</button>
+                          <button class="btn btn-primary">A프로젝트</button> 
+                          <button class="btn btn-primary">B프로젝트</button>
+                          <button class="btn btn-primary">C프로젝트</button>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-9">
                       <div class="row">
                         <div class="col-md-4 mt-2">
-                          <button class="btn rounded-pill btn-outline-secondary">전체자재</button>
-                          <button class="btn rounded-pill btn-outline-secondary" onclick="lackMaterial()">요청자재</button>
-                          
-                          
-                        </div>
-                        <div class="col-md-6">
-                          <button class="btn btn-outline-primary mt-2 btn-float-right"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#insertModal">자재 추가</button>
-                          <!-- Modal -->
-                          <div class="modal fade" id="insertModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-h	eader">
-                                  <h5 class="modal-title" id="modalCenterTitle">자재추가</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="row">
-                                    <div class="col mb-3">
-                                      <label for="material_name_m" class="form-label">자재명</label>
-                                      <input
-                                        type="text"
-                                        id="material_name_m"
-                                        class="form-control"
-                                        placeholder="자재명을 입력해주세요."
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="row g-2">
-                                    <div class="col mb-0">
-                                      <label for="price_m" class="form-label">가격</label>
-                                      <input
-                                        type="text"
-                                        id="price_m"
-                                        class="form-control"
-                                        placeholder="가격을 입력해주세요."
-                                      />
-                                    </div>
-                                    <div class="col mb-0">
-                                      <label for="count_m" class="form-label">수량</label>
-                                      <input
-                                        type="text"
-                                        id="count_m"
-                                        class="form-control"
-                                        placeholder="수량을 입력해주세요."
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                  </button>
-                                  <button type="button" class="btn btn-primary" onclick="insert()">Save changes</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <button class="btn rounded-pill btn-outline-secondary" onclick="material()">전체자재</button>
+                          <button class="btn rounded-pill btn-outline-secondary">요청자재</button>
                         </div>
                         <div class="demo-inline-spacing mt-3">
                           <div class="list-group list-group-horizontal-md text-md-center">
                             <a
-                              class="list-group-item list-group-width-1 active "
+                              class="list-group-item lack-group-width-1 active "
                               id="num-list-item"
                               data-bs-toggle="list"
                               href="#horizontal-num"
                               >번호</a
                             >
                             <a
-                              class="list-group-item list-group-width-2"
-                              id="name-list-item"
+                              class="list-group-item lack-group-width-2"
+                              id="projectName-list-item"
                               data-bs-toggle="list"
-                              href="#horizontal-name"
-                              >자재명</a
+                              href="#horizontal-projectName"
+                              >프로젝트 명</a
                             >
                             <a
-                              class="list-group-item list-group-width-3"
+                              class="list-group-item lack-group-width-3"
+                              id="materialName-list-item"
+                              data-bs-toggle="list"
+                              href="#horizontal-materialName"
+                              >자재이름</a
+                            >
+                            <a
+                              class="list-group-item lack-group-width-4"
                               id="price-list-item"
                               data-bs-toggle="list"
                               href="#horizontal-price"
                               >가격</a
                             >
                             <a
-                              class="list-group-item list-group-width-4"
+                              class="list-group-item lack-group-width-5"
                               id="count-list-item"
                               data-bs-toggle="list"
                               href="#horizontal-count"
                               >수량</a
+                            >
+                            <a
+                              class="list-group-item lack-group-width-6"
+                              id="commitDate-list-item"
+                              data-bs-toggle="list"
+                              href="#horizontal-commitDate"
+                              >투입날짜</a
                             >
                           </div>
                           <div class="tab-content px-0 mt-0">
                             <div class="tab-pane fade show active" id="horizontal-num">
                             	<div id="printByMaterialnum"></div>
                             </div>
-                            <div class="tab-pane fade" id="horizontal-name">
-                              <div id="printByName"></div>
+                            <div class="tab-pane fade" id="horizontal-projectName">
+                              <div id="printByProjectName"></div>
+                            </div>
+                            <div class="tab-pane fade" id="horizontal-materialName">
+                              <div id="printByMaterialName"></div>
                             </div>
                             <div class="tab-pane fade" id="horizontal-price">
                               <div id="printByPrice"></div>
                             </div>
                             <div class="tab-pane fade" id="horizontal-count">
+                              <div id="printByCount"></div>
+                            </div>
+                            <div class="tab-pane fade" id="horizontal-commitDate">
                               <div id="printByCount"></div>
                             </div>
                           </div>

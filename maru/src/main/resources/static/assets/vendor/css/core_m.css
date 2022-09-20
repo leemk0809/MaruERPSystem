@@ -94,6 +94,39 @@
   text-align: inherit;
 }
 
+.lack-group-width-1 {
+	width: 7%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+
+.lack-group-width-2 {
+	width: 33%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+.lack-group-width-3 {
+	width: 16%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+.lack-group-width-4 {
+	width: 11%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+.lack-group-width-5 {
+	width: 8%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+.lack-group-width-6 {
+	width: 23%;
+  	color: #8e9baa;
+ 	text-align: inherit;
+}
+
+
 /* 커스텀 css 끝 */
 
 :root {
