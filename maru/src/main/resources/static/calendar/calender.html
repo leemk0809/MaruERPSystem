@@ -36,8 +36,8 @@
 		<div id='calendar'></div>
 	</div>
 
-
-	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="js/jquery-3.3.1.min.js"></script> -->
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
@@ -60,24 +60,15 @@
 				success : function(obj) {
 					console.log(obj);
 					var calendarEl = document.getElementById('calendar');
-					let events = "";
-					
-					/* $.each(obj, function (index, value) {
-						events += "{ title : '" + value.title + "'" 
-						+ " , start : '" + value.start + "'"
-						+ " , end : '" + value.end + "'}, ";
+				
+					const events = obj.map(function(item) {
+	    				return {
+							title : item.title,
+							start : item.start,
+							end : item.end
+						}
+	    			});
 
-						//{ title : '둔촌주공아파트 재건축 현장' , start : '2022-03-01' , end : '2022-04-01' }
-                    }) */
-                    events = "[{"
-        				+	"title : 'All Day Event',"
-        				+	"start : '2020-02-01'"
-        				+ "}, {"
-        				+	"title : 'Long Event', "
-        				+	"start : '2020-02-07', "
-        				+	"end : '2020-02-10'"
-        				+"}]";
-                    
                     console.log(events);
                 
                 	var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -89,7 +80,7 @@
 							right : ''
 						},
 						defaultView : 'dayGridMonth',
-						defaultDate : '2020-02-11',
+						defaultDate : '2022-09-20',
 						navLinks : true, // can click day/week names to navigate views
 						editable : true,
 						eventLimit : true,
