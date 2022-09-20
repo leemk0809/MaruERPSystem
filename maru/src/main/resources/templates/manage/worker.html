@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+
+<!-- beautify ignore:start -->
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>사원관리</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+	<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar layout-without-menu">
+      <div class="layout-container">
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <!-- 첫줄, 돋보기 부분 하얀 박스를 화면 끝까지 -->
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="app-brand">
+              <a href="index.html" class="app-brand-link">
+                <span class="app-brand-logo">
+                    <img src="../images/maru_logo.png"  class="maru_logo" alt="">
+                </span>
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+                <!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
+                <li class="nav-item lh-1 me-3">
+                  <!-- 별모양 버튼 -->
+                  <a
+                    class="github-button"
+                    href="#"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    >Star</a
+                  >
+                </li>
+
+                <!-- 프사 있는 부분 -->
+                <!-- User -->
+                <!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <!-- online, offline으로 상태 변화가능 -->
+                    <div class="avatar avatar-online">
+                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <!-- 구분자 -->
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-basic.html">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+            
+          </nav>
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl subnavbar-detached align-items-center"
+            id="layout-sub-navbar"
+          >
+            <div style="width: 40%;">
+              MARU PMS
+            </div>
+            <div class="navbar-nav align-items-center">
+              <div class="nav-item d-flex align-items-center">
+                <i class="bx bx-search fs-4 lh-0"></i>
+                <input
+                  type="text"
+                  class="form-control border-0 shadow-none"
+                  placeholder="Search..."
+                  aria-label="Search..."
+                />
+              </div>
+            </div>
+            <div class="navbar-nav-right d-flex align-items-center height-100" id="navbar-collapse">
+              <ul class="navbar-nav flex-row align-items-center ms-auto height-100">
+                <li class="nav-item lh-1 me-3">
+                  대시보드
+                </li>
+                <li class="nav-item lh-1 me-3">
+                  프로젝트 관리
+                </li>
+                <li class="nav-item lh-1 me-3">
+                  자원관리
+                </li>
+                <li class="nav-item lh-1 me-3" style="background-color: var(--bs-body-bg);">
+                  관리자 페이지
+                </li>
+              </ul>
+            </div>
+            <div>
+
+            </div>
+          </nav>
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+  
+			  <!-- 사원관리 표 -->
+              <!-- Bootstrap Table with Header - Light -->
+              <div class="card">
+                <div class="card-header"><span>사원 인적사항</span>
+                	   <button
+                          type="button"
+                          class="btn rounded-pill btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalCenter"
+                          style="margin-left:1100px;"
+                        >
+                          사원추가
+                        </button>
+                
+                </div>
+              
+              <!-- 사원목록 -->
+               <div class="card-body">                   
+                <div class="table-responsive text-nowrap">
+                  <table class="table" style="text-align: center;">
+                    <thead class="table-light">
+                      <tr>
+                      	<th>사원번호</th>
+                        <th>사원명</th>
+                        <th>아이디</th>
+                        <th>부서명</th>
+                        <th>직급</th>
+                        <th>삭제</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+
+                      <!-- 모델값 잘 들어오나 확인 (완)-->
+                      <tr th:each="list:${workerList}">
+                      	<td th:text="${list.worker_num}"></td>
+                        <td>
+                          <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong th:text="${list.name}"></strong>
+                        </td>
+                        <td th:text="${list.id}"></td>
+                        <td th:text="${list.division_num}"></td>
+                        <td><span class="badge bg-label-warning me-1" th:text="${list.position_num}"></span></td>
+                        <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="javascript:void(0);"
+                                ><i class="bx bx-trash me-1"></i>삭제</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Bootstrap Table with Header - Light -->
+                
+                <!-- 사원추가 모달창 -->               
+                        
+                       <!-- Modal -->
+                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">사원 추가 입력창</h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row">
+                                  <div class="col mb-3">
+                                    <label for="nameWithTitle" class="form-label">Name</label>
+                                    <input
+                                      type="text"
+                                      id="nameWithTitle"
+                                      class="form-control"
+                                      placeholder="Enter Name"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="row g-2">
+                                  <div class="col mb-0">
+                                    <label for="emailWithTitle" class="form-label">Email</label>
+                                    <input
+                                      type="text"
+                                      id="emailWithTitle"
+                                      class="form-control"
+                                      placeholder="xxxx@xxx.xx"
+                                    />
+                                  </div>
+                                  <div class="col mb-0">
+                                    <label for="dobWithTitle" class="form-label">DOB</label>
+                                    <input
+                                      type="text"
+                                      id="dobWithTitle"
+                                      class="form-control"
+                                      placeholder="DD / MM / YY"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                  취소
+                                </button>
+                                <button type="button" class="btn btn-primary">저장</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+					</div>
+                     
+                        
+                        
+                        
+
+                
+
+              
+           </div>   
+
+              <hr class="my-5" />			  
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with ❤️ by
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">TeamMaru</a>
+                </div>
+                <div>
+                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                  <a
+                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Documentation</a
+                  >
+
+                  <a
+                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Support</a
+                  >
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>
