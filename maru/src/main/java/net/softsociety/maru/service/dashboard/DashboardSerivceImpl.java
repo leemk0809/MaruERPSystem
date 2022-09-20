@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.dao.CommitWorkerDAO;
 import net.softsociety.maru.dao.IssueDAO;
+import net.softsociety.maru.dao.PositionDAO;
 import net.softsociety.maru.dao.ProjectsDAO;
 import net.softsociety.maru.domain.CommitWorker;
 import net.softsociety.maru.domain.Issue;
+import net.softsociety.maru.domain.Position;
 import net.softsociety.maru.domain.Projects;
 
 @Slf4j
@@ -29,6 +31,9 @@ public class DashboardSerivceImpl implements DashboardService {
 
 	@Autowired
 	IssueDAO idao;
+	
+	@Autowired
+	PositionDAO podao;
 
 	@Override
 	public ArrayList<Projects> selectAllProjects() {
@@ -252,4 +257,12 @@ public class DashboardSerivceImpl implements DashboardService {
 		}
 		return cnt;
 	}
+
+	@Override
+	public ArrayList<Position> selectAllPosition() {
+		ArrayList<Position> positionList = (ArrayList<Position>) podao.selectAll();
+		return positionList;
+	}
+	
+	
 }

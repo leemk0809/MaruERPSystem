@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.softsociety.maru.domain.CommitWorker;
 import net.softsociety.maru.domain.Issue;
+import net.softsociety.maru.domain.Position;
 import net.softsociety.maru.domain.Projects;
 
 public interface DashboardService {
@@ -46,4 +47,7 @@ public interface DashboardService {
 	
 	//이번단 종료되는 프로젝트
 	public ArrayList<Projects> currEndProject();
+	
+	//포지션 전체불러오기
+	public ArrayList<Position> selectAllPosition();
 }

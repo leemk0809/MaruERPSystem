@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ProjectsTot {
+	
+	private int Projects_num;
 	private String Projects_name;
 	private String d_day;
 	private int progress;
