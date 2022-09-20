@@ -1233,13 +1233,13 @@
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-column align-items-center gap-1">
-                          <h2 class="mb-2">8,258</h2>
-                          <span>Total Orders</span>
+                          <h2 class="mb-2" th:text="${exRate1}+${exRate2}+${exRate3}+${exRate4}"></h2>
+                          <span>단위: 백만 (원)</span>
                         </div>
                         <div id="orderStatisticsChart"></div>
                       </div>
                       <ul class="p-0 m-0">
-                        <li class="d-flex pb-1">
+                        <li class="d-flex pb-1" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary"
                               ><i class="bx bx-mobile-alt"></i
@@ -1256,7 +1256,7 @@
                           </div>
                         </li>
                         
-                        <li class="d-flex pb-1">
+                        <li class="d-flex pb-1" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
                           </div>
@@ -1270,7 +1270,7 @@
                             </div>
                           </div>
                         </li>
-                        <li class="d-flex pb-1">
+                        <li class="d-flex pb-1" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
                           </div>
@@ -1284,7 +1284,7 @@
                             </div>
                           </div>
                         </li>
-                        <li class="d-flex">
+                        <li class="d-flex" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-secondary"
                               ><i class="bx bx-football"></i
