@@ -258,7 +258,9 @@
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:deleteWorker();"
+                              <a class="dropdown-item" 
+                              	  th:workernum="${list.worker_num}"
+                              	  onclick="deleteWorker(this.getAttribute('workernum'))"
                                 ><i class="bx bx-trash me-1"></i>삭제</a
                               >
                             </div>
@@ -447,10 +449,23 @@
     	deleteWorker();
     });
 	
-    function deleteWorker(){
-    	let num= $(this).attr('num');
-    	alert(num);  	
+    function deleteWorker(workernum){
+    	let num= workernum;
+    	//alert(num);  	
+    	
+    	$.ajax({
+    		url:'delete',
+    		type:'get',
+    		data:{num: num},
+    		success: function(){
+    			alert('삭제에 성공했습니다.');
+    		},
+    		error: function(){
+    			alert('삭제에 실패했습니다.');
+    		}
+    	});	
 
+    	
     } 
 	
 	

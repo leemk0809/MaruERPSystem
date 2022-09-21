@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.domain.Division;
@@ -26,14 +27,19 @@ public class WorkerController {
 	public String worker(Model model) {
 		
 		List<Worker> Wlist = service.selectAll();		
-		model.addAttribute("workerList",Wlist);
-		
+		model.addAttribute("workerList",Wlist);		
 		List<Division> Dlist = service.divisionList();
-		model.addAttribute("divisionList",Dlist);
-		
+		model.addAttribute("divisionList",Dlist);		
 		List<Position> Plist = service.positionList();
 		model.addAttribute("positionList",Plist);
 		
 		return"/manage/worker";
+	}
+	
+	@ResponseBody
+	@GetMapping("/delete")
+	public void delete(int num) {
+		
+		//service.deleteWorker(num);
 	}
 }
