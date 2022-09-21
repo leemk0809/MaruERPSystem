@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.softsociety.maru.domain.Division;
 import net.softsociety.maru.domain.Worker;
 
 @Mapper
@@ -21,5 +22,6 @@ public interface WorkerDAO {
 	public ArrayList<Worker> selectAllWorker(int division_num);
 
 	public List<Worker> selectAll();	
+	
 	
 }

@@ -3,6 +3,8 @@ package net.softsociety.maru.service.manage;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.softsociety.maru.domain.Division;
+import net.softsociety.maru.domain.Position;
 import net.softsociety.maru.domain.Worker;
 
 public interface WorkerService {
@@ -23,4 +25,10 @@ public interface WorkerService {
 	
 	//사원 전체 리스트 출력
 	List<Worker> selectAll();
+	
+	//부서리스트 출력
+	List<Division> divisionList();
+	
+	//직급리스트 출력
+	List<Position> positionList();
 }

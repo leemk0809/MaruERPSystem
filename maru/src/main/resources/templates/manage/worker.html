@@ -217,7 +217,7 @@
                           data-bs-target="#modalCenter"
                           style="margin-left:1100px;"
                         >
-                          사원추가
+                          사원 추가
                         </button>                
                 </div>        
                       
@@ -244,8 +244,14 @@
                           <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong th:text="${list.name}"></strong>
                         </td>
                         <td th:text="${list.id}"></td>
-                        <td th:text="${list.division_num}"></td>
-                        <td><span class="badge bg-label-warning me-1" th:text="${list.position_num}"></span></td>
+                        <td th:each="dList:${divisionList}" 
+                        	th:if="${list.division_num==dList.division_num}" 
+                        	th:text="${dList.division_name}"></td>
+                        <td>
+                        <span class="badge bg-label-warning me-1"
+                        	  th:each="pList:${positionList}"
+                        	  th:if="${list.position_num==pList.position_num}" 
+                        	  th:text="${pList.position_name}"></span></td>
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
