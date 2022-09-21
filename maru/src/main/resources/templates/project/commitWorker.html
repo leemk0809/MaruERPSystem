@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+  xmlns:th="http://thymeleaf.org" 
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>현황판</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core_info.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+	<link rel="stylesheet" href="../assets/vendor/css/progresscircle.css">
+	
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+   
+  	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<!-- 전체  -->
+<script>
+am5.ready(function() {
+
+// Define icons
+var icon1 = "data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTc2IiBoZWlnaHQ9Ijg4OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNODcuODIuMDY2djc2LjQzNmwtNC4wNjUgMi45ODR2NjUuNDE4bC0yLjkwNCAzLjQ0My0uNzc0IDYzLjEyMy01LjIyOCA1LjczOHY2MS45NzVsLTIuMzIzIDQuODItLjc3NCAxNzguNTgtOS42OCAyLjI5Ni0uNzc1IDEyOC41NC05LjEgMy4yMTR2MTE5LjU4OWwtNS42MTQgMS4xNDgtLjc3NCA4NC4wMS03LjU1IDEuMTQ4djQ5LjM1aC04LjMyNnYxMS4wMThoLTYuOTd2OC4yNjRILjd2MjAuNjU4aDE3NC40MzdWODcxLjE2aC0xNy40MjR2LTguMjY0aC0xMS4yM3YtOS42NGwtNy4zNTYtLjIzLS45NjgtNzMuNjgxLTcuNTUtLjkxOC45NjctOTguOTMtNy45MzgtMS44MzctLjc3NC0xMjIuMTE0LTYuOTctMS44MzYtMS4zNTUtMTM4LjE4Mi01LjYxNC03LjU3NFYzMDcuMTg3bC02LjAwMi05LjQxMXYuMjMtMzkuOTRsLTQuMjYtMy42NzMtLjc3NC0zNi45NTVoLS45Njh2LTQ2LjU5NmwtMy44NzItNi44ODZ2LTYwLjEzOWwtMy42NzgtMi45ODQtLjM4OC0yMS4xMTdWLjA2NmgtMS4xNjF6IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48L3N2Zz4=";
+
+var icon2 = "data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTAzIiBoZWlnaHQ9IjU3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAzIDU3Ny45VjI4OC41YzAtMS4xLTEuMi0yLjEtMi4yLTIuMWgtOFYxODIuMWMwLTEtMS4xLTIuMS0yLjEtMi4xSDc0LjRWOTguNWMwLTEtMS0yLTIuMS0ySDU5LjJzLjEtMS45LjEtMy0xLjEtMS4xLTEuMS0xLjFWNDIuN2gtMi4xVjhoLTN2ODQuNGgtMlY0Ni44aC0xLjl2NDUuOEgzNC45di00N2gtMS4ydjQ2LjloLTIuOVYuNWgtNC4ydjkyaC01LjF2NGgtOC4xYy0xLjEgMC0yIDEtMiAydjE4OEgyLjJjLTEuMSAwLTIuMSAxLTIuMSAydjI4OS40SDEwM3oiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==";
+
+var icon3 = "data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iODMiIGhlaWdodD0iNTU2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0zOS44Ljh2NTYuNWwtNS4xIDEuM3Y1aDN2M2gxLjh2MmgtMy44Yy0uOSAwLTIuMSAxLTIuMSAydjE2LjloLTRzLjkgMTUuOS45IDE2LjljMCAxIDEuMSAyIDIuMSAyaDF2MTYuOWgtNy4xYy0xIDAtMiAxLTIgMnY5aC04LjFjLTEuMSAwLTIgMS0yIDJ2MS45aC0ybDQuMSAzOC43aC0zbDMuOSAzNy45aC0zLjlsMy43IDM3LjdoLTMuOWw0LjQgMzcuN2gtNC4zbDMuOSAzNi44aC00bDQuMiAzNi45aC00LjNsNC40IDM4LjdoLTQuM2w0IDM5LjhzLTEuNy0uMS0yLjUgMGMtLjggMC0xLjEgMS4xLTEuMyAxLjgtLjIuNy0xMy4xIDExNS0xMy4xIDExNWw0MS0uMmguN2w0MSAuMlM3MC4yIDQ0NC45IDcwIDQ0NC4yYy0uMi0uNy0uNS0xLjgtMS4zLTEuOC0uOC0uMS0yLjUgMC0yLjUgMGw0LTM5LjhoLTQuM2w0LjQtMzguN0g2Nmw0LjItMzYuOWgtNGwzLjktMzYuOGgtNC4zbDQuNC0zNy43aC0zLjlsMy43LTM3LjdoLTMuOWwzLjktMzcuOWgtM2w0LjEtMzguN2gtMnYtMS45YzAtMS4xLS45LTItMi0ySDU5di05YzAtMS0xLTItMi0yaC03LjF2LTE2LjloMWMxIDAgMi4xLTEgMi4xLTJzLjktMTYuOS45LTE2LjloLTRWNzAuNmMwLTEtMS4xLTItMi4xLTJINDR2LTJoMS44di0zaDN2LTVsLTUuMS0xLjNWLjhoLTMuOXoiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==";
+
+var icon4 = "data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQ5MyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMzAuNy40djQwLjhoLTJ2NmgydjIuNWwtMSAzLjVoLTFjLTEgMC0yIDEtMiAydjJoLTFjLS45IDAtMiAxLTIgMnY1LjloLTFjLTEuMSAwLTIuMSAxLTIuMSAydjhoLTFjLTEgMC0yIDEtMiAyVjg2aC0xYy0xIDAtMi4xIDEtMi4xIDJ2MTYuOWgtMi4xYy0xIDAtMiAuOS0yIDJ2MjMuOWgtMmMtMSAwLTIgMS0yIDJ2NDAuN2gtMmMtMSAwLTIgMS0yIDJ2NTEuN2MwIC45LTIuMSAxLjItMi4xIDJ2MjY2LjJsMzEuOCAxaDFsMjguOC0uOWg1Ni4ybDI4LjguOWgxbDMxLjgtMVYyMjkuMmMwLS44LTIuMS0xLjEtMi4xLTJ2LTUxLjdjMC0xLTEtMi0yLTJoLTJ2LTQwLjdjMC0uOS0xLjEtMi0yLjEtMmgtMnYtMjMuOWMwLTEtMS4xLTItMi0yaC0yLjFWODhjMC0xLTEtMi0yLjEtMmgtMXYtOC45YzAtMS0xLTItMi0yaC0xdi04YzAtMS0xLTItMi0yaC0xLjF2LTUuOWMwLTEtMS4xLTItMi0yaC0xdi0yYzAtMS0xLTItMi0yaC0xbC0xLTMuNXYtMi41aDJ2LTZoLTJWLjRoLTMuOHY0MC44aC0ydjZoMnYyLjVsLTEgMy41aC0xYy0xIDAtMiAxLTIgMnYyaC0xYy0uOSAwLTIgMS0yIDJ2NS45aC0xYy0xLjEgMC0yLjEgMS0yLjEgMnY4aC0xYy0xIDAtMiAxLTIgMlY4NmgtMWMtMSAwLTIuMSAxLTIuMSAydjE2LjloLTIuMWMtMSAwLTIgLjktMiAydjIzLjloLTJjLTEgMC0yIDEtMiAydjQwLjdoLTJjLTEgMC0yIDEtMiAydjUxLjdjMCAuOS0yLjEgMS4yLTIuMSAydjczLjVINjV2LTczLjVjMC0uOC0yLjEtMS4xLTIuMS0ydi01MS43YzAtMS0xLTItMi0yaC0ydi00MC43YzAtLjktMS4xLTItMi4xLTJoLTJ2LTIzLjljMC0xLTEuMS0yLTItMmgtMi4xVjg4YzAtMS0xLTItMi4xLTJoLTF2LTguOWMwLTEtMS0yLTItMmgtMXYtOGMwLTEtMS0yLTItMmgtMS4xdi01LjljMC0xLTEuMS0yLTItMmgtMXYtMmMwLTEtMS0yLTItMmgtMWwtMS0zLjV2LTIuNWgydi02aC0yVi40aC0zLjh6TTY1IDMxMy42aDIzLjRsLjEuMUw2NSAzNTkuMXYtNDUuNXptMjYuNyAwaDIzLjZ2NDUuOGwtMjMuNi00NS44em0tMS43IDMuM2wyNS4yIDQ5Ljd2MTA2LjNINjVWMzY2LjJsMjUtNDkuM3oiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==";
+
+var icon5 = "data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjQ4NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjkuOS4zdjQwSDY5Yy0uOCAwLTIuMSAxLjEtMi4xIDIuMXYyOC43YzAgMS4xLTEuMi45LTEuMiAyLjF2MjUuOWMwIC45LTEgMS4xLTEgMnY5LjRsLTcuMiAxOS40aC00Yy0xIDAtMi4xIDEtMi4xIDJ2NWgtM2MtMSAwLTIuMSAxLTIuMSAydjI3LjhoLTNjLTEgMC0yLjEuOS0yLjEgMnYzMy44YzAgMS40LTMgMi4xLTMgM3YxNjIuMWgtNWMtMSAwLTIuMSAxLTIuMSAydjM1LjhIMjBjLTEgMC0yLjEgMS0yLjEgMnY1My43SDIuN2MtMSAwLTIgMS0yIDJ2MjQuNWw3MS4xLjdoLjZsNzEuMS0uN3YtMjQuNWMwLTEtMS0yLTItMmgtMTUuMnYtNTMuN2MwLTEtMS0yLTIuMS0yaC0xMS4xdi0zNS44YzAtMS0xLTItMi4xLTJoLTVWMjA1LjVjMC0xLTMuMS0xLjYtMy4xLTN2LTMzLjhjMC0xLTEtMi0yLTJoLTN2LTI3LjhjMC0uOS0xLTItMi4xLTJoLTN2LTVjMC0xLTEtMi0yLTJoLTRsLTcuMi0xOS40di05LjRjMC0uOS0xLTEuMS0xLTJWNzMuMmMwLTEuMi0xLjItMS0xLjItMi4xVjQyLjRjMC0xLTEuMi0yLjEtMi4xLTIuMWgtLjlWLjNoLTQuNXoiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==";
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("chartdivv");
+
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+var gradient = am5.LinearGradient.new(root, {
+  stops: [{
+    color: am5.color(0xf0b24f)
+  }, {
+    color: am5.color(0xca6c46)
+  }, {
+    color: am5.color(0x0c0524)
+  }]
+});
+
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+var chart = root.container.children.push(am5xy.XYChart.new(root, {
+  panX: false,
+  panY: false,
+  wheelX: "panX",
+  wheelY: "zoomX",
+  layout: root.verticalLayout,
+  background: am5.Rectangle.new(root, {
+    fillGradient: gradient
+  })
+}));
+
+
+// Add legend
+// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+var legend = chart.children.push(
+  am5.Legend.new(root, {
+    centerX: am5.p50,
+    x: am5.p50
+  })
+);
+let projectProgress = "[[${projectProgress}]]";
+let materialProgress = "[[${materialProgress}]]";
+
+var pr = parseInt(projectProgress);
+var ma = parseInt(materialProgress);
+var wo = pr-ma;
+
+
+
+var data = [ {
+  category: "인력 진척도",
+  height: 25,
+  ratio: 1 / 6.73,
+  pictureSettings: {
+    src: icon3
+  }
+}, {
+  category: "전체 진척도",
+  height: 57,
+  ratio: 1 / 2.76,
+  pictureSettings: {
+    src: icon4
+  }
+}, {
+  category: "자재 진척도",
+  height: 32,
+  ratio: 1 / 3.41,
+  pictureSettings: {
+    src: icon5
+  }
+}];
+
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+  categoryField: "category",
+  renderer: am5xy.AxisRendererX.new(root, {
+    inside: true
+  }),
+  tooltip: am5.Tooltip.new(root, {})
+}));
+
+var xRenderer = xAxis.get("renderer");
+
+xRenderer.labels.template.setAll({
+  fill: am5.color(0xffffff),
+  fillOpacity: 0.5
+});
+
+xRenderer.grid.template.set("forceHidden", true);
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+  min: 0,
+  max: 100,
+  renderer: am5xy.AxisRendererY.new(root, {})
+}));
+
+var yRenderer = yAxis.get("renderer");
+
+yRenderer.grid.template.setAll({
+  strokeDasharray: [4, 4]
+});
+
+
+// Add series
+// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+  xAxis: xAxis,
+  yAxis: yAxis,
+  valueYField: "height",
+  categoryXField: "category"
+}));
+
+series.columns.template.setAll({
+  width: am5.percent(100),
+  strokeOpacity: 0,
+  fillOpacity: 0
+});
+
+series.bullets.push(function(root, series, dataItem) {
+  var tower = am5.Picture.new(root, {
+    height: 100,
+    centerX: am5.p50,
+    centerY: am5.p100,
+    opacity: 0.5,
+    templateField: "pictureSettings"
+  });
+  
+  tower.adapters.add("height", function(height, target) {
+    if (dataItem) {
+      height = dataItem.get("bottom") - dataItem.get("top");
+    }
+    return height;
+  });
+  
+  return am5.Bullet.new(root, {
+    locationY: 0,
+    sprite: tower,
+    dynamic:true
+  });
+});
+
+series.bullets.push(function() {
+  return am5.Bullet.new(root, {
+    locationY: 1,
+    sprite: am5.Label.new(root, {
+      centerX: am5.p50,
+      centerY: am5.p100,
+      text: "{height} percent",
+      populateText: true
+    })
+  })
+})
+
+series.data.setAll(data);
+
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+series.appear();
+chart.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
+<!-- Chart code -->
+<script>
+
+
+am5.ready(function() {
+	let build = "[[${build}]]";
+	let civil = "[[${civil}]]";
+	let elec = "[[${electricity}]]";
+	let machine = "[[${machine}]]";
+	var bu = parseInt(build);
+	var ci = parseInt(civil);
+	var el = parseInt(elec);
+	var ma = parseInt(machine);
+//	alert(build);
+//	alert(civil);
+//	alert(elec);
+//	alert(machine);
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("chartdiv");
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+	root.setThemes([
+ 	 am5themes_Animated.new(root)
+	]);
+
+var data = [
+    {
+    name: "기계팀",
+    steps: ma,
+    pictureSettings: {
+      src: "../assets/img/elements/machine.jpg"
+    }
+  },
+  {
+    name: "전기팀",
+    steps: el,
+    pictureSettings: {
+      src: "../assets/img/elements/elec.jpg"
+    }
+  },
+  {
+    name: "토목팀",
+    steps: ci,
+    pictureSettings: {
+      src: "../assets/img/elements/civil.jpg"
+    }
+  },
+  {
+    name: "건축팀",
+    steps: bu,
+    pictureSettings: {
+      src: "../assets/img/elements/build.jpg"
+    }
+  }
+];
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: false,
+    panY: false,
+    wheelX: "none",
+    wheelY: "none",
+    paddingLeft: 50,
+    paddingRight: 40
+  })
+);
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+
+var yRenderer = am5xy.AxisRendererY.new(root, {});
+yRenderer.grid.template.set("visible", false);
+
+var yAxis = chart.yAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "name",
+    renderer: yRenderer,
+    paddingRight:40
+  })
+);
+
+var xRenderer = am5xy.AxisRendererX.new(root, {});
+xRenderer.grid.template.set("strokeDasharray", [3]);
+
+var xAxis = chart.xAxes.push(
+  am5xy.ValueAxis.new(root, {
+    min: 0,
+    renderer: xRenderer
+  })
+);
+
+// Add series
+// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+var series = chart.series.push(
+  am5xy.ColumnSeries.new(root, {
+    name: "Income",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueXField: "steps",
+    categoryYField: "name",
+    sequencedInterpolation: true,
+    calculateAggregates: true,
+    maskBullets: false,
+    tooltip: am5.Tooltip.new(root, {
+      dy: -30,
+      pointerOrientation: "vertical",
+      labelText: "{valueX}"
+    })
+  })
+);
+
+series.columns.template.setAll({
+  strokeOpacity: 0,
+  cornerRadiusBR: 10,
+  cornerRadiusTR: 10,
+  cornerRadiusBL: 10,
+  cornerRadiusTL: 10,
+  maxHeight: 50,
+  fillOpacity: 0.8
+});
+
+var currentlyHovered;
+
+series.columns.template.events.on("pointerover", function(e) {
+  handleHover(e.target.dataItem);
+});
+
+series.columns.template.events.on("pointerout", function(e) {
+  handleOut();
+});
+
+function handleHover(dataItem) {
+  if (dataItem && currentlyHovered != dataItem) {
+    handleOut();
+    currentlyHovered = dataItem;
+    var bullet = dataItem.bullets[0];
+    bullet.animate({
+      key: "locationX",
+      to: 1,
+      duration: 600,
+      easing: am5.ease.out(am5.ease.cubic)
+    });
+  }
+}
+
+function handleOut() {
+  if (currentlyHovered) {
+    var bullet = currentlyHovered.bullets[0];
+    bullet.animate({
+      key: "locationX",
+      to: 0,
+      duration: 600,
+      easing: am5.ease.out(am5.ease.cubic)
+    });
+  }
+}
+
+
+var circleTemplate = am5.Template.new({});
+
+series.bullets.push(function(root, series, dataItem) {
+  var bulletContainer = am5.Container.new(root, {});
+  var circle = bulletContainer.children.push(
+    am5.Circle.new(
+      root,
+      {
+        radius: 34
+      },
+      circleTemplate
+    )
+  );
+
+  var maskCircle = bulletContainer.children.push(
+    am5.Circle.new(root, { radius: 27 })
+  );
+
+  // only containers can be masked, so we add image to another container
+  var imageContainer = bulletContainer.children.push(
+    am5.Container.new(root, {
+      mask: maskCircle
+    })
+  );
+
+  // not working
+  var image = imageContainer.children.push(
+    am5.Picture.new(root, {
+      templateField: "pictureSettings",
+      centerX: am5.p50,
+      centerY: am5.p50,
+      width: 60,
+      height: 60
+    })
+  );
+
+  return am5.Bullet.new(root, {
+    locationX: 0,
+    sprite: bulletContainer
+  });
+});
+
+// heatrule
+series.set("heatRules", [
+  {
+    dataField: "valueX",
+    min: am5.color(0xe5dc36),
+    max: am5.color(0x5faa46),
+    target: series.columns.template,
+    key: "fill"
+  },
+  {
+    dataField: "valueX",
+    min: am5.color(0xe5dc36),
+    max: am5.color(0x5faa46),
+    target: circleTemplate,
+    key: "fill"
+  }
+]);
+
+series.data.setAll(data);
+yAxis.data.setAll(data);
+
+var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+cursor.lineX.set("visible", false);
+cursor.lineY.set("visible", false);
+
+cursor.events.on("cursormoved", function() {
+  var dataItem = series.get("tooltip").dataItem;
+  if (dataItem) {
+    handleHover(dataItem)
+  }
+  else {
+    handleOut();
+  }
+})
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+series.appear();
+chart.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
+  	
+  	 
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg
+                  width="25"
+                  viewBox="0 0 25 42"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs>
+                    <path
+                      d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
+                      id="path-1"
+                    ></path>
+                    <path
+                      d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
+                      id="path-3"
+                    ></path>
+                    <path
+                      d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
+                      id="path-4"
+                    ></path>
+                    <path
+                      d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
+                      id="path-5"
+                    ></path>
+                  </defs>
+                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
+                      <g id="Icon" transform="translate(27.000000, 15.000000)">
+                        <g id="Mask" transform="translate(0.000000, 8.000000)">
+                          <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                          </mask>
+                          <use fill="#696cff" xlink:href="#path-1"></use>
+                          <g id="Path-3" mask="url(#mask-2)">
+                            <use fill="#696cff" xlink:href="#path-3"></use>
+                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
+                          </g>
+                          <g id="Path-4" mask="url(#mask-2)">
+                            <use fill="#696cff" xlink:href="#path-4"></use>
+                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
+                          </g>
+                        </g>
+                        <g
+                          id="Triangle"
+                          transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
+                        >
+                          <use fill="#696cff" xlink:href="#path-5"></use>
+                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <!-- Layouts -->
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">All Projects</span>
+              </li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">   
+                 <img src="../images/maru_logo.png" width="30px" height="30px"> &nbsp;&nbsp;&nbsp;             
+                  <button type="button" class="btn rounded-pill btn-success" 
+                  	th:onclick="|location.href='@{allProjectsInfo}'|">모든 프로젝트</button>
+                </a>            
+              </li>
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Projects</span>
+            </li>
+            <div th:each="list : ${projectsList}">
+	            <li>
+		            <p>
+		            	<img src="../images/maru_logo.png" width="30px" height="30px">
+		            	<button type="button" class="btn rounded-pill btn-info" 
+            				th:text="${list.title}"  th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|">
+            			</button>              		 
+		            </p>
+	          	</li>
+          	</div>          
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+         <!-- Navbar -->
+
+          <!-- 첫줄, 돋보기 부분 하얀 박스를 화면 끝까지 -->
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="app-brand">
+              <a href="index.html" class="app-brand-link">
+                <span class="app-brand-logo">
+                    <img src="../images/maru_logo.png"  class="maru_logo" alt="">
+                </span>
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+                <!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
+                <li class="nav-item lh-1 me-3">
+                  <!-- 별모양 버튼 -->
+                  <a
+                    class="github-button"
+                    href="#"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    >Star</a
+                  >
+                </li>
+
+                <!-- 프사 있는 부분 -->
+                <!-- User -->
+                <!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <!-- online, offline으로 상태 변화가능 -->
+                    <div class="avatar avatar-online">
+                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <!-- 구분자 -->
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-basic.html">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+            
+          </nav>
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl subnavbar-detached align-items-center"
+            id="layout-sub-navbar"
+          >
+            <div style="width: 40%;">
+              MARU PMS
+            </div>
+            <div class="navbar-nav align-items-center">
+              <div class="nav-item d-flex align-items-center">
+                <i class="bx bx-search fs-4 lh-0"></i>
+                <input
+                  type="text"
+                  class="form-control border-0 shadow-none"
+                  placeholder="Search..."
+                  aria-label="Search..."
+                />
+              </div>
+            </div>
+            <div class="navbar-nav-right d-flex align-items-center height-100" id="navbar-collapse">
+              <ul class="navbar-nav flex-row align-items-center ms-auto height-100">
+                <li class="nav-item lh-1 me-3">
+                  대시보드
+                </li>
+                <li class="nav-item lh-1 me-3" style="background-color: var(--bs-body-bg);">
+                  프로젝트 관리
+                </li>
+                <li class="nav-item lh-1 me-3">
+                  자원관리
+                </li>
+                <li class="nav-item lh-1 me-3">
+                  관리자 페이지
+                </li>
+              </ul>
+            </div>
+            <div>
+
+            </div>
+          </nav>
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div>
+              	<button th:onclick="|location.href='@{projectInfo(projects_num=${projects.projects_num})}'|">현황판</button>
+                <button th:onclick="|location.href='@{commitWorker(projects_num=${projects.projects_num})}'|">참여인력</button>
+                <button >자재일정</button>
+                <button >이슈</button>
+                <h4 class="fw-bold py-3 mb-4" >
+                <span class="text-muted fw-light" th:text="${projects.title}"></span> 참여 인력
+			          </h4>
+              </div>               
+            </div>
+          </div>
+          <!-- /modal -->
+          <!-- / Content -->
+
+          <!-- Footer -->
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                , made with ❤️ by
+                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">TeamMaru</a>
+              </div>
+              <div>
+                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                <a
+                  href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                  target="_blank"
+                  class="footer-link me-4"
+                  >Documentation</a
+                >
+
+                <a
+                  href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                  target="_blank"
+                  class="footer-link me-4"
+                  >Support</a
+                >
+              </div>
+            </div>
+          </footer>
+          <!-- / Footer -->
+          <div class="content-backdrop fade"></div>
+        <!-- Content wrapper -->
+        </div>
+      <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+   
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../assets/vendor/libs/masonry/masonry.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>
