@@ -2,7 +2,9 @@
 
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="../assets/"
-	data-template="vertical-menu-template-free">
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -76,7 +78,8 @@
 											<div class="input-group input-group-merge">
 												<input type="text" class="form-control"
 													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.projects_num}" readonly /> <span></span>
 											</div>
 										</div>
 
@@ -86,7 +89,8 @@
 											<div class="input-group input-group-merge">
 												<input type="text" class="form-control"
 													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.title}" readonly />
 											</div>
 										</div>
 
@@ -96,7 +100,8 @@
 											<div class="input-group input-group-merge">
 												<input type="text" class="form-control"
 													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.start_date}" readonly />
 											</div>
 										</div>
 
@@ -106,45 +111,48 @@
 											<div class="input-group input-group-merge">
 												<input type="text" class="form-control"
 													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.end_date}" readonly />
 											</div>
 										</div>
 
 										<div class="mb-3">
 											<label class="form-label" for="basic-icon-default-fullname">
 												필요자재</label>
-											<div class="input-group input-group-merge">
-												<input type="text" class="form-control"
-													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
-											</div>
-										</div>
-
-										<div class="mb-3">
-											<label class="form-label" for="basic-icon-default-fullname">
-												필요인원</label>
-											<div class="input-group input-group-merge">
-												<input type="text" class="form-control"
-													id="basic-icon-default-fullname" aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" readonly />
-											</div>
-										</div>
-
-										<div class="mb-3">
-											<label class="form-label" for="basic-icon-default-fullname">
-												자금</label>
+											<!-- 다른거필요 -->
 											<div class="input-group input-group-merge">
 												<input type="text" class="form-control"
 													id="basic-icon-default-fullname" aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
-													/
-													readonly>
+													th:value="${}" readonly />
+											</div>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="basic-icon-default-fullname">
+												필요인원(명)</label>
+											<div class="input-group input-group-merge">
+												<input type="text" class="form-control"
+													id="basic-icon-default-fullname" aria-label="John Doe"
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.need_worker}" readonly />
+											</div>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label" for="basic-icon-default-fullname">
+												자금(억)</label>
+											<div class="input-group input-group-merge">
+												<input type="text" class="form-control"
+													id="basic-icon-default-fullname" aria-label="John Doe"
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${projects.amount}" readonly />
 											</div>
 										</div>
 
 										<button type="submit" class="btn btn-primary">확인</button>
 										<button type="submit" class="btn btn-primary">보류</button>
-										
+
 									</form>
 								</div>
 							</div>
