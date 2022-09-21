@@ -17,19 +17,16 @@ public class SignDetailController {
 
 	@Autowired
 	ProjectInfoService service;
-	
-	@Autowired
-
 
 	@GetMapping("dashboard/signDetail")
-	public String signDetail(Model model , int projects_num) {
-		
+	public String signDetail(Model model, int projects_num) {
+
 		Projects projects = service.selectOne(projects_num);
-		
-		//ArrayList<NeedMaterial> 
+
+		// ArrayList<NeedMaterial>
 
 		model.addAttribute("projects", projects);
-		
+
 		return "dashboard/signDetail.html";
 	}
 
