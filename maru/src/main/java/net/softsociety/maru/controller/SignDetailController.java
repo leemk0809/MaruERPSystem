@@ -26,7 +26,7 @@ public class SignDetailController {
 		
 		Projects projects = service.selectOne(projects_num);
 		
-		//ArrayList<NeedMaterial> nMlist
+		//ArrayList<NeedMaterial> 
 
 		model.addAttribute("projects", projects);
 		
