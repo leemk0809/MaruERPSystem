@@ -38,8 +38,8 @@ public class WorkerController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/delete")
-	public void delete(int num) {
+	@GetMapping("/deleteWorker")
+	public void deleteWorker(int num) {
 		//이거 cascade 때문에 삭제 안됨. 테이블 엎어야됨
 		//service.deleteWorker(num);
 	}
@@ -54,6 +54,8 @@ public class WorkerController {
 		
 		return service.selectAll();
 	}
+	
+	
 	
 	
 }

@@ -209,7 +209,8 @@
 			  <!-- 사원관리 표 -->
               <!-- Bootstrap Table with Header - Light -->
               <div class="card">
-                <div class="card-header"><span>사원 인적사항</span>
+                <div class="card-header">
+                	<span>사원 인적사항
                 	   <button
                           type="button"
                           class="btn rounded-pill btn-primary"
@@ -218,7 +219,9 @@
                           style="margin-left:1100px;"
                         >
                           사원 추가
-                        </button>                
+                        </button>
+          
+                     </span>           
                 </div>        
                       
               <!-- 사원목록 -->
@@ -233,6 +236,7 @@
                         <th>부서명</th>
                         <th>직급</th>
                         <th>삭제</th>
+                        <th>수정</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -262,6 +266,20 @@
                               	  th:workernum="${list.worker_num}"
                               	  onclick="deleteWorker(this.getAttribute('workernum'))"
                                 ><i class="bx bx-trash me-1"></i>삭제</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" 
+                              	  th:workernum="${list.worker_num}"
+                              	  onclick="updateWorker(this.getAttribute('workernum'))"
+                                ><i class="bx bx-edit-alt me-1"></i>수정</a
                               >
                             </div>
                           </div>
@@ -390,6 +408,15 @@
                             </div>
                           </div>
                         </div>
+                <!-- 사원추가 모달창 끝 -->                        
+                        
+
+
+            
+                        
+                        
+                        
+                        
 					</div>   
           		 </div>   
               <hr class="my-5" />			  
@@ -449,6 +476,7 @@
 	<script>
     $(document).ready(function(){
     	deleteWorker();
+    	updateWorker();
     });
 	
     function deleteWorker(workernum){
@@ -456,7 +484,7 @@
     	//alert(num);  	
     	
     	$.ajax({
-    		url:'delete',
+    		url:'deleteWorker',
     		type:'get',
     		data:{num: num},
     		success: function(){
@@ -466,6 +494,14 @@
     			alert('삭제에 실패했습니다.');
     		}
     	});	
+    	
+    } 
+    
+    function updateWorker(workernum){
+    	let num= workernum;
+    	alert(num);  	
+    	
+    	
     	
     } 
 	
@@ -507,7 +543,7 @@
     	});
     	
     }
-    
+
     
 	
 	</script>    
