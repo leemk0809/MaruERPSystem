@@ -82,6 +82,11 @@
   color: #696cff;
 }
 
+.div_center{
+	margin : auto;
+	text-align: center;
+}
+
 a.bg-white:hover,
 a.bg-white:focus {
   background-color: rgba(67, 89, 113, 0.2) !important;
@@ -104,6 +109,10 @@ a.bg-white:focus {
 
 .set-float-right{
   float:right;
+}
+
+.check_center{
+	padding-left : 50%;
 }
 
 

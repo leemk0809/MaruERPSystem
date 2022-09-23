@@ -6,6 +6,7 @@
 
 <insert id="insertWorker" parameterType="Worker">
 	INSERT INTO WORKER
+	(worker_num, division_num, position_num, id, password, name, phone, salary)
 	VALUES (worker_seq.nextval,#{division_num},#{position_num},#{id},#{password},#{name},#{phone},#{salary})	
 </insert>
 

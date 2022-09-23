@@ -209,16 +209,19 @@
 			  <!-- 사원관리 표 -->
               <!-- Bootstrap Table with Header - Light -->
               <div class="card">
-                <div class="card-header"><span>사원 인적사항</span>
+                <div class="card-header">
+                	<span>사원 인적사항
                 	   <button
                           type="button"
                           class="btn rounded-pill btn-primary"
                           data-bs-toggle="modal"
-                          data-bs-target="#modalCenter"
+                          data-bs-target="#insertWorker"
                           style="margin-left:1100px;"
                         >
                           사원 추가
-                        </button>                
+                        </button>
+          
+                     </span>           
                 </div>        
                       
               <!-- 사원목록 -->
@@ -233,6 +236,7 @@
                         <th>부서명</th>
                         <th>직급</th>
                         <th>삭제</th>
+                        <th>수정</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -266,6 +270,20 @@
                             </div>
                           </div>
                         </td>
+                        <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" 
+                              	  th:workernum="${list.worker_num}"
+                              	  onclick="updateWorker(this.getAttribute('workernum'))"
+                                ><i class="bx bx-edit-alt me-1"></i>수정</a
+                              >
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -275,7 +293,7 @@
                            
                 <!-- 사원추가 모달창 --> 
                        <!-- Modal -->
-                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="insertWorker" tabindex="-1" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -290,7 +308,7 @@
                               <div class="modal-body">
                                 <div class="row">
                                   <div class="col mb-2">
-                                    <label for="nameWithTitle" class="form-label">이름</label>
+                                    <label for="name" class="form-label">이름</label>
                                     <input
                                       type="text"
                                       id="name"
@@ -301,7 +319,7 @@
                                 </div>
                                 <div class="row g-2">
                                   <div class="col mb-2">
-                                    <label for="idWithTitle" class="form-label">ID</label>
+                                    <label for="id" class="form-label">ID</label>
                                     <input
                                       type="text"
                                       id="id"
@@ -310,7 +328,7 @@
                                     />
                                   </div>
                                   <div class="col mb-2">
-                                    <label for="passwordWithTitle" class="form-label">PASSWORD</label>
+                                    <label for="password" class="form-label">PASSWORD</label>
                                     <input
                                       type="password"
                                       id="password"
@@ -321,8 +339,8 @@
                                 </div>
 								<div class="row">
                                  <div class="col mb-2">
-			                        <label for="divisionSelect" class="form-label">부서 선택</label>
-			                        <select class="form-select" id="division" aria-label="Default select example">
+			                        <label for="division" class="form-label">부서 선택</label>
+			                        <select class="form-select" id="division_num" name="division_num" aria-label="Default select example">
 			                          <option value="1" selected>건축팀</option>
 			                          <option value="2">토목팀</option>
 			                          <option value="3">전기팀</option>
@@ -337,8 +355,8 @@
                                 </div>                             
                                 <div class="row">
                                  <div class="col mb-2">
-			                        <label for="positionSelect" class="form-label">직급 선택</label>
-			                        <select class="form-select" id="position" aria-label="Default select example">
+			                        <label for="position" class="form-label">직급 선택</label>
+			                        <select class="form-select" id="position_num" name="position_num" aria-label="Default select example">
 			                          <option value="1">소장</option>
 			                          <option value="2">품질관리자</option>
 			                          <option value="3">안전관리자</option>
@@ -359,7 +377,7 @@
                                 </div>                                
 								<div class="row">
                                   <div class="col mb-2">
-                                    <label for="phoneWithTitle" class="form-label">PHONE</label>
+                                    <label for="phone" class="form-label">PHONE</label>
                                     <input
                                       type="text"
                                       id="phone"
@@ -370,7 +388,7 @@
                                 </div>                                
                                 <div class="row">
                                   <div class="col mb-2">
-                                    <label for="salaryWithTitle" class="form-label">월급</label>
+                                    <label for="salary" class="form-label">월급</label>
                                     <input
                                       type="number"
                                       id="salary"
@@ -385,11 +403,20 @@
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                   취소
                                 </button>
-                                <button type="button" class="btn btn-primary">저장</button>
+                                <button type="button" class="btn btn-primary" onclick="insert()">저장</button>
                               </div>
                             </div>
                           </div>
                         </div>
+                <!-- 사원추가 모달창 끝 -->                        
+                        
+
+
+            
+                        
+                        
+                        
+                        
 					</div>   
           		 </div>   
               <hr class="my-5" />			  
@@ -443,10 +470,13 @@
 
     <!-- Core JS -->
     
+    
+    
     <!-- 내가 만든 JS -->
 	<script>
     $(document).ready(function(){
     	deleteWorker();
+    	updateWorker();
     });
 	
     function deleteWorker(workernum){
@@ -454,7 +484,7 @@
     	//alert(num);  	
     	
     	$.ajax({
-    		url:'delete',
+    		url:'deleteWorker',
     		type:'get',
     		data:{num: num},
     		success: function(){
@@ -464,10 +494,57 @@
     			alert('삭제에 실패했습니다.');
     		}
     	});	
-
+    	
+    } 
+    
+    function updateWorker(workernum){
+    	let num= workernum;
+    	alert(num);  	
+    	
+    	
     	
     } 
 	
+    
+    function insert(){
+    	let name=$('#name').val();
+    	let id=$('#id').val();
+    	let password=$('#password').val();
+    	let division_num=$('#division_num').val();
+    	let position_num=$('#position_num').val();
+    	let phone=$('#phone').val();
+    	let salary=$('#salary').val();    	
+    	
+    	if(name == '' || id == '' || password == ''	|| division_num == ''
+    	|| position_num == ''|| phone == '' || salary == ''){
+    		alert("항목을 반드시 다 입력해 주세요.");
+    		return;
+    	}
+    	
+    	$.ajax({
+    		url:'insertWorker',
+    		type:'post',
+    		data: {
+    			name: $('#name').val()
+    			, id: $('#id').val()
+	    		, password: $('#password').val()
+	    		, division_num: $('#division_num').val()
+	    		, position_num: $('#position_num').val()
+	    		, phone: $('#phone').val()
+	    		, salary: $('#salary').val()
+    		},
+    		success: function(item){
+    			$('#insertWorker').modal('hide');
+    			alert('insertWorker 성공');
+    		},
+    		error:function(){
+    			alert('insertWorker 실패');
+    		}
+    	});
+    	
+    }
+
+    
 	
 	</script>    
     
