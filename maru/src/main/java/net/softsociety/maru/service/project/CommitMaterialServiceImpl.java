@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.dao.CommitMaterialDAO;
+import net.softsociety.maru.dao.NeedMaterialDAO;
 import net.softsociety.maru.domain.CommitMaterial;
+import net.softsociety.maru.domain.NeedMaterial;
 
 @Service
 @Transactional
@@ -17,6 +19,9 @@ public class CommitMaterialServiceImpl implements CommitMaterialService {
 
 	@Autowired
 	CommitMaterialDAO commitMaterialDAO;
+	
+	@Autowired
+	NeedMaterialDAO needMaterialDAO;
 	
 	@Override
 	public int insertCommitMaterial(CommitMaterial commitMaterial) {
@@ -34,6 +39,8 @@ public class CommitMaterialServiceImpl implements CommitMaterialService {
 		return commitMaterialList;
 	}
 
+	
+	
 	@Override
 	public int deleteCommitMaterial(int commitMaterial_num) {
 
@@ -57,6 +64,22 @@ public class CommitMaterialServiceImpl implements CommitMaterialService {
 		List<CommitMaterial> list = commitMaterialDAO.selectAll();
 		
 		return list;
+	}
+
+	@Override
+	public List<CommitMaterial> thisCommitMaterialList(int projects_num) {
+
+		List<CommitMaterial> thisCommitMaterialList = commitMaterialDAO.thisList(projects_num);
+		
+		return thisCommitMaterialList;
+	}
+
+	@Override
+	public List<NeedMaterial> thisNeedMaterialList(int projects_num) {
+
+		List<NeedMaterial> thisNeedMaterialList = needMaterialDAO.thisNMList(projects_num);
+		
+		return thisNeedMaterialList;
 	}
 	
 	

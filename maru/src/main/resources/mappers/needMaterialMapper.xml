@@ -33,5 +33,10 @@
 		FROM NEED_MATERIAL
 	</select>
 
+	<select id="thisNMList" parameterType="integer" resultType="NeedMaterial">
+		select *
+		from need_material
+		where projects_num = #{projects_num}
+	</select>
 </mapper>
 	

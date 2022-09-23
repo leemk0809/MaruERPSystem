@@ -13,4 +13,5 @@ public interface CommitMaterialDAO {
 	int update(CommitMaterial cm);
 	List<CommitMaterial> selectAll();
 	CommitMaterial selectOne(int commit_material_num);
+	List<CommitMaterial> thisList(int projects_num);
 }

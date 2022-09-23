@@ -1,6 +1,7 @@
 package net.softsociety.maru.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,4 +19,6 @@ public interface NeedMaterialDAO {
 	public NeedMaterial selectOne(int need_material_num);
 	
 	public ArrayList<NeedMaterial> selectAll();
+
+	public List<NeedMaterial> thisNMList(int projects_num);
 }

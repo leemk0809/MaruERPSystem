@@ -42,5 +42,14 @@
 		where
 			commit_material_num=#{commit_material_num}
 	</select>	
+	
+	<select id="thisList" parameterType="integer" resultType="CommitMaterial">
+		select
+			*
+		from
+			commit_material
+		where
+			projects_num = #{projects_num}		
+	</select>
 
 </mapper>
