@@ -4,6 +4,33 @@
 
 'use strict';
 
+let signBtn = document.getElementById("signBtn");
+let projects_num = document.getElementById
+
+signBtn.onclick = function() {
+
+	var asdf = document.getElementById("projects_num");
+	
+	alert(asdf.value);
+
+	$.ajax({
+		url: 'signed',
+		type: 'get',
+		data: { projects_num : asdf.value },
+		success: idCheckSuccess,
+		error: idCheckError,
+	})
+}
+
+function idCheckSuccess() {
+	alert('성공! 따라단 따라단~')
+
+}
+
+function idCheckError(asdf) {
+	alert('실패! 따라단 따라단~')
+}
+
 let menu, animate;
 
 (function() {

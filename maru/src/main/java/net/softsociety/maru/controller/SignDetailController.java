@@ -2,10 +2,14 @@ package net.softsociety.maru.controller;
 
 import java.util.ArrayList;
 
+import javax.sound.sampled.Port;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.dao.MaterialDAO;
@@ -15,6 +19,7 @@ import net.softsociety.maru.service.dashboard.SignDetailService;
 import net.softsociety.maru.service.manage.NeedMaterialService;
 import net.softsociety.maru.service.project.ProjectInfoService;
 
+@RequestMapping("dashboard")
 @Slf4j
 @Controller
 public class SignDetailController {
@@ -31,7 +36,7 @@ public class SignDetailController {
 	@Autowired
 	MaterialDAO Mdao;
 
-	@GetMapping("dashboard/signDetail")
+	@GetMapping("signDetail")
 	public String signDetail(Model model) {
 
 		Projects projects = PIservice.selectOne(1);
@@ -47,8 +52,15 @@ public class SignDetailController {
 		model.addAttribute("projects", projects);
 		model.addAttribute("nmStr", nmStr);
 		
-		
-
 		return "dashboard/signDetail.html";
+	}
+	
+	@ResponseBody
+	@GetMapping("signed")
+	public String signed(int projects_num) {
+		
+		log.debug(projects_num+"이거임");
+		
+		return "응가";
 	}
 }

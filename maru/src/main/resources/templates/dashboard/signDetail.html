@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
-	data-template="vertical-menu-template-free" xmlns:th="http://thymeleaf.org"
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr"
+	data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-	<title>signDetail</title>
+<title>signDetail</title>
 
-	<meta name="description" content="" />
+<meta name="description" content="" />
 
-	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon"
+	href="../assets/img/favicon/favicon.ico" />
 
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet" />
 
-	<!-- Icons. Uncomment required icon fonts -->
-	<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+<!-- Icons. Uncomment required icon fonts -->
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
 
-	<!-- Core CSS -->
-	<link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
-	<link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-	<link rel="stylesheet" href="../assets/css/demo.css" />
+<!-- Core CSS -->
+<link rel="stylesheet" href="../assets/vendor/css/core.css"
+	class="template-customizer-core-css" />
+<link rel="stylesheet" href="../assets/vendor/css/theme-default.css"
+	class="template-customizer-theme-css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
 
-	<!-- Vendors CSS -->
-	<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<!-- Vendors CSS -->
+<link rel="stylesheet"
+	href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-	<!-- Page CSS -->
+<!-- Page CSS -->
 
-	<!-- Helpers -->
-	<script src="../assets/vendor/js/helpers.js"></script>
+<!-- Helpers -->
+<script src="../assets/vendor/js/helpers.js"></script>
 
-	<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-	<script src="../assets/js/config.js"></script>
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<script src="../assets/js/config.js"></script>
 </head>
 
 <body>
@@ -58,7 +64,8 @@
 
 						<div class="col-xl">
 							<div class="card mb-4">
-								<div class="card-header d-flex justify-content-between align-items-center">
+								<div
+									class="card-header d-flex justify-content-between align-items-center">
 									<h5 class="mb-0">프로젝트 상세</h5>
 									<small class="text-muted float-end">마루건설</small>
 								</div>
@@ -70,7 +77,8 @@
 											<label class="form-label" for="basic-icon-default-fullname">프로젝트
 												번호</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
+													id="projects_num"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.projects_num}" readonly /> <span></span>
@@ -81,7 +89,7 @@
 											<label class="form-label" for="basic-icon-default-fullname">프로젝트
 												제목</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.title}" readonly />
@@ -92,7 +100,7 @@
 											<label class="form-label" for="basic-icon-default-fullname">
 												시작일</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.start_date}" readonly />
@@ -103,7 +111,7 @@
 											<label class="form-label" for="basic-icon-default-fullname">
 												마감일</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.end_date}" readonly />
@@ -115,10 +123,10 @@
 												필요자재</label>
 											<!-- 다른거필요 -->
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
-													aria-describedby="basic-icon-default-fullname2" th:value="${nmStr}"
-													readonly />
+													aria-describedby="basic-icon-default-fullname2"
+													th:value="${nmStr}" readonly />
 											</div>
 										</div>
 
@@ -126,7 +134,7 @@
 											<label class="form-label" for="basic-icon-default-fullname">
 												필요인원(명)</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.need_worker}" readonly />
@@ -137,7 +145,7 @@
 											<label class="form-label" for="basic-icon-default-fullname">
 												자금(억)</label>
 											<div class="input-group input-group-merge">
-												<input type="text" class="form-control" id="basic-icon-default-fullname"
+												<input type="text" class="form-control"
 													aria-label="John Doe"
 													aria-describedby="basic-icon-default-fullname2"
 													th:value="${projects.amount}" readonly />
@@ -186,7 +194,8 @@
 	<script src="../assets/vendor/libs/jquery/jquery.js"></script>
 	<script src="../assets/vendor/libs/popper/popper.js"></script>
 	<script src="../assets/vendor/js/bootstrap.js"></script>
-	<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script
+		src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
 	<script src="../assets/vendor/js/menu.js"></script>
 	<!-- endbuild -->
@@ -194,7 +203,7 @@
 	<!-- Vendors JS -->
 
 	<!-- Main JS -->
-	<script src="../assets/js/main.js"></script>
+	<script src="../assets/js/main_j.js"></script>
 
 	<!-- Page JS -->
 
