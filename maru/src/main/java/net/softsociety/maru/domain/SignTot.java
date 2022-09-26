@@ -15,10 +15,10 @@ public class SignTot {
 	private String Position;
 
 	public SignTot(int projects_tag_num, int position_num, int projects_num, String tag_sign) {
-		projects_tag_num = this.projects_tag_num;
-		position_num = this.position_num;
-		projects_num = this.projects_num;
-		tag_sign = this.tag_sign;
+		this.projects_tag_num = projects_tag_num;
+		this.position_num = position_num;
+		this.projects_num = projects_num;
+		this.tag_sign = tag_sign;
 	}
 
 }

@@ -166,16 +166,24 @@
 											</div>
 										</div>
 
-
-										<div class="mb-3">
-											<table th:each="issueTotList : ${issueTotList}">
+										<div>
+											<table class="table_margin_auto">
 												<tr>
-													<th th:text="issueTotList.Position"></th>
-													<td th:text=""></td>
+													<th class="table_center border_thick"
+														th:each="STList : ${STList}"><span
+														th:text="${STList.Position}"> </span></th>
+												</tr>
+												<tr>
+													<td class="table_center border_thick" width=100px
+														height=100px th:each="STList : ${STList}">
+														<div th:if="${STList.tag_sign} == N">
+															<img width=100px height=100px
+																th:src="|../assets/img/elements/stamp/${STList.Position}.png|">
+														</div>
+													</td>
 												</tr>
 											</table>
 										</div>
-
 
 										<div class="div-center">
 											<button type="button" id="signBtn" class="btn btn-primary">확인</button>

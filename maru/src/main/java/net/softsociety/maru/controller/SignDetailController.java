@@ -72,13 +72,11 @@ public class SignDetailController {
 
 		for (ProjectsTag PT : PTList) {
 			if (PT.getProjects_num() == 1) { // projects_num
-				SignTot st = new SignTot(PT.getProjects_tag_num(), PT.getPosition_num(), PT.getProjects_num(),
-						PT.getTag_sign());
+				SignTot st = new SignTot(PT.getProjects_tag_num(), PT.getPosition_num(),PT.getProjects_num() ,PT.getTag_sign());
 				for (Position po : PoList) {
 					if (po.getPosition_num() == (PT.getPosition_num())) {
 						st.setPosition(po.getPosition_name());
 					}
-					st.setTag_sign(nmStr);
 				}
 				STList.add(st);
 			}
