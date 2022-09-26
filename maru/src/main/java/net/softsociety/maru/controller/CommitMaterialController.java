@@ -70,4 +70,9 @@ public class CommitMaterialController {
 				
 		return "/project/allCommitMaterials";
 	}
+	
+	@GetMapping("cmlist")
+	public String cmlist() {
+		return "/project/cmlist";
+	}
 }

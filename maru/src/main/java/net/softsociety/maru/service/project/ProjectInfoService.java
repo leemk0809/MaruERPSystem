@@ -6,6 +6,7 @@ import net.softsociety.maru.domain.Projects;
 
 public interface ProjectInfoService {
 
+	int insertProject(Projects projects);
 	//프로젝트 전체 리스트 불러오는 서비스
 	ArrayList<Projects> selectAllProjects();
 	//프로젝트의 기본 정보를확인하기위해 해당 프로젝트 내용을 불러오는 서비스

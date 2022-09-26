@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+  xmlns:th="http://thymeleaf.org" 
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
+<!-- Core Stylesheet -->
+
+<link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/tui-calendar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/icons.css">
+<!-- Optional Themes -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.ie11.min.js"></script>
+
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+
+
+
+
+<!-- JavaScript -->
+
+
+</head>
+<body>
+   <div>
+        <a th:href="@{/dashboard}">
+            <img src="../images/maru_logo.png" width="50px" height="50px" >자재투입현황
+        </a>
+    </div>
+    <div id="lnb">
+        <div class="lnb-new-schedule">
+            <button id="btn-new-schedule" type="button" class="btn btn-default btn-block lnb-new-schedule-btn" data-toggle="modal">
+                투입 자재 추가</button>
+        </div>
+        <div id="lnb-calendars" class="lnb-calendars">
+            <div>
+                <div class="lnb-calendars-item">
+                    <label>
+                        <input class="tui-full-calendar-checkbox-square" type="checkbox" value="all" checked>
+                        <span></span>
+                        <strong>전체목록</strong>
+                    </label>
+                </div>
+            </div>
+            <div id="calendarList" class="lnb-calendars-d1">
+            </div>
+        </div>
+        
+    </div>
+    <div id="right">
+        <div id="menu">
+            <span class="dropdown">
+                <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                    <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
+                    <span id="calendarTypeName">Dropdown</span>&nbsp;
+                    <i class="calendar-icon tui-full-calendar-dropdown-arrow"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-calendarType">
+                    <li role="presentation">
+                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
+                            <i class="calendar-icon ic_view_day"></i>일별
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
+                            <i class="calendar-icon ic_view_week"></i>주간별
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-monthly">
+                            <i class="calendar-icon ic_view_month"></i>월간
+                        </a>
+                    </li>                    
+                </ul>
+            </span>
+            <span id="menu-navi">
+                <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                    <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                    <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                </button>
+            </span>
+            <span id="renderRange" class="render-range"></span>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/v2.0.3/tui-time-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/v4.0.3/tui-date-picker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+    <script src="../assets/vendor/js/tui-calendar.js"></script>
+	<script src="../assets/vendor/js/calendars.js"></script>
+	<script src="../assets/vendor/js/schedules.js"></script>
+	<script src="../assets/vendor/js/app.js"></script>
+</body>
+</html>

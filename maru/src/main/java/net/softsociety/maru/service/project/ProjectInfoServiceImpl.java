@@ -273,4 +273,12 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 		}
 	}
 
+	@Override
+	public int insertProject(Projects projects) {
+
+		int result = projectsDAO.insert(projects);
+		
+		return result;
+	}
+
 }

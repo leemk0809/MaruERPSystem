@@ -10,4 +10,10 @@ public interface PostService {
 	ArrayList<Post> selectAllPost();
 	
 	int insertProjects(Projects projects);
+	
+	String buildingTypeName(int num);
+	
+	int deletePost(int post_num);
+	
+	Post selectOne(int post_num);
 }

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr"
+	data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+<title>공고목록</title>
+
+<meta name="description" content="" />
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon"
+	href="assets/img/favicon/favicon.ico" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet" />
+
+<!-- Icons. Uncomment required icon fonts -->
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+<!-- Core CSS -->
+<link rel="stylesheet" href="../assets/vendor/css/core_j.css"
+	class="template-customizer-core-css" />
+<link rel="stylesheet" href="../assets/vendor/css/theme-default.css"
+	class="template-customizer-theme-css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
+
+<!-- Vendors CSS -->
+<link rel="stylesheet"
+	href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+<!-- Page CSS -->
+
+<!-- Helpers -->
+<script src="../assets/vendor/js/helpers.js"></script>
+
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<script src="../assets/js/config.js"></script>
+<script>
+	function deletePost(num){
+		if(confirm("공고 목록에서 지우시겠습니까?")){
+		location.href = 'deletePost?post_num=' + num;
+		}
+	}
+
+	function insertProject(num){		
+		location.href = 'insertProject?post_num' + num;
+		
+		let result = "[[${result}]]";
+		
+		var re = parseInt(result);
+		
+		alert(re);
+	}
+</script>
+
+</head>
+
+
+<body>
+
+	<div class="layout">
+		<nav
+			class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
+			id="layout-navbar">
+			<div class="app-brand">
+				<a href="dashboard.html" class="app-brand-link"> <span
+					class="app-brand-logo"> <img src="../images/maru_logo.png"
+						class="maru_logo" alt="">
+				</span> <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+				</a>
+			</div>
+
+			<div class="navbar-nav-right d-flex align-items-center"
+				id="navbar-collapse">
+				<ul class="navbar-nav flex-row align-items-center ms-auto">
+					<!-- Place this tag where you want the button to render. -->
+					<!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
+					<li class="nav-item lh-1 me-3">
+						<!-- 별모양 버튼 --> <a class="github-button" href="#"
+						data-icon="octicon-star" data-size="large" data-show-count="true">Star</a>
+					</li>
+
+					<!-- 프사 있는 부분 -->
+					<!-- User -->
+					<!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
+					<li class="nav-item navbar-dropdown dropdown-user dropdown"><a
+						class="nav-link dropdown-toggle hide-arrow"
+						href="javascript:void(0);" data-bs-toggle="dropdown"> <!-- online, offline으로 상태 변화가능 -->
+							<div class="avatar avatar-online">
+								<img src="../assets/img/avatars/1.png" alt
+									class="w-px-40 h-auto rounded-circle" />
+							</div>
+					</a>
+
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">
+									<div class="d-flex">
+										<div class="flex-shrink-0 me-3">
+											<div class="avatar avatar-online">
+												<img src="../assets/img/avatars/1.png" alt
+													class="w-px-40 h-auto rounded-circle" />
+											</div>
+										</div>
+										<div class="flex-grow-1">
+											<span class="fw-semibold d-block">John Doe</span> <small
+												class="text-muted">Admin</small>
+										</div>
+									</div>
+							</a></li>
+							<!-- 구분자 -->
+							<li>
+								<div class="dropdown-divider"></div>
+							</li>
+							<li><a class="dropdown-item" href="#"> <i
+									class="bx bx-user me-2"></i> <span class="align-middle">My
+										Profile</span>
+							</a></li>
+							<li><a class="dropdown-item" href="#"> <i
+									class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+							</a></li>
+							<li><a class="dropdown-item" href="#"> <span
+									class="d-flex align-items-center align-middle"> <i
+										class="flex-shrink-0 bx bx-credit-card me-2"></i> <span
+										class="flex-grow-1 align-middle">Billing</span> <span
+										class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+								</span>
+							</a></li>
+							<li>
+								<div class="dropdown-divider"></div>
+							</li>
+							<li><a class="dropdown-item" href="auth-login-basic.html">
+									<i class="bx bx-power-off me-2"></i> <span class="align-middle">Log
+										Out</span>
+							</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<!--대시보드-->
+
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="mb-5">
+				<nav
+					class="navbar navbar-example navbar-expand-lg nav_white_custom bg-white ">
+					<div class="container-fluid">
+						<a class="dash_board_custom" th:href="@{/dashboard}">대시보드</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbar-ex-2"
+							aria-controls="navbar-ex-2" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbar-ex-2">
+							<div class="navbar-nav me-auto">
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">프로젝트관리</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">결재상황</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">공고현황</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">관리페이지</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+
+				<div class="margin_custom"></div>
+				              <!-- Contextual Classes -->
+
+              <div class="card">
+                <h5 class="card-header">입찰 공고 목록</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table" >
+                    <thead>
+                      <tr class="table-primary">
+                        <th>공고 번호/차수</th>
+                        <th>빌딩 타입</th>
+                        <th>공 고 명</th>
+                        <th>공사 규모</th>
+                        <th>공사 면적</th>
+                        <th>수주 비용</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0" th:each="list : ${postList}">
+                      <tr class="table-active">
+                       <td th:text="${list.post_num}"></td>
+                       <td>
+                       	<a th:if="${list.building_type_num}==1"><span class="badge bg-label-primary me-1">아파트</span></a>
+                        <a th:if="${list.building_type_num}==2"><span class="badge bg-label-success me-1">호텔</span></a>
+                        <a th:if="${list.building_type_num}==3"><span class="badge bg-label-danger me-1">지하철</span></a>
+                        <a th:if="${list.building_type_num}==4"><span class="badge bg-label-danger me-1">쇼핑몰</span></a>
+                        <a th:if="${list.building_type_num}==5"><span class="badge bg-label-warning me-1">공연장</span></a>
+                        <a th:if="${list.building_type_num}==6"><span class="badge bg-label-info me-1">운동시설</span></a>
+                        <a th:if="${list.building_type_num}==7"><span class="badge bg-label-dark me-1">교육시설</span></a>
+                        <a th:if="${list.building_type_num}==8"><span class="badge bg-label-warning me-1">연구단지</span></a>
+                        <a th:if="${list.building_type_num}==9"><span class="badge bg-label-primary me-1">발전소</span></a>
+                        <a th:if="${list.building_type_num}==10"><span class="badge bg-label-dark me-1">종교시설</span></a>               
+                       </td>
+                       <td th:text="${list.title}"></td>
+                       <td th:text="|${list.building_size}원|"></td>
+                       <td th:text="|${list.area}평|"></td>
+                       <td th:text="|${list.price}원|"></td>
+                          <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" th:onclick="|javascript:insertProject(${list.post_num})|"
+                                ><i class="bx bx-edit-alt me-1"></i> 진행하기</a
+                              >
+                              
+                              <a class="dropdown-item" th:onclick="|javascript:deletePost(${list.post_num})|"
+                                ><i class="bx bx-trash me-1"></i> 삭제</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </div>
+              <!--/ Contextual Classes -->
+				
+			</div>
+		</div>
+	</div>
+			<div style="display:none">
+					<div
+                        class="bs-toast toast fade show bg-primary"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">공고 담기 성공</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          "진행전"상태로 프로젝트 목록에 추가 완료
+                        </div>
+                      </div>
+                      
+                      <div
+                        class="bs-toast toast fade show bg-danger"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">공고 담기 실패</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          이미 프로젝트 목록에 추가 된 공고입니다.
+                        </div>
+                      </div>
+                      </div>
+	<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../assets/vendor/js/bootstrap.js"></script>
+	<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+	<script src="../assets/vendor/js/menu.js"></script>
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+
+	<!-- Main JS -->
+	<script src="../assets/js/main.js"></script>
+
+	<!-- Page JS -->
+
+	<!-- Place this tag in your head or just before your close body tag. -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

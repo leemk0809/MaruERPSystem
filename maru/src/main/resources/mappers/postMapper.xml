@@ -33,5 +33,6 @@
 	
 	<select id="selectAll" resultType="Post">
 		select*from post
+		order by post_num
 	</select>
 </mapper>
