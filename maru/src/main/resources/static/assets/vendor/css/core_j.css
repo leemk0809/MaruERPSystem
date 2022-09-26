@@ -82,9 +82,9 @@
   color: #696cff;
 }
 
-.div_center{
-	margin : auto;
+.div-center{
 	text-align: center;
+	margin-bottom: 1rem !important;
 }
 
 a.bg-white:hover,
@@ -109,6 +109,10 @@ a.bg-white:focus {
 
 .set-float-right{
   float:right;
+}
+
+.set-float-left{
+  float:left;
 }
 
 .check_center{
