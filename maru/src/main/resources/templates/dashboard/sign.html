@@ -224,7 +224,11 @@
 	function signDetail(projectsnum){
 		let num= projectsnum;
 		//alert(num);
-		window.open('signDetail');
+		
+         var url = "http://localhost:1234/maru/dashboard/signDetail?projects_num=" + num;
+         var res = encodeURI(url);
+         window.open(res);
+
 	}
 	
 	</script>
