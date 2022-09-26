@@ -27,9 +27,11 @@ public class SignServiceTest {
 	
 	@Test
 	void selectAllProjects() {
-		ArrayList<Projects> list = service.selectAllProjects();
-		
+		ArrayList<Projects> list = service.selectAllProjects();		
 		log.debug("Projects List : {}",list);
+		
 	}	
+	
+	
 	
 }

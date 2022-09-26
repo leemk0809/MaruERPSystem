@@ -31,10 +31,16 @@ public class SignServiceImpl implements SignService{
 
 	@Override
 	public ArrayList<Projects> selectAllProjects() {
-		ArrayList<Projects> plist = p.selectAll();
-		return plist;
+		ArrayList<Projects> plist = p.selectAll();	
+		ArrayList<Projects> pjs = new ArrayList<>();
+		
+		for(Projects pj : plist) {
+				if(pj.getStatus().equals("결재중")||pj.getStatus().equals("진행중")) {
+					pjs.add(pj);
+				}
+			}		
+		return pjs;
 	}
-	
-	
+
 	
 }

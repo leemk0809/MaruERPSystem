@@ -1,10 +1,251 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr"
+	data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free"
+	xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<title>결재 상황</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+<title>결재 목록</title>
+
+<meta name="description" content="" />
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon"
+	href="assets/img/favicon/favicon.ico" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet" />
+
+<!-- Icons. Uncomment required icon fonts -->
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+<!-- Core CSS -->
+<link rel="stylesheet" href="../assets/vendor/css/core_j.css"
+	class="template-customizer-core-css" />
+<link rel="stylesheet" href="../assets/vendor/css/theme-default.css"
+	class="template-customizer-theme-css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
+
+<!-- Vendors CSS -->
+<link rel="stylesheet"
+	href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+<!-- Page CSS -->
+
+<!-- Helpers -->
+<script src="../assets/vendor/js/helpers.js"></script>
+
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<script src="../assets/js/config.js"></script>
+
 </head>
+
+
 <body>
 
+	<div class="layout">
+		<nav
+			class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
+			id="layout-navbar">
+			<div class="app-brand">
+				<a href="dashboard.html" class="app-brand-link"> <span
+					class="app-brand-logo"> <img src="../images/maru_logo.png"
+						class="maru_logo" alt="">
+				</span> <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+				</a>
+			</div>
+
+			<div class="navbar-nav-right d-flex align-items-center"
+				id="navbar-collapse">
+				<ul class="navbar-nav flex-row align-items-center ms-auto">
+					<!-- Place this tag where you want the button to render. -->
+					<!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
+					<li class="nav-item lh-1 me-3">
+						<!-- 별모양 버튼 --> <a class="github-button" href="#"
+						data-icon="octicon-star" data-size="large" data-show-count="true">Star</a>
+					</li>
+
+					<!-- 프사 있는 부분 -->
+					<!-- User -->
+					<!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
+					<li class="nav-item navbar-dropdown dropdown-user dropdown"><a
+						class="nav-link dropdown-toggle hide-arrow"
+						href="javascript:void(0);" data-bs-toggle="dropdown"> <!-- online, offline으로 상태 변화가능 -->
+							<div class="avatar avatar-online">
+								<img src="../assets/img/avatars/1.png" alt
+									class="w-px-40 h-auto rounded-circle" />
+							</div>
+					</a>
+
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">
+									<div class="d-flex">
+										<div class="flex-shrink-0 me-3">
+											<div class="avatar avatar-online">
+												<img src="../assets/img/avatars/1.png" alt
+													class="w-px-40 h-auto rounded-circle" />
+											</div>
+										</div>
+										<div class="flex-grow-1">
+											<span class="fw-semibold d-block">John Doe</span> <small
+												class="text-muted">Admin</small>
+										</div>
+									</div>
+							</a></li>
+							<!-- 구분자 -->
+							<li>
+								<div class="dropdown-divider"></div>
+							</li>
+							<li><a class="dropdown-item" href="#"> <i
+									class="bx bx-user me-2"></i> <span class="align-middle">My
+										Profile</span>
+							</a></li>
+							<li><a class="dropdown-item" href="#"> <i
+									class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+							</a></li>
+							<li><a class="dropdown-item" href="#"> <span
+									class="d-flex align-items-center align-middle"> <i
+										class="flex-shrink-0 bx bx-credit-card me-2"></i> <span
+										class="flex-grow-1 align-middle">Billing</span> <span
+										class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+								</span>
+							</a></li>
+							<li>
+								<div class="dropdown-divider"></div>
+							</li>
+							<li><a class="dropdown-item" href="auth-login-basic.html">
+									<i class="bx bx-power-off me-2"></i> <span class="align-middle">Log
+										Out</span>
+							</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+
+	<div class="content-wrapper">
+		<div class="container-xxl flex-grow-1 container-p-y">
+			<div class="mb-5">
+			
+			
+				<!--대시보드-->
+				<nav
+					class="navbar navbar-example navbar-expand-lg nav_white_custom bg-white ">
+					<div class="container-fluid">
+						<a class="dash_board_custom" th:href="@{/dashboard}">대시보드</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbar-ex-2"
+							aria-controls="navbar-ex-2" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbar-ex-2">
+							<div class="navbar-nav me-auto">
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">프로젝트관리</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">결재상황</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">공고현황</a>
+								<a class="nav-item dash_board_custom" href="javascript:void(0)">관리페이지</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+
+				<div class="margin_custom"></div>
+				              <!-- Contextual Classes -->
+
+              <div class="card">
+                <h5 class="card-header">결재 목록</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table" >
+                    <thead>
+                      <tr class="table-primary">
+                        <th>프로젝트 번호</th>
+                        <th>프로젝트 제목</th>
+                        <th>시작일</th>
+                        <th>마감일</th>
+                        <th>결재 상황</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0" th:each="pList : ${pList}">
+                      <tr class="table-active">
+                       <td th:text="${pList.projects_num}"></td>                       
+                       <td th:text="${pList.title}"></td>
+                       <td th:text="${pList.start_date}"></td>
+                       <td th:text="${pList.end_date}"></td>
+					   <td th:text="${pList.status}"></td>
+                          <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item"
+                              	  th:projectsnum="${pList.projects_num}"
+                              	  onclick="signDetail(this.getAttribute('projectsnum'))"
+                               ><i class="bx bx-edit-alt me-1"></i> 결재하기</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </div>
+              <!--/ Contextual Classes -->
+				
+			</div>
+		</div>
+	</div>
+
+	<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../assets/vendor/js/bootstrap.js"></script>
+	<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+	<script src="../assets/vendor/js/menu.js"></script>
+	
+	
+	<!-- SignDetail 넘기기 -->
+	<script>
+	function signDetail(projectsnum){
+		let num= projectsnum;
+		//alert(num);
+		
+         var url = "http://localhost:1234/maru/dashboard/signDetail?projects_num=" + num;
+         var res = encodeURI(url);
+         window.open(res);
+
+	}
+	
+	</script>
+
+	
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+
+	<!-- Main JS -->
+	<script src="../assets/js/main.js"></script>
+
+	<!-- Page JS -->
+
+	<!-- Place this tag in your head or just before your close body tag. -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 </body>
+
 </html>

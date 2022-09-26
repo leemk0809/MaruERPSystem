@@ -37,6 +37,7 @@ public class WorkerController {
 		return"/manage/worker";
 	}
 	
+	
 	@ResponseBody
 	@GetMapping("/deleteWorker")
 	public void deleteWorker(int num) {
