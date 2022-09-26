@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.domain.Post;
@@ -49,31 +51,41 @@ public class PostController {
 		return "redirect:/dashboard/post";
 	}
 	
+	@ResponseBody
 	@GetMapping("insertProject")
-	public String insertProject(Model model, int post_num) {
+	public int insertProject(Model model, int post_num) {
+		
 		int result = 0;
+		log.debug("넘어온포스트넘:{}",post_num);
 		
 		Post post = postService.selectOne(post_num);
 		
 		Projects project = new Projects();
 		
 		List<Projects> plist = proService.selectAllProjects();
-		
-		for(Projects projects : plist) {
-			if(projects.getPost_num() != post_num) {
-				result = 1;
-				project.setTitle(post.getTitle());
-				project.setStatus("진행전");
-				project.setPost_num(post_num);
 				
-				proService.insertProject(projects);
+		for(Projects projects : plist) {
+			if(projects.getPost_num() == post_num) {
+				result +=1;				
 			}
-		}
+		}		
+		if(result == 0) {
+			project.setTitle(post.getTitle());
+			project.setStatus("결재전");
+			project.setPost_num(post_num);
+			project.setStart_date("2022-10-15");
+			project.setEnd_date("2022-10-15");
+			project.setNeed_worker(10);
+			project.setAmount(10);
+			project.setBlueprint_path("미정");
+			project.setAirview_path("미정");
+			
+			proService.insertProject(project);
+		}	
 		
+		log.debug("결과값:{}",result);
 		model.addAttribute("result",result);
 		
-		
-		
-		return "redirect:/dashboard/post";
+		return result;
 	}
 }
