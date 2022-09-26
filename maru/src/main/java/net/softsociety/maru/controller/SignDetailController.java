@@ -46,13 +46,15 @@ public class SignDetailController {
 	PositionDAO Podao;
 
 	@GetMapping("signDetail")
-	public String signDetail(Model model) { // int projects_num 매개변수로 받아오기
+	public String signDetail(Model model,int projects_num) { // int projects_num 매개변수로 받아오기
+		
 
-		Projects projects = PIservice.selectOne(1); // projects_num
+		
+		Projects projects = PIservice.selectOne(projects_num); // projects_num
 
 		String nmStr = "";
 
-		ArrayList<NeedMaterial> needMatrialList = (ArrayList<NeedMaterial>) NMservice.thisNMList(1); // projects_num
+		ArrayList<NeedMaterial> needMatrialList = (ArrayList<NeedMaterial>) NMservice.thisNMList(projects_num); // projects_num
 
 		if (needMatrialList != null) {
 			for (NeedMaterial nm : needMatrialList) {
@@ -71,7 +73,7 @@ public class SignDetailController {
 		ArrayList<Position> PoList = (ArrayList<Position>) Podao.selectAll();
 
 		for (ProjectsTag PT : PTList) {
-			if (PT.getProjects_num() == 1) { // projects_num
+			if (PT.getProjects_num() == projects_num) { // projects_num
 				SignTot st = new SignTot(PT.getProjects_tag_num(), PT.getPosition_num(),PT.getProjects_num() ,PT.getTag_sign());
 				for (Position po : PoList) {
 					if (po.getPosition_num() == (PT.getPosition_num())) {
@@ -93,8 +95,8 @@ public class SignDetailController {
 	@GetMapping("signed")
 	public String signed(int projects_num) {
 
-		log.debug(projects_num + "이거임");
+		int result = SDservice.stamp(projects_num);
 
-		return "응가";
+		return "redirect:/dashboard/signDetail";
 	}
 }

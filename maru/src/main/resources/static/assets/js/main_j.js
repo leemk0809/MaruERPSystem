@@ -4,32 +4,57 @@
 
 'use strict';
 
+function stampClick() {
+	document.getElementById("stampIcon").style.display = "inline";  //inline
+	$("#stampIcon").addClass('translate-y');
+		
+	setTimeout(function() {
+		document.getElementById("stampIcon").style.display = "none";
+		window.location.href=window.location.href;
+	}, 1000);
+	
+}
+
+$(window).ready(function() {
+	$('#stampIcon').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
+		$(this).removeClass();
+	});
+	
+	document.getElementById("div_stamp")
+});
+
 let signBtn = document.getElementById("signBtn");
 let projects_num = document.getElementById
+
+let cancelBtn = document.getElementById("cancelBtn");
 
 signBtn.onclick = function() {
 
 	var asdf = document.getElementById("projects_num");
-	
-	alert(asdf.value);
 
 	$.ajax({
 		url: 'signed',
 		type: 'get',
-		data: { projects_num : asdf.value },
+		data: { projects_num: asdf.value },
 		success: idCheckSuccess,
 		error: idCheckError,
 	})
 }
 
 function idCheckSuccess() {
-	alert('성공! 따라단 따라단~')
+	stampClick();
+}
+
+function idCheckError() {
 
 }
 
-function idCheckError(asdf) {
-	alert('실패! 따라단 따라단~')
+cancelBtn.onclick = function() {
+	alert("눌림");
+	window.close();
 }
+
+
 
 let menu, animate;
 

@@ -28,7 +28,7 @@
 
 	<select id="selectAll" resultType="ProjectsTag">
 		SELECT *
-		FROM PROJECTS_TAG
+		FROM PROJECTS_TAG order by position_num
 	</select>
 
 </mapper>

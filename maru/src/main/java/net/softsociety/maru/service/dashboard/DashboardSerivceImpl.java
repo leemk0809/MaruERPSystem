@@ -143,7 +143,7 @@ public class DashboardSerivceImpl implements DashboardService {
 		int count = 0;
 		
 		for(Projects p : projectsList) {
-			if(p.getStatus().equals("진행전")) {
+			if(p.getStatus().equals("결재전")) {
 				count++;
 			}
 		}		

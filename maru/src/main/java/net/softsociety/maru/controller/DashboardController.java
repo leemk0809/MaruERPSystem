@@ -60,7 +60,7 @@ public class DashboardController {
 		int countProceedingProjects = dashboardService.countProceedingProjects();
 		int countCompletionProjects = dashboardService.countCompletionProjects();
 
-		projectStr += "진행전  :  " + countBeforePaymentProjects + "  결재중  :  " + countPayingProjects + "  진행중  :  "
+		projectStr += "결재전  :  " + countBeforePaymentProjects + "  결재중  :  " + countPayingProjects + "  진행중  :  "
 				+ countProceedingProjects + "  완료  :  " + countCompletionProjects;
 
 		model.addAttribute("projectStr", projectStr);

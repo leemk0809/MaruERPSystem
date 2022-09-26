@@ -123,10 +123,21 @@ a.bg-white:hover, a.bg-white:focus {
 
 .table_margin_auto {
 	margin: auto;
+	margin-bottom: 20px;
 }
 
 .border_thick {
 	border: 1px solid;
+}
+
+.div_margin_bottom{
+	margin-bottom: 125px;
+}
+
+.translate-y{animation: translatey 1s linear 1 ;}
+@keyframes translatey{
+    0%{transform: translateY(0);}
+    100%{transform: translateY(100%);}
 }
 
 /* 커스텀 css 끝 */
