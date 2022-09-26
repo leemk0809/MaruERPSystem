@@ -12,7 +12,5 @@ public interface SignService {
 	
 	ArrayList<Projects> selectAllProjects();
 	
-	String selectTag(int projects_num);
-
 
 }

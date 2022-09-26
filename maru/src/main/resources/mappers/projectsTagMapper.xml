@@ -31,10 +31,4 @@
 		FROM PROJECTS_TAG
 	</select>
 	
-	<select id="selectTag" parameterType="int" resultType="String">
-		SELECT tag_sign
-		FROM PROJECTS_TAG
-		WHERE projects_num = #{projects_num}
-	</select>
-
 </mapper>

@@ -22,21 +22,13 @@ public class SignController {
 	SignService service;
 	
 	@GetMapping("/sign")
-	public String sign(Model model, int projects_num) {
+	public String sign(Model model) {
 		
 		ArrayList<Projects> pList = service.selectAllProjects();
-		log.debug("프로젝트 리스트:{}",pList);		
 		model.addAttribute("pList",pList);
-		
-		
-		
-		String state = service.selectTag(projects_num);		
-						
-		log.debug("결재상황 : {}",state);
-		model.addAttribute("state",state);
 		
 		return "/dashboard/sign";
 	}
-	
+		
 
 }

@@ -18,6 +18,4 @@ public interface ProjectsTagDAO {
 	public ProjectsTag selectOne(int projects_tag_num);
 	
 	public ArrayList<ProjectsTag> selectAll();
-	
-	public ArrayList<String> selectTag(int projects_num);
 }
