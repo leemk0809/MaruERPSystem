@@ -46,10 +46,8 @@ public class SignDetailController {
 	PositionDAO Podao;
 
 	@GetMapping("signDetail")
-	public String signDetail(Model model,int projects_num) { // int projects_num 매개변수로 받아오기
-		
+	public String signDetail(Model model, int projects_num) { // int projects_num 매개변수로 받아오기
 
-		
 		Projects projects = PIservice.selectOne(projects_num); // projects_num
 
 		String nmStr = "";
@@ -74,7 +72,8 @@ public class SignDetailController {
 
 		for (ProjectsTag PT : PTList) {
 			if (PT.getProjects_num() == projects_num) { // projects_num
-				SignTot st = new SignTot(PT.getProjects_tag_num(), PT.getPosition_num(),PT.getProjects_num() ,PT.getTag_sign());
+				SignTot st = new SignTot(PT.getProjects_tag_num(), PT.getPosition_num(), PT.getProjects_num(),
+						PT.getTag_sign());
 				for (Position po : PoList) {
 					if (po.getPosition_num() == (PT.getPosition_num())) {
 						st.setPosition(po.getPosition_name());
@@ -83,8 +82,6 @@ public class SignDetailController {
 				STList.add(st);
 			}
 		}
-		
-		
 
 		model.addAttribute("STList", STList);
 
