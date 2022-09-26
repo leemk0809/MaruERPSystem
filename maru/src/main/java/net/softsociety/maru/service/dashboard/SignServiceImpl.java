@@ -32,9 +32,30 @@ public class SignServiceImpl implements SignService{
 	@Override
 	public ArrayList<Projects> selectAllProjects() {
 		ArrayList<Projects> plist = p.selectAll();
+		
+		
 		return plist;
 	}
-	
+
+	@Override
+	public String selectTag(int projects_num) {
+		ArrayList<String> slist= pt.selectTag(projects_num);
+		
+		String state = null;
+		
+		if(slist.contains("N")) {
+			if(slist.contains("Y")) {
+				state="진행중";
+			}else {
+				state="진행전";
+			}
+		}else{
+			state="진행완료";
+		}
+		
+		return state;
+	}
+
 	
 	
 }
