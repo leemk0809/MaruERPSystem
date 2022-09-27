@@ -71,5 +71,6 @@ public class FundsController {
 		
 		return "manage/funds";
 	}
+	
 
 }
