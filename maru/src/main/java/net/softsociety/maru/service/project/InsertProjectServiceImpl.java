@@ -88,9 +88,16 @@ public class InsertProjectServiceImpl implements InsertProjectService {
 		return total;
 	}
 	
+	
+	
 	@Override
 	public void insertNeedMaterial(int project_num, int material_num, int count) {
 		nmDAO.insert(new NeedMaterial(0, project_num, material_num, count));	
+	}
+
+	@Override
+	public int calcPredictPrice(int project_num) {		
+		return averageSalry() + calcNeedMaterialPrice(project_num);
 	}
 
 }

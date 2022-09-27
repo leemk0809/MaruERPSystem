@@ -10,6 +10,7 @@ public interface InsertProjectService {
 	public List<Projects> selectProjectByStatusBefore();
 	public List<Material> selectAllMaterial();
 	public int averageSalry();
+	public int calcPredictPrice(int project_num);
 	public int calcNeedMaterialPrice(int project_num);
 	public void insertNeedMaterial(int project_num, int material_num, int count);
 }

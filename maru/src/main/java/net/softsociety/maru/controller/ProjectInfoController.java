@@ -1,5 +1,6 @@
 package net.softsociety.maru.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.domain.Projects;
+import net.softsociety.maru.service.project.InsertProjectService;
 import net.softsociety.maru.service.project.ProjectInfoService;
 
 @Slf4j
@@ -20,6 +22,9 @@ public class ProjectInfoController {
 
 	@Autowired
 	ProjectInfoService projectInfoService; 
+	
+	@Autowired
+	InsertProjectService insertProjectService;
 	
 	
 	@GetMapping("/projectInfo")
@@ -65,9 +70,26 @@ public class ProjectInfoController {
 	@GetMapping("/allProjectsInfo")
 	public String allProjectsInfo(Model model) {
 		List<Projects> projectsList = projectInfoService.selectAllProjects();
+		List<Projects> selectedProjectList = new ArrayList<>();
 		log.debug("프로젝트 리스트:{}",projectsList);
 		
 		model.addAttribute("projectsList",projectsList);
+		
+		for(Projects p : projectsList) {
+			if(p.getStatus().equals("결재전")) {
+				selectedProjectList.add(p);
+			}
+		}
+		
+		log.debug("selectedProjectList : {}", selectedProjectList);
+		
+		for(int i = 0 ; i < selectedProjectList.size(); i++) {
+			int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
+			
+			model.addAttribute("price" + i, price);
+			model.addAttribute("selectedProject" + i, selectedProjectList.get(i));
+		}
+		
 		
 		
 		return "project/allProjectsInfo";

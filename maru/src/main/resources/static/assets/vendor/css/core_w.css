@@ -66,6 +66,11 @@
  height: 100%;
 }
 
+.insert-project {
+  max-width: 100rem;
+  margin: 1.75rem auto;
+}
+
 
 
 /* 커스텀 css 끝 */
@@ -678,6 +683,7 @@ progress {
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
+
 .row > * {
   flex-shrink: 0;
   width: 100%;
@@ -685,6 +691,11 @@ progress {
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
+}
+
+.row-insert-project {
+	margin-left: calc(-0.01 * var(--bs-gutter-x));
+	margin-right: calc(-0.01 * var(--bs-gutter-x));
 }
 
 .col {
@@ -4743,6 +4754,11 @@ textarea.form-control-lg {
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 35rem;
+    margin: 1.75rem auto;
+  }
+  
+  .modal-dialog-insert {
+    max-width: 50rem;
     margin: 1.75rem auto;
   }
 
