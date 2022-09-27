@@ -54,6 +54,13 @@
 	}
 
 	function insertProject(post_num){
+		let limitsize = "[[${limitsize}]]";
+		
+		if(limitsize==3){
+			if($('#limitsi').css('display') == 'none'){
+	            $('#limitsi').show();}
+			return;
+		}
 		$.ajax({
 			url : "insertProject",
 			type : 'get',
@@ -64,9 +71,15 @@
 				if(result ==0){
 					if($('#sung').css('display') == 'none'){
 			            $('#sung').show();}
+					setTimeout(function(){
+						location.reload();
+						},3000);					
 				}else{
 					if($('#sil').css('display') == 'none'){
 			            $('#sil').show();}
+					setTimeout(function(){
+						location.reload();
+						},3000);
 				}
 		     },
 			error : function() {
@@ -193,7 +206,7 @@
 
               <div class="card">
                 <h5 class="card-header">입찰 공고 목록</h5> 
-                <div id="sung" align="right" style="display:none"> 
+                <div id="sung" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:20;"> 
                 <div		
                         class="bs-toast toast fade show bg-primary"
                         role="alert"
@@ -210,7 +223,7 @@
                         </div>
                       </div>
                       </div> 
-                     <div id="sil" align="right" style="display:none">                     	
+                     <div id="sil" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:10;">                     	
                       <div
                         class="bs-toast toast fade show bg-danger"
                         role="alert"
@@ -227,7 +240,7 @@
                         </div>
                       </div>
                      </div>
-                     <div id="err" align="right" style="display:none"> 
+                     <div id="err" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:3;"> 
                 <div		
                         class="bs-toast toast fade show bg-error"
                         role="alert"
@@ -244,6 +257,20 @@
                         </div>
                       </div>
                       </div>  
+               <div id="limitsi" align="right" style="display:none; position:absolute; top:80px; left:500px; z-index:20;"> 
+               		 <div class="card h-100" style="background-color:skyblue;">
+	                    <img class="card-img-top" src="../images/maru_logo.png" style="padding-top:30px; padding-left:80px; width:300px; height:200px;"alt="Card image cap" />
+	                    <div class="card-body">
+	                      <h5 class="card-title" style="text-align:left">"결재전" 프로젝트가 3개입니다.</h5>
+	                      <p class="card-text">
+	                        프로젝트의 결재 후에 새로운 공고를 추가 해주세요
+	                      </p>
+	                      <a th:href="@{/dashboard}" class="btn btn-outline-primary">결재창으로 이동</a>
+	                    </div>
+	                  </div>
+                      </div>                   
+                                 
+                                 
                                    
                 <div class="table-responsive text-nowrap">
                   <table class="table" >

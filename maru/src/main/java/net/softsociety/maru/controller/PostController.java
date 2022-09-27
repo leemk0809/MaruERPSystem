@@ -1,5 +1,6 @@
 package net.softsociety.maru.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,20 @@ public class PostController {
 		
 		model.addAttribute("pList",projectsList);
 		
+		List<Projects> limitList = new ArrayList<Projects>(); 
+		
+		for(Projects pro : projectsList) {
+			if(pro.getStatus().equals("결재전")){
+				limitList.add(pro);
+			}
+		}
+		log.debug("결재전 프로젝트:{}",limitList);
+		log.debug("결재전 프로젝트 갯수:{}",limitList.size());
+		
+		model.addAttribute("limitList",limitList);
+		model.addAttribute("limitsize",limitList.size());
+		
+		
 		return "dashboard/post";
 	}
 	
@@ -53,8 +68,7 @@ public class PostController {
 	
 	@ResponseBody
 	@GetMapping("insertProject")
-	public int insertProject(Model model, int post_num) {
-		
+	public int insertProject(Model model, int post_num) {		
 		int result = 0;
 		log.debug("넘어온포스트넘:{}",post_num);
 		
