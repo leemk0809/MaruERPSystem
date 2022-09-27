@@ -613,73 +613,73 @@
     	  
     	  // Order Statistics Chart 
     	  //프로젝트 내 지출 비율
-    	  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
-    	    orderChartConfig = {
-    	      chart: {
-    	        height: 165,
-    	        width: 130,
-    	        type: 'donut'
-    	      },
-    	      labels: ['식비', '인건비', '자재비','기타비'],
-    	      series: [{ data: [exRate1, exRate2, exRate3, exRate4]}],
-    	      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.warning],
-    	      stroke: {
-    	        width: 5,
-    	        colors: cardColor
-    	      },
-    	      dataLabels: {
-    	        enabled: false,
-    	        formatter: function (val, opt) {
-    	          return parseInt(val) + '%';
-    	        }
-    	      },
-    	      legend: {
-    	        show: false
-    	      },
-    	      grid: {
-    	        padding: {
-    	          top: 0,
-    	          bottom: 0,
-    	          right: 15
-    	        }
-    	      },
-    	      plotOptions: {
-    	        pie: {
-    	          donut: {
-    	            size: '75%',
-    	            labels: {
-    	              show: true,
-    	              value: {
-    	                fontSize: '1.5rem',
-    	                fontFamily: 'Public Sans',
-    	                color: headingColor,
-    	                offsetY: -15,
-    	                formatter: function (val) {
-    	                  return parseInt(val) + '%';
-    	                }
-    	              },
-    	              name: {
-    	                offsetY: 20,
-    	                fontFamily: 'Public Sans'
-    	              },
-    	              total: {
-    	                show: true,
-    	                fontSize: '0.8125rem',
-    	                color: axisColor,
-    	                label: 'Weekly',
-    	                formatter: function (w) {
-    	                  return '38%';
-    	                }
-    	              }
-    	            }
-    	          }
-    	        }
-    	      }
-    	    };
-    	  if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
-    	    const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
-    	    statisticsChart.render();
-    	  }
+		  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
+		    orderChartConfig = {
+		      chart: {
+		        height: 150,
+		        width: 130,
+		        type: 'donut'
+		      },
+		      labels: ['식비', '기타', '인건비', '자재비'],
+		      series: [16, 14, 23, 47],
+		      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+		      stroke: {
+		        width: 5,
+		        colors: cardColor
+		      },
+		      dataLabels: {
+		        enabled: false,
+		        formatter: function (val, opt) {
+		          return parseInt(val) + '%';
+		        }
+		      },
+		      legend: {
+		        show: false
+		      },
+		      grid: {
+		        padding: {
+		          top: 0,
+		          bottom: 0,
+		          right: 15
+		        }
+		      },
+		      plotOptions: {
+		        pie: {
+		          donut: {
+		            size: '65%',
+		            labels: {
+		              show: true,
+		              value: {
+		                fontSize: '1.2rem',
+		                fontFamily: 'Public Sans',
+		                color: headingColor,
+		                offsetY: -15,
+		                formatter: function (val) {
+		                  return parseInt(val) + '%';
+		                }
+		              },
+		              name: {
+		                offsetY: 20,
+		                fontFamily: 'Public Sans'
+		              },
+		              total: {
+		                show: true,
+		                fontSize: '0.7rem',
+		                color: axisColor,
+		                label: '종류',
+		                formatter: function (w) {
+		                  return '%';
+		                }
+		              }
+		            }
+		          }
+		        }
+		      }
+		    };
+		  if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
+		    const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
+		    statisticsChart.render();
+		  }
 
     	  // Income Chart - Area chart
     	  // --------------------------------------------------------------------
@@ -1165,10 +1165,7 @@
                           <!-- 여기에 프로젝트별 차트 들어가야해 (Chart.js) 916x355사이즈 -->
                           <script th:inline="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                           <canvas id="bar-chart-horizontal" style="height:350px; width:917px; padding:10px"></canvas>
-                          
-                          
-                          
-                          
+                                            
                           
                         </div>
                       </div>
@@ -1176,14 +1173,17 @@
                   </div>
                 </div>
                 <!--/ Expense Overview -->
+                
+                
+                
                 <!-- Order Statistics -->
-                <div class="col-md-6 col-lg-4 col-xl-4 order-1 mb-4">
+                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                       <div class="card-title mb-0">
                         <h5 class="m-0 me-2">프로젝트 내 지출 비율</h5>
                       </div>
-                      <div class="dropdown">
+                      <div class="dropdown" style="margin-right:15px">
                         <button
                         type="button"
                         class="btn btn-sm btn-secondary dropdown-toggle hide-arrow"
@@ -1192,15 +1192,15 @@
                       >
                           1번 프로젝트
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
                           <a class="dropdown-item" href="javascript:void(0);">2번 프로젝트</a>
                           <a class="dropdown-item" href="javascript:void(0);">3번 프로젝트</a>
                           <a class="dropdown-item" href="javascript:void(0);">4번 프로젝트</a>
                         </div>
-                      </div>                      
+                      </div>
                     </div>
                     <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center mb-3">
+                      <div class="d-flex justify-content-between align-items-center mb-3" style="margin-left:22px; margin-top:20px;">
                         <div class="d-flex flex-column align-items-center gap-1">
                           <h2 class="mb-2" th:text="${exRate1}+${exRate2}+${exRate3}+${exRate4}"></h2>
                           <span>단위: 백만 (원)</span>
@@ -1208,7 +1208,7 @@
                         <div id="orderStatisticsChart"></div>
                       </div>
                       <ul class="p-0 m-0">
-                        <li class="d-flex pb-1" style="margin: 20px">
+                        <li class="d-flex mb-4 pb-1" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary"
                               ><i class="bx bx-mobile-alt"></i
@@ -1220,14 +1220,13 @@
                               <small class="text-muted">중식비, 석식비, 간식비</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold" th:text="${exRate1}"></small>
+                              <small class="fw-semibold"  th:text="${exRate1}"></small>
                             </div>
                           </div>
-                        </li>
-                        
-                        <li class="d-flex pb-1" style="margin: 20px">
+                        </li>                        
+                        <li class="d-flex mb-4 pb-1" style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
+                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
                           </div>
                           <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
@@ -1235,11 +1234,11 @@
                               <small class="text-muted">월급, 추가수당</small>
                             </div>
                             <div class="user-progress">
-                              <small class="fw-semibold" th:text="${exRate2}"></small>
+                              <small class="fw-semibold"  th:text="${exRate2}"></small>
                             </div>
                           </div>
                         </li>
-                        <li class="d-flex pb-1" style="margin: 20px">
+                        <li class="d-flex mb-4 pb-1"  style="margin: 20px">
                           <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
                           </div>
