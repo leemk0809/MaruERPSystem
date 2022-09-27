@@ -17,30 +17,31 @@ public class SignDetailServiceImpl implements SignDetailService {
 
 	@Autowired
 	ProjectsDAO pdao;
-	
+
 	@Autowired
 	ProjectsTagDAO ptdao;
-	
+
 	@Override
 	public Projects selecOne(int projects_num) {
 		Projects p = pdao.selectOne(projects_num);
-		//log.debug(" 프로젝트 "+p);
+		// log.debug(" 프로젝트 "+p);
 		return p;
 	}
 
 	@Override
-	public int stamp(int position_num) {
-		
+	public int stamp(int position_num, int projects_num) {
+
 		ArrayList<ProjectsTag> ptList = ptdao.selectAll();
 		ProjectsTag pt = null;
-		
-		for(ProjectsTag pttmp : ptList) {
-			if(pttmp.getPosition_num()==position_num) {
-				pt = pttmp;
+
+		for (ProjectsTag pttmp : ptList) {
+			if (pttmp.getPosition_num() == position_num) {
+				if (pttmp.getProjects_num() == projects_num)
+					pt = pttmp;
 			}
 		}
 		pt.setTag_sign("Y");
-		
+
 		return ptdao.update(pt);
 	}
 

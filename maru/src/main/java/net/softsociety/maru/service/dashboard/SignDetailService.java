@@ -8,6 +8,6 @@ public interface SignDetailService {
 	public Projects selecOne(int projects_num);
 	
 	//도장을 찍으면 프로젝트 프로젝트태그의 TAG_SIGN저장값 변경하기위한 메소드
-	public int stamp(int worker_num);
+	public int stamp(int worker_num, int projects_num);
 	
 }

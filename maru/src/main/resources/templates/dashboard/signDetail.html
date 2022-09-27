@@ -169,10 +169,13 @@
 											<table class="table_margin_auto">
 												<tr>
 													<th width=100px height=130px th:each="STList : ${STList}">
-														<div style="z-index: 20;">
-															<img style="display: none"
-																src="../assets/img/elements/stamp/stamp.png"
-																id="stampIcon">
+
+														<div th:if="${STList.position_num} == 5">
+															<div style="z-index: 20;">
+																<img th:if="${STList}" style="display: none;"
+																	src="../assets/img/elements/stamp/stamp.png"
+																	id="stampIcon">
+															</div>
 														</div>
 													</th>
 												</tr>
@@ -187,9 +190,13 @@
 													<td class="table_center border_thick" width=100px
 														height=100px th:each="STList : ${STList}">
 
-														<div th:if="${STList.tag_sign} == Y">
-															<img width=130px height=130px
+														<div>
+															<img th:if="${STList.tag_sign} == Y" width=125px
+																height=125px
 																th:src="|../assets/img/elements/stamp/${STList.Position}.png|">
+															<img th:if="${STList.tag_sign} != Y" width=125px
+																height=125px
+																th:src="|../assets/img/elements/stamp/백지.png|">
 														</div>
 													</td>
 												</tr>

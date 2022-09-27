@@ -90,9 +90,9 @@ public class SignDetailController {
 
 	@ResponseBody
 	@GetMapping("signed")
-	public String signed(int projects_num) {
+	public String signed(int position, int projects_num) {
 
-		int result = SDservice.stamp(projects_num);
+		int result = SDservice.stamp(position, projects_num);
 
 		return "redirect:/dashboard/signDetail";
 	}

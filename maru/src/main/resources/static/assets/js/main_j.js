@@ -10,7 +10,7 @@ function stampClick() {
 		
 	setTimeout(function() {
 		document.getElementById("stampIcon").style.display = "none";
-		window.location.href=window.location.href;
+		window.location.reload();
 	}, 1000);
 	
 }
@@ -30,12 +30,13 @@ let cancelBtn = document.getElementById("cancelBtn");
 
 signBtn.onclick = function() {
 
-	var asdf = document.getElementById("projects_num");
+	var pn = document.getElementById("projects_num"); //나중에 유저디테일로 바꾸기
+	var po = 1; //document.getElementById("position");
 
 	$.ajax({
 		url: 'signed',
 		type: 'get',
-		data: { projects_num: asdf.value },
+		data: { projects_num: pn.value , position : po},
 		success: idCheckSuccess,
 		error: idCheckError,
 	})
