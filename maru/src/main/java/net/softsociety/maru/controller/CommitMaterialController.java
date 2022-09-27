@@ -67,12 +67,23 @@ public class CommitMaterialController {
 		log.debug("선택된 프로젝트 : {}",projects);
 		
 		model.addAttribute("projects",projects);
+		
+		List<CommitMaterial> allCMList = commitMaterialService.selectAllCommitMaterial();
+		log.debug("전체 리스트:{}",allCMList);
+		
+		model.addAttribute("cmlist",allCMList);
+		
 				
 		return "/project/allCommitMaterials";
 	}
 	
 	@GetMapping("cmlist")
-	public String cmlist() {
+	public String cmlist(Model model
+			,@RequestParam(name="projects_num", defaultValue = "0") int projects_num) {
+		
+		
+		
+		
 		return "/project/cmlist";
 	}
 }

@@ -1,127 +1,195 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html
-  lang="en"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free"
-  xmlns:th="http://thymeleaf.org" 
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
-  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
-<!-- Core Stylesheet -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>자재 투입</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
 
-<link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/tui-calendar.css">
-    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/default.css">
-    <link rel="stylesheet" type="text/css" href="../assets/vendor/css/icons.css">
-<!-- Optional Themes -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
-<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.ie11.min.js"></script>
-
-<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
-
-
-
-
-<!-- JavaScript -->
-
+    <link href="../assets/vendor/css/fullcalendar.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
 
 </head>
-<body>
-   <div>
-        <a th:href="@{/dashboard}">
-            <img src="../images/maru_logo.png" width="50px" height="50px" >자재투입현황
-        </a>
-    </div>
-    <div id="lnb">
-        <div class="lnb-new-schedule">
-            <button id="btn-new-schedule" type="button" class="btn btn-default btn-block lnb-new-schedule-btn" data-toggle="modal">
-                투입 자재 추가</button>
-        </div>
-        <div id="lnb-calendars" class="lnb-calendars">
-            <div>
-                <div class="lnb-calendars-item">
-                    <label>
-                        <input class="tui-full-calendar-checkbox-square" type="checkbox" value="all" checked>
-                        <span></span>
-                        <strong>전체목록</strong>
-                    </label>
-                </div>
-            </div>
-            <div id="calendarList" class="lnb-calendars-d1">
-            </div>
-        </div>
-        
-    </div>
-    <div id="right">
-        <div id="menu">
-            <span class="dropdown">
-                <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
-                    <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
-                    <span id="calendarTypeName">Dropdown</span>&nbsp;
-                    <i class="calendar-icon tui-full-calendar-dropdown-arrow"></i>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-calendarType">
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
-                            <i class="calendar-icon ic_view_day"></i>일별
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
-                            <i class="calendar-icon ic_view_week"></i>주간별
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-monthly">
-                            <i class="calendar-icon ic_view_month"></i>월간
-                        </a>
-                    </li>                    
-                </ul>
-            </span>
-            <span id="menu-navi">
-                <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
-                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
-                    <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
-                </button>
-                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
-                    <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
-                </button>
-            </span>
-            <span id="renderRange" class="render-range"></span>
-        </div>
-        <div id="calendar"></div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
-    <script src="https://uicdn.toast.com/tui.time-picker/v2.0.3/tui-time-picker.min.js"></script>
-    <script src="https://uicdn.toast.com/tui.date-picker/v4.0.3/tui-date-picker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
-    <script src="../assets/vendor/js/tui-calendar.js"></script>
-	<script src="../assets/vendor/js/calendars.js"></script>
-	<script src="../assets/vendor/js/schedules.js"></script>
-	<script src="../assets/vendor/js/app.js"></script>
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+        
+            <div style="width:100px; height:150px; float:left;">
+				<img src="../images/maru_logo.png" width="70px" height="70px">
+			</div>
+			<div style="width:300px; height:150px; padding-top:20px; float:left;">
+				 <h2 style="color:violet">마루건설 자재 투입</h2>
+			</div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav">
+            
+			 <div class="card" style="width:80%; margin:20px;">
+                	   <div class="card-body">
+                                <h4 class="card-intro-title">투입 종류</h4>
+
+                                <div class="">
+                                    <div id="external-events" class="my-3">
+                                        <p>Drag&Drop 으로 편하게 일정 관리</p>
+                                        <div class="external-event" data-class="bg-danger"><i class="fa fa-move"></i>공통 자재</div>
+                                        <div class="external-event" data-class="bg-primary"><i class="fa fa-move"></i>건축팀 자재</div>
+                                        <div class="external-event" data-class="bg-success"><i class="fa fa-move"></i>토목팀 자재
+                                        </div>
+                                        <div class="external-event" data-class="bg-warning"><i class="fa fa-move"></i>전기팀 자재</div>
+                                        <div class="external-event" data-class="bg-pink"><i class="fa fa-move"></i>기계팀 자재</div>                                    	
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+               
+                <!-- row -->
+
+
+                <div class="row">
+                   
+                    <div class="col-lg-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="calendar" class="app-fullcalendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BEGIN MODAL -->
+                    <div class="modal fade none-border" id="event-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>투입 일정 추가</strong></h4>
+                                </div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">닫기</button>
+                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">투입</button>
+
+                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Add Category -->
+                    <div class="modal fade none-border" id="add-category">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><strong>Add a category</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label">Category Name</label>
+                                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label">Choose Category Color</label>
+                                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                    <option value="danger">공통 자재</option>
+                                                    <option value="primary">건축팀 자재</option>
+                                                    <option value="success">토목팀 자재</option>
+                                                    <option value="warning">전기팀 자재</option>
+                                                    <option value="pink">기계팀 자재</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+   
+
+        
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="../assets/vendor/js/global.min.js"></script>
+    <script src="../assets/vendor/js/quixnav-init.js"></script>
+    <script src="../assets/vendor/js/custom.min.js"></script>
+    <!--removeIf(production)-->
+    <!-- Demo scripts -->
+    <script src="../assets/vendor/js/styleSwitcher.js"></script>
+
+
+
+    <script src="../assets/vendor/js/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/js/moment.min.js"></script>
+
+    <script src="../assets/vendor/js/fullcalendar.min.js"></script>
+    <script src="../assets/vendor/js/fullcalendar-init.js"></script>
+
 </body>
+
 </html>

@@ -318,8 +318,56 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-          	
+            <div class="card">            	
+				 <h2>마루건설 전체 투입 자재</h2>				
+            </div>
+            
+            <div class="card">
+          	<div class="table-responsive text-nowrap">
+                  <table class="table" >
+                    <thead>
+                      <tr class="table-primary">
+                        <th>투입 번호</th>
+                        <th>프로젝트</th>
+                        <th>자재번호</th>
+                        <th>갯수</th>
+                        <th>가격</th>
+                        <th>투입일</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0" th:each="list : ${cmlist}">
+                      <tr class="table-active">
+                       <td th:text="${list.commit_material_num}"></td>
+                       <td th:text="${list.projects_num}"> </td>
+                       <td th:text="${list.material_num}"></td>
+                       <td th:text="|${list.count}개|"></td>
+                       <td th:text="|${list.count}원|"></td>
+                       <td th:text="${list.commit_date}"></td>
+                          <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" id="showToastPlacement" th:onclick="|javascript:insertProject(${list.commit_material_num})|"
+                                ><i class="bx bx-edit-alt me-1"></i> 진행하기</a
+                              >
+                              
+                              <a class="dropdown-item" th:onclick="|javascript:deletePost(${list.commit_material_num})|"
+                                ><i class="bx bx-trash me-1"></i> 삭제</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                </div>
               
+              </div>
            
             <!-- / Content -->
 

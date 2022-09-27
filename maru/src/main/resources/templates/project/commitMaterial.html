@@ -583,8 +583,9 @@
 			  	<div class="col-md">
                   <div class="card mb">
                   <div class="row g-0">
-                  <button type="button" class="btn btn-outline-primary" th:text="|${projects.title} 필요 자재|"></button>
-              		  	<div id="chartdivv"></div>
+                  <button type="button" class="btn btn-outline-primary" th:text="|${projects.title} 필요 자재|"
+                   th:onclick="|location.href='@{cmlist(projects_num=${projects.projects_num})}'|"></button>
+                   		  	<div id="chartdivv"></div>
               		  	</div>
                   </div>
                 </div>
@@ -597,11 +598,6 @@
                 </div>
             
            
-              
-              
-           
-                      
-			
               
            
             <!-- / Content -->
