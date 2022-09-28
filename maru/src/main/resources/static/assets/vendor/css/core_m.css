@@ -126,6 +126,12 @@
  	text-align: inherit;
 }
 
+.dropdown-menu-mk{
+	position: absolute;
+	left: 39%;
+	top: 70%;
+}
+
 
 /* 커스텀 css 끝 */
 
