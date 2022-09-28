@@ -232,21 +232,24 @@
 										<thead>
 
 											<tr>
-												<th>이슈</th>
-												<th>프로젝트</th>
-												<th>작성자</th>
-												<th>작성날짜</th>
-
+												<th>사원번호</th>
+												<th>이   름</th>
+												<th>직   책</th>
+												<th>작업내용</th>
+												<th>시 작 일</th>
+												<th>완 료 일</th>
 											</tr>
 
 										</thead>
 										<tbody class="table-border-bottom-0">
 
 											<tr>
-												<td>asdf</td>
-												<td>1234</td>
-												<td>asdf</td>
-												<td>1234</td>
+												<td>사원번호</td>
+												<td>이   름</td>
+												<td>직   책</td>
+												<td>작업내용</td>
+												<td>시 작 일</td>
+												<td>완 료 일</td>
 											</tr>
 
 										</tbody>
@@ -254,7 +257,7 @@
 								</div>
 
 								<div>
-									<iframe src="../calendar/calender2.html" frameborder="0"
+									<iframe th:src="|http://localhost:1234/maru/calendar/calender2.html?projects_num=${projects.projects_num}|" frameborder="0"
 										class="tab-contents2"></iframe>
 								</div>
 							</div>
