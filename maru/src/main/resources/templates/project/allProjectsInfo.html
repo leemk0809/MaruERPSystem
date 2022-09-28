@@ -56,6 +56,20 @@
     	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<style>
+#chartdivc {
+  width: 100%;
+  height: 400px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+
 	<script>
 		am5.ready(function() {
 
@@ -981,38 +995,37 @@ chart.appear(1000, 100);
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item">
-              <a th:href="@{/dashboard}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">대시보드</div>
-              </a>
-            </li>
+            
 
             <!-- Layouts -->
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">All Projects</span>
               </li>
               <li class="menu-item">
-                <button type="button" class="btn rounded-pill btn-success offset-2" 
+              <p>
+                <button style="width:200px" type="button" class="btn rounded-pill btn-warning offset-2" 
                   data-bs-toggle="modal"
                   data-bs-target="#insertModal">프로젝트 추가</button>
+              </p>
               </li>
               
               
               <li class="menu-item">
-               <img src="../images/maru_logo.png" width="30px" height="30px">
+              	<p>
+              <img src="../images/maru_logo.png" width="30px" height="30px">
                 <button type="button" class="btn rounded-pill btn-success mt-3" 
-                  th:onclick="|location.href='@{allProjectsInfo}'|">모든 프로젝트</button>
+                  th:onclick="|location.href='@{allProjectsInfo}'|" style="width:200px">모든 프로젝트 현황</button>
+             	</p>
               </li>
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Projects</span>
             </li>
-             <div th:each="list : ${projectsList}">
+             <div th:each="list : ${ingList}">
              
             <li>
             <p>
             <img src="../images/maru_logo.png" width="30px" height="30px">
-            <button type="button" class="btn rounded-pill btn-info" 
+            <button type="button" class="btn rounded-pill btn-info" style="width:200px" 
             		th:text="${list.title}"  th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|"></button>   
           	</p>
           	</li>          	
@@ -1198,7 +1211,7 @@ chart.appear(1000, 100);
               <div class="row mb-5">
               
               
-               <div class="col-md-6 col-lg-4 mb-3" th:each="list : ${projectsList}">
+               <div class="col-md-6 col-lg-4 mb-3" th:each="list : ${ingList}">
                <div class="card h-100">
                     <img class="card-img-top" 
                     th:src="|../assets/img/elements/a${list.projects_num}.jpg|" alt="Card image cap" />

@@ -265,7 +265,7 @@
 	                      <p class="card-text">
 	                        프로젝트의 결재 후에 새로운 공고를 추가 해주세요
 	                      </p>
-	                      <a th:href="@{/dashboard/sign}" class="btn btn-outline-primary">결재창으로 이동</a>
+	                      <a th:href="@{/project/allProjectsInfo}" class="btn btn-outline-primary">결재창으로 이동</a>
 	                    </div>
 	                  </div>
                       </div>                   
@@ -301,9 +301,9 @@
                         <a th:if="${list.building_type_num}==10"><span class="badge bg-label-dark me-1">종교시설</span></a>               
                        </td>
                        <td th:text="${list.title}"></td>
-                       <td th:text="|${list.building_size}원|"></td>
+                       <td th:text="|${list.building_size}(억)원|"></td>
                        <td th:text="|${list.area}평|"></td>
-                       <td th:text="|${list.price}원|"></td>
+                       <td th:text="|${list.price}(억)원|"></td>
                           <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
