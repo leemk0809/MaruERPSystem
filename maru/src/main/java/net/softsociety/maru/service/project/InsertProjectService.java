@@ -13,4 +13,7 @@ public interface InsertProjectService {
 	public int calcPredictPrice(int project_num);
 	public int calcNeedMaterialPrice(int project_num);
 	public void insertNeedMaterial(int project_num, int material_num, int count);
+	
+	public void insertProjectTag(List<Integer> positionNumList, int projects_num);
+	
 }

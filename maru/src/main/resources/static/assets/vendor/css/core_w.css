@@ -71,6 +71,12 @@
   margin: 1.75rem auto;
 }
 
+.dash_board_custom {
+	color: #696cff;
+	display: block;
+	padding: 0.5rem 1.25rem;
+}
+
 
 
 /* 커스텀 css 끝 */

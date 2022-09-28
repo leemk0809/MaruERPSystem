@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.domain.Projects;
@@ -107,5 +109,18 @@ public class ProjectInfoController {
 		model.addAttribute("ingList",ingList);
 		
 		return "project/allProjectsInfo";
+	}
+	
+	@ResponseBody
+	@PostMapping("/insertProject")
+	public void insertProject(@RequestParam(value = "selectedProjectProjects_num")int projectnum
+							, @RequestParam(value = "positionNumList[]") List<Integer> positionNumList) {
+		log.debug("projectnum : {}", projectnum);
+		log.debug("positionNumList : {}", positionNumList);
+		
+		// projectTag추가
+		insertProjectService.insertProjectTag(positionNumList, projectnum);
+		
+		projectInfoService.selectOne(projectnum).setStatus("결재중");
 	}
 }

@@ -656,8 +656,91 @@ chart.appear(1000, 100);
 }); // end am5.ready()
 </script>
 <script>
-	function insert(){
+
+	function insert(num){
 		
+		let positionNumList = [];
+		
+		if(num == 0){
+			let selectedProjectProjects_num = '[[${selectedProject0.projects_num}]]';
+			
+			for(let i = 1 ; i < 7 ; i++){
+				if($('#position_num'+i).prop("checked")){
+					positionNumList.push($('#position_num' + i).val());	
+				}	
+			}	
+			
+			console.log("positionNumList : {}", positionNumList);
+			
+			$.ajax({	
+	    		url:'insertProject',
+	    		type:'post',
+	    		data: {
+	    			selectedProjectProjects_num
+	    			, positionNumList : positionNumList
+	    		},
+	    		success: function(){
+	    			alert('insertProject 성공');
+	    			$('#card-project0').remove();
+	    			$('#insertModal').modal('hide');
+	    		},
+	    		error:function(){
+	    			console.log('insertProject 실패');
+	    		}
+	    	});
+		} else if(num == 1){
+			let selectedProjectProjects_num = '[[${selectedProject1.projects_num}]]';
+			
+			for(let i = 1 ; i < 7 ; i++){
+				if($('#position_num'+i).prop("checked")){
+					positionNumList.push($('#position_num' + i).val());	
+				}	
+			}	
+			
+			console.log("positionNumList : {}", positionNumList);
+			
+			$.ajax({	
+	    		url:'insertProject',
+	    		type:'post',
+	    		data: {
+	    			selectedProjectProjects_num
+	    			, positionNumList : positionNumList
+	    		},
+	    		success: function(){
+	    			alert('insertProject 성공');
+	    			$('#insertModal').modal('hide');
+	    		},
+	    		error:function(){
+	    			console.log('insertProject 실패');
+	    		}
+	    	});
+		} else if(num == 2) {
+			let selectedProjectProjects_num = '[[${selectedProject2.projects_num}]]';
+			
+			for(let i = 1 ; i < 7 ; i++){
+				if($('#position_num'+i).prop("checked")){
+					positionNumList.push($('#position_num' + i).val());	
+				}	
+			}	
+			
+			console.log("positionNumList : {}", positionNumList);
+			
+			$.ajax({	
+	    		url:'insertProject',
+	    		type:'post',
+	    		data: {
+	    			selectedProjectProjects_num
+	    			, positionNumList : positionNumList
+	    		},
+	    		success: function(){
+	    			alert('insertProject 성공');
+	    			$('#insertModal').modal('hide');
+	    		},
+	    		error:function(){
+	    			console.log('insertProject 실패');
+	    		}
+	    	});
+		}
 	}
 
 	function printSelectProject(num){
@@ -667,27 +750,27 @@ chart.appear(1000, 100);
 			result += 	'<div class="mb-3 row">'
 					+		'<label for="html5-text-input" class="col-md-2 col-form-label">프로젝트 명</label>'
 					+			'<div class="col-md-10">'
-					+				'<input class="form-control" type="text" value="' + '[[${selectedProject0.title}]]' + '" id="html5-text-input" readonly="readonly"/>'
+					+				'<input class="form-control" type="text" value="' + '[[${selectedProject0.title}]]' + '" id="title" readonly="readonly"/>'
 					+			'</div>'
 					+	'</div>'
 					+	'<div class="mb-3 row">'
 					+		'<label for="html5-date-input" class="col-md-2 col-form-label">시작 날짜</label>'
 					+			'<div class="col-md-10">'
-					+				'<input class="form-control" type="date" value="2022-09-30" id="html5-date-input" />'
+					+				'<input class="form-control" type="date" value="[[${selectedProject0.start_date}]]" id="start_date" />'
 					+			'</div>'
          			+		'<label for="html5-date-input" class="col-md-2 col-form-label mt-3">끝나는 날짜</label>'
               		+		'<div class="col-md-10 mt-3">'
-               		+			'<input class="form-control" type="date" value="2022-10-03" id="html5-date-input" />' 
+               		+			'<input class="form-control" type="date" value="[[${selectedProject0.end_date}]]" id="end_date" />' 
               		+		'</div>'
 					+	'</div>'
 					+	'<div class="mb-3 row">'
-					+		'<label for="html5-number-input" class="col-md-2 col-form-label">필요 인력 수</label>'
+					+		'<label for="html5-number-input" class="col-md-2 col-form-label">필요 인력 수(명)</label>'
 					+		'<div class="col-md-10">'
 	        		+			'<input class="form-control" type="number" value="' + '[[${selectedProject0.need_worker}]]' + '" id="html5-number-input" readonly="readonly"/>'
 	        		+		'</div>'
 					+	'</div>'
 	        	  	+	'<div class="mb-3 row">'
-	        	  	+		'<label for="html5-number-input" class="col-md-2 col-form-label">예상 지출 비용</label>'
+	        	  	+		'<label for="html5-number-input" class="col-md-2 col-form-label">예상 지출 비용(억)</label>'
         	  		+		'<div class="col-md-10">'
 	          		+			'<input class="form-control" type="number" value="' + '[[${price0}]]' + '" id="html5-number-input" readonly="readonly"/>'
 	            	+		'</div>'
@@ -695,16 +778,25 @@ chart.appear(1000, 100);
 	            	+	'<div class="mb-3 row">'
 	        	  	+		'<label for="html5-number-input" class="col-md-2 col-form-label">결재자</label>'
         	  		+		'<div class="col-md-10">'
-	          		+			'<input class="form-control" type="number" value="' + '[[${price0}]]' + '" id="html5-number-input" readonly="readonly"/>'
+	          		+			'<input class="form-check-input" type="checkbox" value="1" id="position_num1" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 소장 </label>'
+	          		+			'<input class="form-check-input" type="checkbox" value="2" id="position_num2" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 품질관리자 </label>'
+	          		+			'<input class="form-check-input" type="checkbox" value="3" id="position_num3" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 안전관리자 </label><br>'
+	          		+			'<input class="form-check-input" type="checkbox" value="4" id="position_num4" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 공사부장 </label>'
+	          		+			'<input class="form-check-input" type="checkbox" value="5" id="position_num5" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 공무부장 </label>'
+	          		+			'<input class="form-check-input" type="checkbox" value="6" id="position_num6" />'
+	          		+			'<label class="form-check-label" for="defaultCheck1"> 관리부장 </label>'
 	            	+		'</div>'
 	            	+	'</div>'
 	            	+	'<div class="modal-footer col-md-10">'
-					+		'<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">'	
-            		+			'취소'
-              		+		'</button>'
-            		+		'<button type="button" class="btn btn-primary" onclick="insert()">작성</button>'
-					+	'</div>';
-            		
+	            	+		'<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>'
+	            	+		'<button type="button" class="btn btn-primary" onclick="insert(0)">작성</button>'
+	       			+	'</div>';     	
+	       
 		} else if(num == 1){
 			result += 	'<div class="mb-3 row">'
 					+		'<label for="html5-text-input" class="col-md-2 col-form-label">프로젝트 명</label>'
@@ -733,7 +825,28 @@ chart.appear(1000, 100);
         	  		+		'<div class="col-md-10">'
 	          		+			'<input class="form-control" type="number" value="' + '[[${price1}]]' + '" id="html5-number-input" readonly="readonly"/>'
 	            	+		'</div>'
-	            	+	'</div>';
+	            	+	'</div>'
+					+	'<div class="mb-3 row">'
+		    	  	+		'<label for="html5-number-input" class="col-md-2 col-form-label">결재자</label>'
+			  		+		'<div class="col-md-10">'
+		      		+			'<input class="form-check-input" type="checkbox" value="1" id="position_num1" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 소장 </label>'
+		      		+			'<input class="form-check-input" type="checkbox" value="2" id="position_num2" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 품질관리자 </label>'
+		      		+			'<input class="form-check-input" type="checkbox" value="3" id="position_num3" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 안전관리자 </label><br>'
+		      		+			'<input class="form-check-input" type="checkbox" value="4" id="position_num4" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 공사부장 </label>'
+		      		+			'<input class="form-check-input" type="checkbox" value="5" id="position_num5" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 공무부장 </label>'
+		      		+			'<input class="form-check-input" type="checkbox" value="6" id="position_num6" />'
+		      		+			'<label class="form-check-label" for="defaultCheck1"> 관리부장 </label>'
+		        	+		'</div>'
+		        	+	'</div>'
+		        	+	'<div class="modal-footer col-md-10">'
+		        	+		'<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>'
+		        	+		'<button type="button" class="btn btn-primary" onclick="insert(1)">작성</button>'
+		   			+	'</div>';  
 		} else {
 			result += 	'<div class="mb-3 row">'
 				+		'<label for="html5-text-input" class="col-md-2 col-form-label">프로젝트 명</label>'
@@ -762,7 +875,28 @@ chart.appear(1000, 100);
     	  		+		'<div class="col-md-10">'
           		+			'<input class="form-control" type="number" value="' + '[[${price2}]]' + '" id="html5-number-input" readonly="readonly"/>'
             	+		'</div>'
-            	+	'</div>';
+            	+	'</div>'
+            	+	'<div class="mb-3 row">'
+        	  	+		'<label for="html5-number-input" class="col-md-2 col-form-label">결재자</label>'
+    	  		+		'<div class="col-md-10">'
+          		+			'<input class="form-check-input" type="checkbox" value="1" id="position_num1" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 소장 </label>'
+          		+			'<input class="form-check-input" type="checkbox" value="2" id="position_num2" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 품질관리자 </label>'
+          		+			'<input class="form-check-input" type="checkbox" value="3" id="position_num3" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 안전관리자 </label><br>'
+          		+			'<input class="form-check-input" type="checkbox" value="4" id="position_num4" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 공사부장 </label>'
+          		+			'<input class="form-check-input" type="checkbox" value="5" id="position_num5" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 공무부장 </label>'
+          		+			'<input class="form-check-input" type="checkbox" value="6" id="position_num6" />'
+          		+			'<label class="form-check-label" for="defaultCheck1"> 관리부장 </label>'
+            	+		'</div>'
+            	+	'</div>'
+            	+	'<div class="modal-footer col-md-10">'
+            	+		'<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>'
+            	+		'<button type="button" class="btn btn-primary" onclick="insert(2)">작성</button>'
+       			+	'</div>';  
 		}
 		
 		$('#printSelectedProject').html(result);
@@ -893,17 +1027,17 @@ chart.appear(1000, 100);
             <div class="modal-content">
               <div class="row row-bordered row-insert-project">
               	<div class="card col-md-4 mb-4">
-              		<div class="card-body">
+              		<div class="card-body" id="card-project0">
               			<a th:text="${selectedProject0.title}" href="javascript:printSelectProject(0)"></a><br>
               			<img th:src="|../assets/img/elements/a${selectedProject0.projects_num}.jpg|"><br>
               			<hr class="my-0">
               		</div>
-              		<div class="card-body">
+              		<div class="card-body" id="card-project1">
               			<a th:text="${selectedProject1.title}" href="javascript:printSelectProject(1)"></a><br>
               			<img th:src="|../assets/img/elements/a${selectedProject1.projects_num}.jpg|"><br>
               			<hr class="my-0">
               		</div>
-              		<div class="card-body">
+              		<div class="card-body" id="card-project2">
               			<a th:text="${selectedProject2.title}" href="javascript:printSelectProject(2)"></a><br>
               			<img th:src="|../assets/img/elements/a${selectedProject2.projects_num}.jpg|"><br>
               			<hr class="my-0">
@@ -913,6 +1047,7 @@ chart.appear(1000, 100);
 		          <h5 class="card-header">프로젝트 추가</h5>
 		          <div class="card-body">
 		          	<div id="printSelectedProject">
+		          		
 		          	</div>
 		          </div>
 		        </div>
@@ -925,142 +1060,125 @@ chart.appear(1000, 100);
         <!-- Layout container -->
         <div class="layout-page">
          <!-- Navbar -->
-
-          <!-- 첫줄, 돋보기 부분 하얀 박스를 화면 끝까지 -->
-          <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
-            id="layout-navbar"
-          >
-            <div class="app-brand">
-              <a href="index.html" class="app-brand-link">
-                <span class="app-brand-logo">
-                    <img src="../images/maru_logo.png"  class="maru_logo" alt="">
-                </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
-              </a>
-            </div>
-
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
-                <li class="nav-item lh-1 me-3">
-                  <!-- 별모양 버튼 -->
-                  <a
-                    class="github-button"
-                    href="#"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    >Star</a>
-                </li>
-
-                <!-- 프사 있는 부분 -->
-                <!-- User -->
-                <!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <!-- online, offline으로 상태 변화가능 -->
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                            </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <!-- 구분자 -->
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
-            
-          </nav>
-          <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl subnavbar-detached align-items-center"
-            id="layout-sub-navbar"
-          >
-            <div style="width: 40%;">
-              MARU PMS
-            </div>
-            <div class="navbar-nav align-items-center">
-              <div class="nav-item d-flex align-items-center">
-                <i class="bx bx-search fs-4 lh-0"></i>
-                <input
-                  type="text"
-                  class="form-control border-0 shadow-none"
-                  placeholder="Search..."
-                  aria-label="Search..."
-                />
-              </div>
-            </div>
-            <div class="navbar-nav-right d-flex align-items-center height-100" id="navbar-collapse">
-              <ul class="navbar-nav flex-row align-items-center ms-auto height-100">
-                <li class="nav-item lh-1 me-3">
-                  대시보드
-                </li>
-                <li class="nav-item lh-1 me-3" style="background-color: var(--bs-body-bg);">
-                  프로젝트 관리
-                </li>
-                <li class="nav-item lh-1 me-3">
-                  자원관리
-                </li>
-                <li class="nav-item lh-1 me-3">
-                  관리자 페이지
-                </li>
-              </ul>
-            </div>
-            <div>
-
-            </div>
-          </nav>
+			<div class="layout">
+	          <!-- 첫줄, 돋보기 부분 하얀 박스를 화면 끝까지 -->
+	          <nav
+	            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
+	            id="layout-navbar"
+	          >
+	            <div class="app-brand">
+	              <a href="index.html" class="app-brand-link">
+	                <span class="app-brand-logo">
+	                    <img src="../images/maru_logo.png"  class="maru_logo" alt="">
+	                </span>
+	                <span class="app-brand-text demo menu-text fw-bolder ms-2">마루건설</span>
+	              </a>
+	            </div>
+	
+	            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+	              <ul class="navbar-nav flex-row align-items-center ms-auto">
+	                <!-- Place this tag where you want the button to render. -->
+	                <!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
+	                <li class="nav-item lh-1 me-3">
+	                  <!-- 별모양 버튼 -->
+	                  <a
+	                    class="github-button"
+	                    href="#"
+	                    data-icon="octicon-star"
+	                    data-size="large"
+	                    data-show-count="true"
+	                    >Star</a>
+	                </li>
+	
+	                <!-- 프사 있는 부분 -->
+	                <!-- User -->
+	                <!-- 눌렀을 때, 내리려면 li안에 dropdown 쓰면 될듯 -->
+	                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+	                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+	                    <!-- online, offline으로 상태 변화가능 -->
+	                    <div class="avatar avatar-online">
+	                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+	                    </div>
+	                  </a>
+	                  
+	                  <ul class="dropdown-menu dropdown-menu-end">
+	                    <li>
+	                      <a class="dropdown-item" href="#">
+	                        <div class="d-flex">
+	                          <div class="flex-shrink-0 me-3">
+	                            <div class="avatar avatar-online">
+	                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+	                            </div>
+	                          </div>
+	                          <div class="flex-grow-1">
+	                            <span class="fw-semibold d-block">John Doe</span>
+	                            <small class="text-muted">Admin</small>
+	                          </div>
+	                        </div>
+	                      </a>
+	                    </li>
+	                    <!-- 구분자 -->
+	                    <li>
+	                      <div class="dropdown-divider"></div>
+	                    </li>
+	                    <li>
+	                      <a class="dropdown-item" href="#">
+	                        <i class="bx bx-user me-2"></i>
+	                        <span class="align-middle">My Profile</span>
+	                      </a>
+	                    </li>
+	                    <li>
+	                      <a class="dropdown-item" href="#">
+	                        <i class="bx bx-cog me-2"></i>
+	                        <span class="align-middle">Settings</span>
+	                      </a>
+	                    </li>
+	                    <li>
+	                      <a class="dropdown-item" href="#">
+	                        <span class="d-flex align-items-center align-middle">
+	                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+	                          <span class="flex-grow-1 align-middle">Billing</span>
+	                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+	                        </span>
+	                      </a>
+	                    </li>
+	                    <li>
+	                      <div class="dropdown-divider"></div>
+	                    </li>
+	                    <li>
+	                      <a class="dropdown-item" href="auth-login-basic.html">
+	                        <i class="bx bx-power-off me-2"></i>
+	                        <span class="align-middle">Log Out</span>
+	                      </a>
+	                    </li>
+	                  </ul>
+	                </li>
+	                <!--/ User -->
+	              </ul>
+	            </div>
+	            
+	          </nav>
+	          <nav class="layout-navbar navbar container-xxl navbar-detached navbar-example navbar-expand-lg nav_white_custom bg-white mt-3">
+				<div class="container-fluid">
+					<a class="dash_board_custom" th:href="@{/dashboard}">대시보드</a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbar-ex-2"
+						aria-controls="navbar-ex-2" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbar-ex-2">
+						<div class="navbar-nav me-auto">
+							<a class="nav-item dash_board_custom" th:href="@{/project/allProjectsInfo}">프로젝트관리</a>
+							<a class="nav-item dash_board_custom" th:href="@{/dashboard/sign}">결재상황</a>
+							<a class="nav-item dash_board_custom" th:href="@{/dashboard/post}">공고현황</a>
+							<a class="nav-item dash_board_custom" th:href="@{/manage/funds}">관리페이지</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div class="margin_custom"></div>
+		  </div>
           <!-- / Navbar -->
 
           <!-- Content wrapper -->

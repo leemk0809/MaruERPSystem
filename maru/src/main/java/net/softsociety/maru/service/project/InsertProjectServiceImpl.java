@@ -10,10 +10,12 @@ import net.softsociety.maru.dao.MaterialDAO;
 import net.softsociety.maru.dao.NeedMaterialDAO;
 import net.softsociety.maru.dao.PostDAO;
 import net.softsociety.maru.dao.ProjectsDAO;
+import net.softsociety.maru.dao.ProjectsTagDAO;
 import net.softsociety.maru.dao.WorkerDAO;
 import net.softsociety.maru.domain.Material;
 import net.softsociety.maru.domain.NeedMaterial;
 import net.softsociety.maru.domain.Projects;
+import net.softsociety.maru.domain.ProjectsTag;
 import net.softsociety.maru.domain.Worker;
 
 @Service
@@ -29,6 +31,8 @@ public class InsertProjectServiceImpl implements InsertProjectService {
 	MaterialDAO mDAO;
 	@Autowired
 	WorkerDAO wDAO;
+	@Autowired
+	ProjectsTagDAO ptDAO;
 	
 	
 	@Override
@@ -100,4 +104,10 @@ public class InsertProjectServiceImpl implements InsertProjectService {
 		return averageSalry() + calcNeedMaterialPrice(project_num);
 	}
 
+	@Override
+	public void insertProjectTag(List<Integer> positionNumList, int projects_num) {
+		for(Integer p : positionNumList) {
+			ptDAO.insert(new ProjectsTag(0, p, projects_num, "N"));
+		}
+	}
 }
