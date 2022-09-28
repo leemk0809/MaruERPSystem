@@ -126,6 +126,85 @@
  	text-align: inherit;
 }
 
+.insert-project {
+  max-width: 100rem;
+  margin: 1.75rem auto;
+}
+
+.dash_board_custom {
+	color: #696cff;
+	display: block;
+	padding: 0.5rem 1.25rem;
+}
+
+.dash_board_custom {
+	padding-top: 0.4521875rem;
+	padding-bottom: 0.4521875rem;
+	margin-right: 1rem;
+	font-size: 1rem;
+	white-space: nowrap;
+	color: #696cff;
+}
+
+.div-center {
+	text-align: center;
+	margin-bottom: 1rem !important;
+}
+
+a.bg-white:hover, a.bg-white:focus {
+	background-color: rgba(67, 89, 113, 0.2) !important;
+}
+
+.margin_custom {
+	margin-top: 10px;
+}
+
+.tab-contents1 {
+	float: left;
+	width: 60%;
+}
+
+.tab-contents2 {
+	float: left;
+	width: 40%;
+	height: 530px;
+}
+
+.set-float-right {
+	float: right;
+}
+
+.set-float-left {
+	float: left;
+}
+
+.check_center {
+	padding-left: 50%;
+}
+
+.table_center {
+	text-align: center;
+}
+
+.table_margin_auto {
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.border_thick {
+	border: 1px solid;
+}
+
+.div_margin_bottom{
+	margin-bottom: 125px;
+}
+
+.translate-y{animation: translatey 1s linear 1 ;}
+@keyframes translatey{
+    0%{transform: translateY(0);}
+    100%{transform: translateY(100%);}
+}
+
 .dropdown-menu-mk{
 	position: absolute;
 	left: 39%;
@@ -2974,11 +3053,12 @@ textarea.form-control-lg {
   border: 1px solid transparent;
   border-radius: 0.375rem;
 }
+/*
 .dropdown-menu[data-bs-popper] {
   top: 100%;
   left: 0;
   margin-top: 0.125rem;
-}
+}*/
 
 .dropdown-menu-start {
   --bs-position: start;

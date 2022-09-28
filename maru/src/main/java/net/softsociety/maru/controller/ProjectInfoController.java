@@ -77,6 +77,7 @@ public class ProjectInfoController {
 	
 	@GetMapping("/allProjectsInfo")
 	public String allProjectsInfo(Model model) {
+		
 		List<Projects> projectsList = projectInfoService.selectAllProjects();
 		List<Projects> selectedProjectList = new ArrayList<>();
 		log.debug("프로젝트 리스트:{}",projectsList);
@@ -92,11 +93,11 @@ public class ProjectInfoController {
 		log.debug("selectedProjectList : {}", selectedProjectList);
 		
 		for(int i = 0 ; i < selectedProjectList.size(); i++) {
-			int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
+			//int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
 			selectedProjectList.get(i).setStart_date(selectedProjectList.get(i).getStart_date().split(" ")[0]);  
 			selectedProjectList.get(i).setEnd_date(selectedProjectList.get(i).getEnd_date().split(" ")[0]);
 			
-			model.addAttribute("price" + i, price);
+			//model.addAttribute("price" + i, price);
 			model.addAttribute("selectedProject" + i, selectedProjectList.get(i));
 		}
 		

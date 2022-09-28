@@ -1185,7 +1185,21 @@ chart.appear(1000, 100);
 							<a class="nav-item dash_board_custom" th:href="@{/project/allProjectsInfo}">프로젝트관리</a>
 							<a class="nav-item dash_board_custom" th:href="@{/dashboard/sign}">결재상황</a>
 							<a class="nav-item dash_board_custom" th:href="@{/dashboard/post}">공고현황</a>
-							<a class="nav-item dash_board_custom" th:href="@{/manage/funds}">관리페이지</a>
+							<a class="nav-item nav-link dropdown-toggle hide-arrow dash_board_custom" data-bs-toggle="dropdown">관리페이지</a>
+							<ul class="dropdown-menu dropdown-menu-mk ">
+	                          	<li>
+	                           	<a th:href="@{/manage/funds}" class="dropdown-item d-flex align-items-center"
+	     							><i class="bx bx-chevron-right scaleX-n1-rtl"></i>자금 관리</a>
+	                           </li>
+	                           <li>
+	                             <a th:href="@{/manage/material}" class="dropdown-item d-flex align-items-center"
+	                               ><i class="bx bx-chevron-right scaleX-n1-rtl"></i>자재 관리</a>
+	                           </li>
+	                           <li>
+	                             <a th:href="@{/manage/worker}" class="dropdown-item d-flex align-items-center"
+	                               ><i class="bx bx-chevron-right scaleX-n1-rtl"></i>인력 관리</a>
+	                           </li>
+	                      	</ul>
 						</div>
 					</div>
 				</div>
