@@ -93,6 +93,8 @@ public class ProjectInfoController {
 		
 		for(int i = 0 ; i < selectedProjectList.size(); i++) {
 			int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
+			selectedProjectList.get(i).setStart_date(selectedProjectList.get(i).getStart_date().split(" ")[0]);  
+			selectedProjectList.get(i).setEnd_date(selectedProjectList.get(i).getEnd_date().split(" ")[0]);
 			
 			model.addAttribute("price" + i, price);
 			model.addAttribute("selectedProject" + i, selectedProjectList.get(i));
@@ -121,6 +123,9 @@ public class ProjectInfoController {
 		// projectTag추가
 		insertProjectService.insertProjectTag(positionNumList, projectnum);
 		
-		projectInfoService.selectOne(projectnum).setStatus("결재중");
+		Projects p = projectInfoService.selectOne(projectnum);
+		
+		p.setStatus("결재중");
+		insertProjectService.updateProject(p);
 	}
 }
