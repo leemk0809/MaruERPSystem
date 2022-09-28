@@ -128,4 +128,10 @@ public class ProjectInfoController {
 		p.setStatus("결재중");
 		insertProjectService.updateProject(p);
 	}
+	
+	@GetMapping("/progress")
+	public String progress() {
+		
+		return "/project/progress";
+	}
 }
