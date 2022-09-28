@@ -89,6 +89,9 @@ public class DashboardController {
 		// 이슈리스트
 		ArrayList<Issue> issueList = dashboardService.selectAllIssue();
 
+		for (Issue issue : issueList) {
+			issue.setInput_date(issue.getInput_date().split(" ")[0]);
+		}
 		// log.debug(issueList + "컨트롤러");
 
 		model.addAttribute("issueList", issueList);
@@ -135,14 +138,15 @@ public class DashboardController {
 				}
 			}
 
-			issueTotList.add(new IssueTot(p_num, issueTitle, p_title, positionName, i.getInput_date()));
+			IssueTot iTobj = new IssueTot(p_num, issueTitle, p_title, positionName, i.getInput_date().split(" ")[0]);
+
+			issueTotList.add(iTobj);
+
 		}
 
 		model.addAttribute("issueTotList", issueTotList);
 
 		return "dashboard/dashboard.html";
 	}
-	
-	
 
 }

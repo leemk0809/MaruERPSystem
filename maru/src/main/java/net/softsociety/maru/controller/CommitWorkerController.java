@@ -46,7 +46,7 @@ public class CommitWorkerController {
 	@ResponseBody
 	@GetMapping({ "calendar/calendarEvents2" })
 	public ArrayList<Calender> calendarEvents() {
-//		ArrayList<Projects> plist = dashboardService.selectAllProjects();
+//		ArrayList<Projects> plist = dashboardService.selectAllProjects();	
 //		ArrayList<Calender> clist = new ArrayList<Calender>();
 //
 //		for (Projects p : plist) {

@@ -23,9 +23,9 @@ public class FundsController {
 	public String index(Model model) {
 		//프로젝트별 수입
 		int proSales1 = service.projectSales(1);	//1번프로젝트 수입
-		int proSales2 = service.projectSales(2);	//2번프로젝트 수입
-		int proSales3 = service.projectSales(3);
-		int proSales4 = service.projectSales(4);		
+		int proSales2 = service.projectSales(24);	//2번프로젝트 수입
+		int proSales3 = service.projectSales(25);
+		int proSales4 = service.projectSales(26);		
 		model.addAttribute("proSales1",proSales1);
 		model.addAttribute("proSales2",proSales2);
 		model.addAttribute("proSales3",proSales3);
