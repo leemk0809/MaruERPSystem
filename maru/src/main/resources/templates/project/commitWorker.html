@@ -230,12 +230,9 @@
 								<div class="table-responsive text-nowrap tab-contents1">
 									<table class="table table-hover">
 										<thead>
-
 											<tr>
 												<th>사원번호</th>
-												<th>이   름</th>
-												<th>직   책</th>
-												<th>작업내용</th>
+												<th>이 름</th>
 												<th>시 작 일</th>
 												<th>완 료 일</th>
 											</tr>
@@ -243,13 +240,11 @@
 										</thead>
 										<tbody class="table-border-bottom-0">
 
-											<tr>
-												<td>사원번호</td>
-												<td>이   름</td>
-												<td>직   책</td>
-												<td>작업내용</td>
-												<td>시 작 일</td>
-												<td>완 료 일</td>
+											<tr th:each="wtList : ${wtList}">
+												<td th:text="${wtList.worker_num}"></td>
+												<td th:text="${wtList.name}"></td>
+												<td th:text="${wtList.start_date}"></td>
+												<td th:text="${wtList.end_date}"></td>
 											</tr>
 
 										</tbody>
@@ -257,8 +252,9 @@
 								</div>
 
 								<div>
-									<iframe th:src="|http://localhost:1234/maru/calendar/calender2.html?projects_num=${projects.projects_num}|" frameborder="0"
-										class="tab-contents2"></iframe>
+									<iframe
+										th:src="|http://localhost:1234/maru/calendar/calender2.html?projects_num=${projects.projects_num}|"
+										frameborder="0" class="tab-contents2"></iframe>
 								</div>
 							</div>
 						</div>
@@ -279,8 +275,6 @@
 			<div class="layout-overlay layout-menu-toggle"></div>
 		</div>
 		<!-- / Layout wrapper -->
-
-
 
 		<!-- Core JS -->
 		<!-- build:js assets/vendor/js/core.js -->

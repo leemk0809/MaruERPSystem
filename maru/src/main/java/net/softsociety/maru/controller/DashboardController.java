@@ -48,7 +48,7 @@ public class DashboardController {
 
 	@GetMapping({ "", "/", "dashboard" })
 	public String index(Model model) {
-		/*
+		
 		// 프로젝트 상황
 		int totProject = dashboardService.countAllProjects();
 
@@ -146,7 +146,7 @@ public class DashboardController {
 		}
 
 		model.addAttribute("issueTotList", issueTotList);
-		*/
+		
 		return "dashboard/dashboard.html";
 	}
 

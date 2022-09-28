@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class WorkerTot {
-	private Worker wc;
+	private int worker_num;
 	private String name;
-	private String position_name;
+	private String start_date;
+	private String end_date;
 }

@@ -40,8 +40,8 @@ public class CommitWorkerController {
 
 	@GetMapping("project/commitWorker")
 	public String commmitWorker(Model model,
-			@RequestParam(name = "projects_num", defaultValue = "0") int projects_num) {
-		
+			@RequestParam(name = "projects_num", defaultValue = "1") int projects_num) {
+
 		model.addAttribute("projects", pService.selectOne(projects_num));
 
 		// 옆의메뉴
@@ -49,35 +49,27 @@ public class CommitWorkerController {
 		model.addAttribute("Plist", pList);
 
 		// 테이블
-		List<Worker> wList = wService.selectAllWorker(projects_num);
-		List<Position> poList = podao.selectAll();
+		List<Worker> wList = wService.selectAll();
 		List<CommitWorker> cwList = cwService.selectAllCommitWorker();
 
 		List<WorkerTot> wtList = new ArrayList<WorkerTot>();
 
 		for (CommitWorker cw : cwList) {
 			if (cw.getProjects_num() == projects_num) {
-				for (Worker w : wList) {
-					if(cw.getWorker_num() == w.getWorker_num()) {
-						for(Position po : poList) {
-							if(cw.getCommit_worker_num()==po.getPosition_num()) {
-								
-								WorkerTot wt = new WorkerTot();
-								wt.setWc(w);
-								wt.setName(w.getName());
-								wt.setPosition_name(po.getPosition_name());
-
-								wtList.add(wt);
-							}
-						}//end poList loop
-					}
-				}//end wList loop
+				wtList.add(new WorkerTot(cw.getWorker_num(), null, cw.getCommit_date().split(" ")[0],
+						cw.getEnd_date().split(" ")[0]));
 			}
-		}//end cwList loop
-		
+		}
+
+		for (Worker w : wList) {
+			for (WorkerTot wt : wtList) {
+				if (w.getWorker_num() == wt.getWorker_num()) {
+					wt.setName(w.getName());
+				}
+			}
+		}
+
 		model.addAttribute("wtList", wtList);
-		
-		log.debug("wtList : " + wtList);
 
 		return "project/commitWorker";
 	}
