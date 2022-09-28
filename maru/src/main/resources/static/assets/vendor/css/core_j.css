@@ -66,6 +66,11 @@
 	height: 100%;
 }
 
+.insert-project {
+  max-width: 100rem;
+  margin: 1.75rem auto;
+}
+
 .dash_board_custom {
 	color: #696cff;
 	display: block;

@@ -24,7 +24,7 @@ public class SignDetailServiceTest {
 	@Disabled
 	@Test
 	public void stamp() {
-		service.stamp(2);
+		service.stamp(2,1);
 	}
 	
 }
