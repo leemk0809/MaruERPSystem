@@ -1,5 +1,6 @@
 package net.softsociety.maru.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,15 @@ public class CommitMaterialController {
 	@GetMapping("/commitMaterial")
 	public String commitMaterial(Model model
 			,@RequestParam(name="projects_num", defaultValue = "0") int projects_num) {
-		List<Projects> projectsList = projectInfoService.selectAllProjects();
-		log.debug("프로젝트 리스트:{}",projectsList);
+		List<Projects> pList = projectInfoService.selectAllProjects();
+		log.debug("프로젝트 리스트:{}",pList);
+		List<Projects> projectsList = new ArrayList<Projects>();
+		
+		for(Projects project: pList) {
+			if(project.getStatus().equals("진행중")) {
+				projectsList.add(project);
+			}
+		}
 		
 		model.addAttribute("projectsList",projectsList);
 		
@@ -58,9 +66,15 @@ public class CommitMaterialController {
 	public String allCommitMaterials(Model model
 			,@RequestParam(name="projects_num", defaultValue = "0") int projects_num) {
 		
-		List<Projects> projectsList = projectInfoService.selectAllProjects();
-		log.debug("프로젝트 리스트:{}",projectsList);
+		List<Projects> pList = projectInfoService.selectAllProjects();
+		log.debug("프로젝트 리스트:{}",pList);
+		List<Projects> projectsList = new ArrayList<Projects>();
 		
+		for(Projects project: pList) {
+			if(project.getStatus().equals("진행중")) {
+				projectsList.add(project);
+			}
+		}
 		model.addAttribute("projectsList",projectsList);
 		
 		Projects projects = projectInfoService.selectOne(projects_num);

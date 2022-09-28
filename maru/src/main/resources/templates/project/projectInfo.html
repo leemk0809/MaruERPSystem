@@ -767,11 +767,11 @@ chart.appear(1000, 100);
                 <span class="menu-header-text">All Projects</span>
               </li>
               <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">   
-                 <img src="../images/maru_logo.png" width="30px" height="30px"> &nbsp;&nbsp;&nbsp;             
-                  <button type="button" class="btn rounded-pill btn-success" 
+                <p> 
+                 <img src="../images/maru_logo.png" width="30px" height="30px">            
+                  <button type="button" class="btn rounded-pill btn-success" style="width:200px" 
                   th:onclick="|location.href='@{allProjectsInfo}'|">모든 프로젝트</button>
-                </a>            
+                </p>            
               </li>
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Projects</span>
@@ -780,7 +780,7 @@ chart.appear(1000, 100);
             <li>
             <p>
             <img src="../images/maru_logo.png" width="30px" height="30px">
-            <button type="button" class="btn rounded-pill btn-info" 
+            <button type="button" class="btn rounded-pill btn-info" style="width:200px"
             		th:text="${list.title}"  th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|"></button>              		 
           	</p>
           	</li>

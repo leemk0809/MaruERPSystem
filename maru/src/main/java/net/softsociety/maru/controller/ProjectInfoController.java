@@ -30,9 +30,15 @@ public class ProjectInfoController {
 	@GetMapping("/projectInfo")
 	public String projectInfo(Model model
 			,@RequestParam(name="projects_num", defaultValue = "0") int projects_num) {
-		List<Projects> projectsList = projectInfoService.selectAllProjects();
-		log.debug("프로젝트 리스트:{}",projectsList);
+		List<Projects> pList = projectInfoService.selectAllProjects();
+		log.debug("프로젝트 리스트:{}",pList);
+		List<Projects> projectsList = new ArrayList<Projects>();
 		
+		for(Projects project: pList) {
+			if(project.getStatus().equals("진행중")) {
+				projectsList.add(project);
+			}
+		}
 		model.addAttribute("projectsList",projectsList);
 		
 		Projects projects = projectInfoService.selectOne(projects_num);
@@ -91,6 +97,14 @@ public class ProjectInfoController {
 		}
 		
 		
+		List<Projects> ingList = new ArrayList<Projects>();
+		
+		for(Projects project: projectsList) {
+			if(project.getStatus().equals("진행중")) {
+				ingList.add(project);
+			}
+		}
+		model.addAttribute("ingList",ingList);
 		
 		return "project/allProjectsInfo";
 	}
