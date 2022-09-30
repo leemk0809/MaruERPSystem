@@ -87,11 +87,11 @@ public class PostController {
 			project.setTitle(post.getTitle());
 			project.setStatus("결재전");
 			project.setPost_num(post_num);
-			project.setStart_date("2022-10-15");
-			project.setEnd_date("2022-10-15");
+			project.setStart_date("2022-10-03");
+			project.setEnd_date("2022-10-10");
 			project.setNeed_worker(10);
-			project.setAmount(10);
-			project.setBlueprint_path("미정");
+			project.setAmount(2000);
+			project.setBlueprint_path("	");
 			project.setAirview_path("미정");
 			
 			proService.insertProject(project);

@@ -78,4 +78,5 @@ public class ProjectsInfoServiceTest {
 		
 		log.debug("프로젝트진척도:{}",progress);
 	}
+
 }

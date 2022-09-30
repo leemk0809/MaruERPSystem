@@ -694,7 +694,6 @@ chart.appear(1000, 100);
 	    			, positionNumList : positionNumList
 	    		},
 	    		success: function(){
-	    			alert('insertProject 성공');
 	    			$('#card-project0').remove();
 	    			$('#insertModal').modal('hide');
 	    		},
@@ -721,7 +720,6 @@ chart.appear(1000, 100);
 	    			, positionNumList : positionNumList
 	    		},
 	    		success: function(){
-	    			alert('insertProject 성공');
 	    			$('#insertModal').modal('hide');
 	    		},
 	    		error:function(){
@@ -1042,17 +1040,17 @@ chart.appear(1000, 100);
               	<div class="card col-md-4 mb-4">
               		<div class="card-body" id="card-project0">
               			<a th:text="${selectedProject0.title}" href="javascript:printSelectProject(0)"></a><br>
-              			<img th:src="|../assets/img/elements/a${selectedProject0.projects_num}.jpg|"><br>
+              			<img th:src="|../assets/img/elements/a${selectedProject0.projects_num}.jpg|" class="insert-project-img"><br>
               			<hr class="my-0">
               		</div>
               		<div class="card-body" id="card-project1">
               			<a th:text="${selectedProject1.title}" href="javascript:printSelectProject(1)"></a><br>
-              			<img th:src="|../assets/img/elements/a${selectedProject1.projects_num}.jpg|"><br>
+              			<img th:src="|../assets/img/elements/a${selectedProject1.post_num}.jpg|" class="insert-project-img"><br>
               			<hr class="my-0">
               		</div>
               		<div class="card-body" id="card-project2">
               			<a th:text="${selectedProject2.title}" href="javascript:printSelectProject(2)"></a><br>
-              			<img th:src="|../assets/img/elements/a${selectedProject2.projects_num}.jpg|"><br>
+              			<img th:src="|../assets/img/elements/a${selectedProject2.projects_num}.jpg|" class="insert-project-img"><br>
               			<hr class="my-0">
               		</div>     		
               	</div>

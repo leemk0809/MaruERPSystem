@@ -18,13 +18,12 @@ public class ProjectsTagDAOTest {
 	@Autowired
 	ProjectsTagDAO dao;
 	
-	@Disabled
 	@Test
 	public void insert() {
 		ProjectsTag pt = new ProjectsTag();
-		pt.setProjects_num(1);
-		pt.setPosition_num(1);
-		pt.setTag_sign("NO");
+		pt.setProjects_num(26);
+		pt.setPosition_num(3);
+		pt.setTag_sign("N");
 		
 		dao.insert(pt);
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.softsociety.maru.dao.MaterialDAO;
 import net.softsociety.maru.dao.NeedMaterialDAO;
 import net.softsociety.maru.dao.PostDAO;
@@ -18,6 +19,7 @@ import net.softsociety.maru.domain.Projects;
 import net.softsociety.maru.domain.ProjectsTag;
 import net.softsociety.maru.domain.Worker;
 
+@Slf4j
 @Service
 public class InsertProjectServiceImpl implements InsertProjectService {
 
@@ -101,6 +103,8 @@ public class InsertProjectServiceImpl implements InsertProjectService {
 
 	@Override
 	public int calcPredictPrice(int project_num) {		
+		log.debug("avg: {}",averageSalry());
+		log.debug("calcNeedMaterialPrice: {}",calcNeedMaterialPrice(project_num));
 		return averageSalry() + calcNeedMaterialPrice(project_num);
 	}
 

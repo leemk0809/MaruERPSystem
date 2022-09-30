@@ -27,7 +27,7 @@ public class InsertProjectServiceTest {
 		log.debug("list.size() : {}", list.size());
 	}
 	
-	@Test @Disabled
+	@Test 
 	void updateProject() {
 		List<Material> materialList = service.selectAllMaterial();
 		log.debug("materialList : {}", materialList);
@@ -41,8 +41,8 @@ public class InsertProjectServiceTest {
 		log.debug("project: {}", project);
 		
 		// 먼저 필요 자재부터 추가 해야 함, 유저에게 projects_num, material_num, count 받아야함
-		service.insertNeedMaterial(26, 1, 20);
-		service.insertNeedMaterial(26, 2, 10);
+		//service.insertNeedMaterial(26, 1, 20);
+		//service.insertNeedMaterial(26, 2, 10);
 	
 		// 예상 지출 추가
 		// 평균임금 * 필요인원수 + 필요자재갯수 * 자재가격

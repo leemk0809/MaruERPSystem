@@ -93,11 +93,11 @@ public class ProjectInfoController {
 		log.debug("selectedProjectList : {}", selectedProjectList);
 		
 		for(int i = 0 ; i < selectedProjectList.size(); i++) {
-			//int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
+			int price = insertProjectService.calcPredictPrice(selectedProjectList.get(i).getPost_num());
 			selectedProjectList.get(i).setStart_date(selectedProjectList.get(i).getStart_date().split(" ")[0]);  
 			selectedProjectList.get(i).setEnd_date(selectedProjectList.get(i).getEnd_date().split(" ")[0]);
 			
-			//model.addAttribute("price" + i, price);
+			model.addAttribute("price" + i, price);
 			model.addAttribute("selectedProject" + i, selectedProjectList.get(i));
 		}
 		
@@ -128,6 +128,12 @@ public class ProjectInfoController {
 		
 		p.setStatus("결재중");
 		insertProjectService.updateProject(p);
+		
+		//가라코드 중간발표용
+		Projects temp = new Projects(0, p.getPost_num(), p.getTitle(), "2023-10-03", "2023-10-10", "결재전", p.getNeed_worker(), p.getAmount(), "미정", "미정");
+		log.debug("temp : {}", temp);
+		projectInfoService.insertProject(temp);
+		
 	}
 	
 	@GetMapping("/progress")
