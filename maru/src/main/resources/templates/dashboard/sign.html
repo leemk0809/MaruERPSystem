@@ -183,7 +183,7 @@
                 <div class="table-responsive text-nowrap">
                   <table class="table" >
                     <thead>
-                      <tr class="table-primary">
+                      <tr class="table-primary"  style="text-align:center;">
                         <th>프로젝트 번호</th>
                         <th>프로젝트 제목</th>
                         <th>시작일</th>
@@ -193,7 +193,7 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" th:each="pList : ${pList}">
-                      <tr class="table-active">
+                      <tr class="table-active"  style="text-align:center;">
                        <td th:text="${pList.projects_num}"></td>                       
                        <td th:text="${pList.title}"></td>
                        <td th:text="${pList.start_date}"></td>
