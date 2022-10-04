@@ -51,7 +51,6 @@ function idCheckError() {
 }
 
 cancelBtn.onclick = function() {
-	alert("눌림");
 	window.close();
 }
 
