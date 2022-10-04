@@ -67,6 +67,10 @@
                 title: "목재 투입",
                 start: new Date(e.now() + 338e6),
                 className: "bg-primary"
+            },{
+                title: "단열재 투입",
+                start: new Date(e.now() + 338e6),
+                className: "bg-warning"
             }],
             o = this;
         o.$calendarObj = o.$calendar.fullCalendar({

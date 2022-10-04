@@ -9,5 +9,4 @@ public class MaruApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MaruApplication.class, args);
 	 }
-
 }

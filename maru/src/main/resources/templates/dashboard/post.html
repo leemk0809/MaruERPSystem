@@ -38,7 +38,9 @@
 <link rel="stylesheet"
 	href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-<!-- Page CSS -->
+<!-- excelexport -->
+<script th:src="@{/assets/js/jquery.techbytarun.excelexportjs.js}"></script>
+
 
 <!-- Helpers -->
 <script src="../assets/vendor/js/helpers.js"></script>
@@ -59,7 +61,9 @@
 		if(limitsize==3){
 			if($('#limitsi').css('display') == 'none'){
 	            $('#limitsi').show();}
+			$('#whole').css('filter','blur(15px)');
 			return;
+		
 		}
 		$.ajax({
 			url : "insertProject",
@@ -94,7 +98,7 @@
 
 
 <body>
-
+	<div id="whole">
 	<div class="layout">
 		<nav
 			class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center  bg-navbar-theme"
@@ -113,10 +117,8 @@
 					<!-- Place this tag where you want the button to render. -->
 					<!-- 여기에 넣고싶은 버튼 넣으면 됨. -->
 					<li class="nav-item lh-1 me-3">
-					
-					<!-- 환영합니다 넣을 부분 -->	
-						<a>하이하이</a>
-						
+						<!-- 별모양 버튼 --> <a class="github-button" href="#"
+						data-icon="octicon-star" data-size="large" data-show-count="true">Star</a>
 					</li>
 
 					<!-- 프사 있는 부분 -->
@@ -126,7 +128,7 @@
 						class="nav-link dropdown-toggle hide-arrow"
 						href="javascript:void(0);" data-bs-toggle="dropdown"> <!-- online, offline으로 상태 변화가능 -->
 							<div class="avatar avatar-online">
-								<img src="../assets/img/avatars/profile.jpg" alt
+								<img src="../assets/img/avatars/1.png" alt
 									class="w-px-40 h-auto rounded-circle" />
 							</div>
 					</a>
@@ -216,77 +218,20 @@
 	<div class="content-wrapper">
 		<div class="container-xxl flex-grow-1 container-p-y">
 			<div class="mb-5">
+			
               <!-- Contextual Classes -->
               <div class="card">
+              <div style="float:right;">
+              <a id="btnExport" href="#" download="">
+					<button id="excel"class="btn btn-outline-primary" type="button"><img th:src="@{/assets/img/elements/excel.png}" alt="" width="30px" height="30px">Excel다운</button>
+			</a>
+			<button id="savePdf" class="btn btn-outline-primary" type="button"><img th:src="@{/assets/img/elements/pdf.jpg}" alt="" width="30px" height="30px">PDF 저장</button>
+             </div>
+				 <div id="exceldown"> 
                 <h5 class="card-header">입찰 공고 목록</h5> 
-                <div id="sung" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:20;"> 
-                <div		
-                        class="bs-toast toast fade show bg-primary"
-                        role="alert"
-                        aria-live="assertive"
-                        aria-atomic="true"
-                      >
-                        <div class="toast-header">
-                          <i class="bx bx-bell me-2"></i>
-                          <div class="me-auto fw-semibold">공고 담기 완료</div>
-                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                          "공고"상태로 프로젝트 목록에 추가 완료
-                        </div>
-                      </div>
-                      </div> 
-                     <div id="sil" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:10;">                     	
-                      <div
-                        class="bs-toast toast fade show bg-danger"
-                        role="alert"
-                        aria-live="assertive"
-                        aria-atomic="true"
-                      >
-                        <div class="toast-header">
-                          <i class="bx bx-bell me-2"></i>
-                          <div class="me-auto fw-semibold">공고 담기 실패</div>
-                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                          이미 프로젝트 목록에 추가 된 공고입니다.
-                        </div>
-                      </div>
-                     </div>
-                     <div id="err" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:3;"> 
-                <div		
-                        class="bs-toast toast fade show bg-error"
-                        role="alert"
-                        aria-live="assertive"
-                        aria-atomic="true"
-                      >
-                        <div class="toast-header">
-                          <i class="bx bx-bell me-2"></i>
-                          <div class="me-auto fw-semibold">오류 발생</div>
-                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                          다시 확인 후 추가 해주세요
-                        </div>
-                      </div>
-                      </div>  
-               <div id="limitsi" align="right" style="display:none; position:absolute; top:80px; left:500px; z-index:20;"> 
-               		 <div class="card h-100" style="background-color:skyblue;">
-	                    <img class="card-img-top" src="../images/maru_logo.png" style="padding-top:30px; padding-left:80px; width:300px; height:200px;"alt="Card image cap" />
-	                    <div class="card-body">
-	                      <h5 class="card-title" style="text-align:left">"결재전" 프로젝트가 3개입니다.</h5>
-	                      <p class="card-text">
-	                        프로젝트의 결재 후에 새로운 공고를 추가 해주세요
-	                      </p>
-	                      <a th:href="@{/project/allProjectsInfo}" class="btn btn-outline-primary">결재창으로 이동</a>
-	                    </div>
-	                  </div>
-                      </div>                   
-                                 
-                                 
-                                   
                 <div class="table-responsive text-nowrap">
-                  <table class="table" >
+               
+                  <table class="table" id='tblExport'>
                     <thead>
                       <tr class="table-primary">
                         <th style="text-align:center;">공고 번호/차수</th>
@@ -337,7 +282,42 @@
                       
                     </tbody>
                   </table>
-                  
+                  <script type="text/javascript">
+					 var tbl = 'exceldown';
+					 var uri = $("#"+tbl).excelexportjs({
+					     containerid: tbl
+					     , datatype: 'table'
+					     , returnUri: true
+					 });
+								    $(document).ready(function () {
+								 
+								        function itoStr($num)
+								        {
+								            $num < 10 ? $num = '0'+$num : $num;
+								            return $num.toString();
+								        }
+								         
+								        var btn = $('#btnExport');
+								        
+								 
+								        btn.on('click', function () {
+								            var dt = new Date();
+								            var year =  itoStr( dt.getFullYear() );
+								            var month = itoStr( dt.getMonth() + 1 );
+								            var day =   itoStr( dt.getDate() );
+								            var hour =  itoStr( dt.getHours() );
+								            var mins =  itoStr( dt.getMinutes() );
+								 
+								            var postfix = year + month + day + "_" + hour + mins;
+								            var fileName = "공고목록_"+ postfix + ".xls";
+								 
+								           
+								 
+								            $(this).attr('download', fileName).attr('href', uri).attr('target', '_blank');
+								        });
+								    });
+					</script>         
+                  </div>
                 </div>
               </div>
               <!--/ Contextual Classes -->
@@ -345,7 +325,57 @@
 			</div>
 		</div>
 	</div>
-			           
+		     <div id="sung" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:20;"> 
+                <div		
+                        class="bs-toast toast fade show bg-primary"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">공고 담기 완료</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          "공고"상태로 프로젝트 목록에 추가 완료
+                        </div>
+                      </div>
+                      </div> 
+                     <div id="sil" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:10;">                     	
+                      <div
+                        class="bs-toast toast fade show bg-danger"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">공고 담기 실패</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          이미 프로젝트 목록에 추가 된 공고입니다.
+                        </div>
+                      </div>
+                     </div>
+                     <div id="err" align="right" style="display:none; position:absolute; top:50px; left:1050px; z-index:3;"> 
+                <div		
+                        class="bs-toast toast fade show bg-error"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">오류 발생</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          다시 확인 후 추가 해주세요
+                        </div>
+                      </div>
+                      </div>  	           
                   
 					
                       
@@ -368,6 +398,63 @@
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	</div>
+	<div id="limitsi" align="right" style="display:none; position:absolute; top:80px; left:500px; z-index:20;"> 
+               		 <div class="card h-100" style="background-color:rgb(210, 210, 255); border:outset 5px;">
+	                    <img class="card-img-top" src="../images/maru_1.png" style="padding-top:30px;width:500px; height:300px;"alt="Card image cap" />
+	                    <div class="card-body">
+	                      <h5 class="card-title" style="text-align:left">"결재전" 프로젝트가 3개입니다.</h5>
+	                      <p class="card-text">
+	                        프로젝트의 결재 후에 새로운 공고를 추가 해주세요
+	                      </p>
+	                      <a th:href="@{/project/allProjectsInfo}" class="btn btn-outline-primary">결재창으로 이동</a>
+	                    </div>
+	                  </div>
+                      </div>      
+                      
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script th:src="@{/assets/vendor/js/jspdf.min.js}"></script>
+	
+
+  
+  <script>
+$(document).ready(function() {
+	$('#savePdf').click(function() { // pdf저장 button id
+		
+	    html2canvas($('#exceldown')[0]).then(function(canvas) { //저장 영역 div id
+		
+	    // 캔버스를 이미지로 변환
+	    var imgData = canvas.toDataURL('image/png');
+		     
+	    var imgWidth = 250; // 이미지 가로 길이(mm) / A4 기준 210mm
+	    var pageHeight = 250;  // 출력 페이지 세로 길이 계산 A4 기준
+	    var imgHeight = canvas.height * imgWidth / canvas.width;
+	    var heightLeft = imgHeight;
+	    var margin = 20; // 출력 페이지 여백설정
+	    var doc = new jsPDF('l', 'mm');
+	    var position = 0;
+	       
+	    // 첫 페이지 출력
+	    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+	    heightLeft -= pageHeight;
+	         
+	    // 한 페이지 이상일 경우 루프 돌면서 출력
+	  //  while (heightLeft >= 20) {
+	  //      position = heightLeft - imgHeight;
+	  //      doc.addPage();
+	//        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+	 //       heightLeft -= pageHeight;
+	//    }
+	 
+	    // 파일 저장
+	    doc.save('file-name.pdf');
+	});
+	});
+})
+
+
+
+</script>
 
 </body>
 
