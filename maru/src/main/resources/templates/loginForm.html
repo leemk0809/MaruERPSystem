@@ -44,7 +44,7 @@
 							<span>
 								이미 가입하셨나요?
 							</span>
-							<b onclick="toggle()" class="pointer">
+							<b onclick="login()" class="pointer">
 								로그인
 							</b>
 						</p>
@@ -80,7 +80,7 @@
 							<i class='bx bxs-lock-alt'></i>
 							<input type="password" placeholder="비밀번호">
 						</div>
-						<button>
+						<button onclick="login()">
 							로그인
 						</button>
 						<p>
@@ -89,12 +89,12 @@
 							</b>
 						</p>
 						<p>
-							<span>
+							<!-- <span>
 								아직 회원이 아니신가요?
 							</span>
 							<b onclick="toggle()" class="pointer">
 								회원가입
-							</b>
+							</b> -->
 						</p>
 					</div>
 				</div>
@@ -164,6 +164,10 @@
 	setTimeout(() => {
 		container.classList.add('sign-in')
 	}, 200)
+	
+	function login(){
+		location.href="/maru/dashboard";
+	}
 	</script>
 </body>
 
