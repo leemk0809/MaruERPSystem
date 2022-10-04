@@ -72,5 +72,9 @@ public class FundsController {
 		return "manage/funds";
 	}
 	
-
+	@GetMapping("/graph")
+	public String graph() {
+		
+		return "manage/graph";
+	}
 }
