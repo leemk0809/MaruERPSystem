@@ -616,14 +616,98 @@ chart.appear(1000, 100);
 
 }); // end am5.ready()
 </script>
+
+ <link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
+ <script type='text/javascript' src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
+ <script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
+ <script src="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.js"></script>
+
 </head>
 <body>
-<div class="card" style="background-color:rgb(208, 208, 225);">
-	<h2> 마루건설 성장 연혁</h2>
+<div class="card" style="background-color:rgb(208, 208, 225); height:150px;" >
+	<center>
+		<img src="../images/maru_logo.png" width="70px" height="70px" style="padding-top : 30px; display:inline-block;"><h1 style="display:inline; color:rgb(153, 153, 255)"> 마루건설 성장 연혁</h1>
+	</center>
 </div>
 
 <div class="card" style="background-color:rgb(240, 240, 245);">
+	<h2>마루건설 매출 변화</h2>
 	<div id="chartdiv"></div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<div class="card" style="background-color:rgb(255, 255, 204);">
+	<h2>건설 분야별 자금</h2>
+	<div id='chart-area' style="padding-left:100px;"></div>
+
+						<script type="text/javascript">
+						 var container = document.getElementById('chart-area');
+						 var data = {
+						categories: ['아파트', '호텔', '지하철', '복합상가', '공연시설', '연구단지', '발전소','특수'],
+						 series: [
+						{
+						name: '매출액[(억)원]',
+						 data: [3134, 921, 1231, 2527, 821, 2952, 3205, 2726]
+						},
+						 {
+						name: '매출 총이익[(억)원]',
+						 data: [360, 128, 132, 249, 97, 315, 367, 298]
+						},
+						{
+						name: '판매&관리비[(억)원]',
+						 data: [-167, -54, -89, -124, -42, -176, -192, -172]
+							},
+						 {
+						name: '당기순이익[(억)원]',
+						 data: [182, 67, 38, 115, 49, 124, 152, 113]
+						}
+						]
+						};
+						 var options = {
+						chart: {
+						width: 1160,
+						 height: 540,
+						 title: '',
+						 format: '1,000'
+						 },
+						 yAxis: {
+						title: '수치'
+						 },
+						 xAxis: {
+						title: '(억)원'
+						 },
+						 series: {
+						stackType: 'integer',
+						 barWidth: 60
+						 },
+						 tooltip: {
+						grouped: true
+						 },
+						 legend: {
+						align: 'bottom4000'
+						 }
+						};
+						 var theme = {
+						series: {
+						colors: [
+						'#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+						 '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+						 ]
+						}
+						};
+						
+						 // For apply theme
+						
+						 // tui.chart.registerTheme('myTheme', theme);
+						 // options.theme = 'myTheme';
+						
+						 tui.chart.columnChart(container, data, options);
+						</script>
+														
+			</div>
+</div>
+
 </body>
 </html>
