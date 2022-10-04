@@ -42,6 +42,32 @@ public class SignDetailServiceImpl implements SignDetailService {
 		}
 		pt.setTag_sign("Y");
 
+		boolean ynCheck = true;
+
+		for (ProjectsTag pttmp : ptList) {
+			if (pttmp.getProjects_num() == projects_num) {
+				if (!pttmp.getTag_sign().equals("Y")) {
+					ynCheck = false;
+					break;
+				}
+			}
+		}
+		
+		Projects p = pdao.selectOne(projects_num);
+		
+		log.debug("도장전"+p);
+		
+		
+		log.debug("ynCHeck : "+ynCheck);
+		
+		if(ynCheck) {
+			p.setStatus("진행중");
+		}
+				
+		pdao.update(p);
+		
+		log.debug("도장후"+p);
+
 		return ptdao.update(pt);
 	}
 
