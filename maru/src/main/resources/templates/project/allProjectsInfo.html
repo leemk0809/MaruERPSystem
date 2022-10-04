@@ -1185,7 +1185,7 @@ chart.appear(1000, 100);
                <div class="col-md-6 col-lg-4 mb-3" th:each="list : ${ingList}">
                <div class="card h-100">
                     <img class="card-img-top" 
-                    th:src="|../assets/img/elements/a${list.projects_num}.jpg|" alt="Card image cap" />
+                    th:src="|../assets/img/elements/a${list.projects_num}.jpg|" alt="Card image cap" style="height: 300px;" />
                     <div class="card-body">
                       <h5 class="card-title" th:text="${list.title}"></h5>
                       <button type="button" class="btn btn-info" th:onclick="|location.href='@{projectInfo(projects_num=${list.projects_num})}'|">공사 현황 보기</button>
