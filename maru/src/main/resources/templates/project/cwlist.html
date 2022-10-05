@@ -86,7 +86,7 @@
                         </div>
                         
                     <div class="card" style="width:80%; margin:20px;" >
-                    	<button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{allCommitMaterials}'|">돌아가기</button>                   
+                    	<button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{commitWorker?projects_num=1}'|">돌아가기</button>                   
                     </div>    
 
         </div>
@@ -257,24 +257,20 @@
  	        this.enableDrag();
  	        var t = new Date,
  	            n = (t.getDate(), t.getMonth(), t.getFullYear(), new Date(e.now())),
- 	            a = [{
- 	                title: "석재 투입",
- 	                start: new Date(e.now() + 158e6),
- 	                className: "bg-pink"
- 	            },          	
+ 	            a = [	
  	            	
  	            
  	            	{
- 	                title: "외장재 투입",
+ 	                title: "공통인력",
  	                start: n,
  	                end: n,
  	                className: "bg-danger"
  	            }, {
- 	                title: "목재 투입",
+ 	                title: "건축팀",
  	                start: new Date(e.now() + 338e6),
  	                className: "bg-primary"
  	            },{
- 	                title: "단열재 투입",
+ 	                title: "단열재",
  	                start: new Date('2022-10-02'),
  	                className: "bg-warning"
  	            }],
