@@ -276,14 +276,14 @@ var root = am5.Root.new("chartdiv");
 var data = [
     {
     name: "기계팀",
-    steps: ma,
+    steps: 80,
     pictureSettings: {
       src: "../assets/img/elements/machine.jpg"
     }
   },
   {
     name: "전기팀",
-    steps: el,
+    steps: 33,
     pictureSettings: {
       src: "../assets/img/elements/elec.jpg"
     }
@@ -297,7 +297,7 @@ var data = [
   },
   {
     name: "건축팀",
-    steps: bu,
+    steps: 60,
     pictureSettings: {
       src: "../assets/img/elements/build.jpg"
     }
@@ -850,7 +850,7 @@ function toggleDataSeries(e) {
             id="layout-navbar"
           >
             <div class="app-brand">
-              <a href="index.html" class="app-brand-link">
+              <a th:href="@{/dashboard}" class="app-brand-link">
                 <span class="app-brand-logo">
                     <img src="../images/maru_logo.png"  class="maru_logo" alt="">
                 </span>
