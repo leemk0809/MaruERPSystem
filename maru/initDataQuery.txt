@@ -1,0 +1,347 @@
+테이블 담당자
+
+송원묵 :  포스트, 자재, 빌딩타입, 프로젝트
+
+서정훈 : 프로젝트 태그, 워커, 니드자재
+
+이민국 : 부서, 커밋워커, 자금타입
+
+류혜인 : 프로젝트 자금, 커밋자재, 포지션, 이슈
+—------------------------------------------------------------------------------------------------------------------------
+
+drop sequence post_seq;
+drop table post;
+create table post(
+	post_num number primary key,
+	title varchar2(100),
+	building_type_num number references building_type(building_type_num),
+	price number,
+	area number,
+	building_size number
+);
+create sequence post_seq;
+
+drop sequence material_seq;
+drop table material;
+create table material(
+	material_num number primary key,
+	material_name varchar2(100),
+	count number,
+	price number
+);
+create sequence material_seq;
+
+
+
+
+
+
+drop table building_type;
+drop sequence building_type_seq;
+create table building_type(
+	building_type_num number primary key,
+	building_type_name varchar2(50)
+);
+create sequence building_type_seq;
+
+drop table projects;
+drop sequence projects_seq;
+create table projects(
+	projects_num number primary key,
+	post_num number references post(post_num),
+	title varchar2(100),
+	start_date date,
+	end_date date,
+	status varchar2(50) check(status in(‘진행전’,’진행중’,’완료’)),
+	need_worker number,
+	amount number,
+	blueprint_path varchar2(100),
+	airview_path varchar2(100)
+);
+create sequence projects_seq;
+
+alter table projects modify status varchar2(50) check(status in('진행전','진행중','완료'));
+
+
+drop table division;
+drop sequence division_seq;
+create table division(
+    division_num number primary key,
+    division_name varchar2(100)
+);
+create sequence division_seq;
+
+drop table funds_type;
+drop sequence funds_type_seq;
+create table funds_type(
+    funds_type_num number primary key,
+    funds_type_name varchar2(100)
+);
+create sequence funds_type_seq;
+
+drop table projects_funds;
+drop sequence projects_funds_seq;
+create table projects_funds(
+	projects_funds_num 	number PRIMARY KEY,
+	projects_num 		number REFERENCES projects(projects_num),
+	funds_type_num	number REFERENCES funds_type(funds_type_num),
+	funds_detail		varchar2(200),
+	price			number,
+	input_date		date default sysdate
+);
+create sequence projects_funds_seq;
+
+
+
+
+drop table commit_material;
+drop sequence commit_material_seq;
+create table commit_material(
+	commit_material_num	number PRIMARY KEY,
+	projects_num			number REFERENCES projects(projects_num),
+	material_num			number REFERENCES material(material_num),
+	count				number,
+commit_date 			date
+);
+create sequence commit_material_seq;
+
+
+alter table commit_material add commit_date date;
+
+drop table position;
+drop sequence position_seq;
+create table position(
+	position_num		number  PRIMARY KEY,
+	position_name		varchar2(100)
+);
+create sequence position_seq;
+
+
+drop table issue;
+drop sequence issue_seq;
+create table issue(
+	issue_num		number PRIMARY KEY,
+	projects_num		number REFERENCES projects(projects_num),
+	position_num 		number REFERENCES position(position_num),
+	rank			number,
+	title			varchar2(100),
+	contents		varchar2(2000),
+	input_date date default sysdate
+);
+create sequence issue_seq;
+
+drop SEQUENCE projects_tag_seq;
+drop table projects_tag;
+Create table projects_tag(
+projects_tag_num number PRIMARY KEY,
+position_num number REFERENCES position(position_num),
+projects_num number REFERENCES projects(projects_num),
+tag_sign VARCHAR2(10)
+);
+create SEQUENCE projects_tag_seq;
+
+drop SEQUENCE worker_seq;
+drop table worker;
+Create table worker(
+worker_num number PRIMARY KEY,
+position_num number REFERENCES position(position_num),
+division_num number REFERENCES division(division_num),
+id VARCHAR2(100),
+password VARCHAR2(100),
+name VARCHAR2(100),
+phone VARCHAR2(100),
+salary number
+);
+create SEQUENCE worker_seq;
+
+drop SEQUENCE need_material_seq;
+drop table need_material;
+create table need_material(
+    need_material_num number PRIMARY KEY,
+    projects_num number REFERENCES projects(projects_num),
+    material_num number REFERENCES material(material_num),
+    count number
+);
+create SEQUENCE need_material_seq;
+
+drop table commit_worker;
+drop sequence commit_worker_seq;
+
+create table commit_worker(
+    commit_worker_num number primary key,
+    projects_num number REFERENCES projects(projects_num),
+    worker_num number REFERENCES worker(worker_num),
+    worker_detail varchar2(1000),
+    commit_date date,
+    end_date date
+);
+create sequence commit_worker_seq;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[INSERT 문 작성]  -  테이블별로 정리 (주석처리로 테이블명 표기)
+–projects – 등등..
+
+--division insert–
+insert into division values(1, '건축팀');
+insert into division values(2, '토목팀');
+insert into division values(3, '전기팀');
+insert into division values(4, '기계팀');
+insert into division values(5, '영업기획팀');
+insert into division values(6, '자재팀');
+insert into division values(7, '인사노무팀');
+insert into division values(8, '경리팀');
+insert into division values(9, '임원');
+
+--funds_type–
+insert into funds_type values(1, '식비');
+insert into funds_type values(2, '교통비');
+insert into funds_type values(3, '회식비');
+insert into funds_type values(4, '인건비');
+insert into funds_type values(5, '자재비');
+insert into funds_type values(6, '기타');
+
+--  position –
+insert into position values (1,'소장');
+insert into position values (2,'품질관리자');
+insert into position values (3,'안전관리자');
+insert into position values (4,'공사부장');
+insert into position values (5,'공무부장');
+insert into position values (6,'관리부장');
+insert into position values (7,'건축팀장');
+insert into position values (8,'토목팀장');
+insert into position values (9,'전기팀장');
+insert into position values (10,'기계팀장');
+insert into position values (11,'영업기획팀장');
+insert into position values (12,'자재팀장');
+insert into position values (13,'인사노무팀장');
+insert into position values (14,'경리팀');
+insert into position values (15,'사원');
+
+
+
+-- building_type –
+insert into building_type values (1, 'Apartment');
+insert into building_type values (2, 'Hotel');
+insert into building_type values (3, 'Subway');
+insert into building_type values (4, 'Mall');
+insert into building_type values (5, 'Theater');
+insert into building_type values (6, 'physical_plant');
+insert into building_type values (7, 'educational_facility');
+insert into building_type values (8, 'research_complex');
+insert into building_type values (9, 'power_plant');
+insert into building_type values (10, 'religious_facilities');
+
+
+--  issue
+insert into issue values (issue_seq.nextval, 3 ,11,1,'영업관련 이슈 제목입니다','영업관련 이슈이슈 내용내용입니다 내용내용',sysdate); 
+
+--worker–
+insert into worker values(worker_seq.nextval,1,1,'id1','password1','name','phone',100);
+insert into worker values(worker_seq.nextval,1,2,'id2','password2','name2','phone2',200);
+insert into worker values(worker_seq.nextval,1,3,'id3','password3','name3','phone3',300);
+insert into worker values(worker_seq.nextval,1,4,'id4','password4','name4','phone4',400);
+insert into worker values(worker_seq.nextval,1,5,'id5','password5','name5','phone5',500);
+insert into worker values(worker_seq.nextval,1,6,'id6','password6','name6','phone6',600);
+insert into worker values(worker_seq.nextval,7,7,'id7','password7','name7','phone7',700);
+insert into worker values(worker_seq.nextval,8,8,'id8','password8','name8','phone8',800);
+insert into worker values(worker_seq.nextval,9,9,'id9','password9','name9','phone9',900);
+
+
+
+
+
+--  material insert – 
+insert into material values (material_seq.nextval, 'concrete', 2000, 650);
+insert into material values (material_seq.nextval, 'cement_brick', 300, 60);
+insert into material values (material_seq.nextval, 'marble', 3, 120000);
+insert into material values (material_seq.nextval, 'floor_tile', 32, 36000);
+insert into material values (material_seq.nextval, 'roof_tile', 4200, 720);
+insert into material values (material_seq.nextval, 'tempered_glass', 720, 43000);
+insert into material values (material_seq.nextval, 'carpet', 7, 27000);
+
+
+--post– 억단위
+
+ insert into post values (post_seq.nextval, 'apartment rebuilding', 1, 52000 ,626232 , 323452 );
+insert into post values (post_seq.nextval, 'all day church', 1, 475 , 3254 , 5142 );
+insert into post values (post_seq.nextval, 'sports complex', 1, 9260, 23332 , 12452 );
+insert into post values (post_seq.nextval, 'subway number 10', 1, 22540,626232 , 5782 );
+insert into post values (post_seq.nextval, 'solar power plant', 1, 125700,626232 , 1432452 );
+
+
+
+
+
+
+–commit_material–
+insert into commit_material VALUES (commit_material_seq.nextval, 1, 3, 10);
+
+–project_funds–
+insert into projects_funds values (1, 1, 5, ‘콘크리트’, 4000, sysdate);
+
+
+-- projects– 억단위
+
+insert into projects values (projects_seq.nextval, 1, '둔촌주공아파트 재건축 현장', '2022-03-01', '2022-04-01', '진행중', 200, 300, 'img.jpg', 'imgg.jpg');
+insert into projects values (projects_seq.nextval, 2, '삼성 성당 잠실지점 신축 현장', '2022-09-01', '2022-12-01', '진행전', 2000, 300, 'church.jpg', 'churchur.jpg');
+insert into projects values (projects_seq.nextval, 3, '지하철 10호선 의정부역 건설 현장', '2023-03-01', '2023-07-01', '진행전', 4800, 74, 'sub.jpg', 'ig.jpg');
+insert into projects values (projects_seq.nextval, 4, '복합 종합 운동 단지 건설', '2019-03-01', '2021-04-01', '완료', 1200, 300, 'spo.jpg', 'spoo.jpg');
+insert into projects values (projects_seq.nextval, 5, '태양광 발전소 코엑스', '2022-06-11', '2024-08-01', '진행전', 980, 77, 'solar.jpg', 'solgg.jpg');
+
+
+-- commit_worker
+insert into commit_worker values(commit_worker_seq.nextval, 1, 1, '삽질', '2022-10-01', '2022-10-04');
+insert into commit_worker values(commit_worker_seq.nextval, 1, 2, '삽질', '2022-10-01', '2022-10-04');
+insert into commit_worker values(commit_worker_seq.nextval, 1, 3, '삽질', '2022-10-01', '2022-10-04');
+
+
+– need_material –
+
+insert into need_material values(need_material_seq.nextval,1,1,10);
+insert into need_material values(need_material_seq.nextval,1,2,20);
+insert into need_material values(need_material_seq.nextval,1,3,30);
+insert into need_material values(need_material_seq.nextval,1,4,40);
+insert into need_material values(need_material_seq.nextval,1,5,50);
+insert into need_material values(need_material_seq.nextval,1,6,60);
+
+
+– projects_tag –
+insert into projects_tag values(1,1,1,'N');
+insert into projects_tag values(2,2,1,'N');
+insert into projects_tag values(3,3,1,'N');
+insert into projects_tag values(4,4,1,'Y');
+insert into projects_tag values(5,5,1,'Y');
+insert into projects_tag values(6,6,1,'Y');
+
+
