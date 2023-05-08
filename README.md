@@ -1,4 +1,4 @@
-# scit42-teamProject
+# Maru建設ERPシステム(4人チームプロジェクト)
 
 ![image](https://user-images.githubusercontent.com/21729665/194885230-14554ec7-1fb5-42fd-92d8-22cbcb44923c.png)
 
